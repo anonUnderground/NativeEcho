@@ -1,0 +1,1670 @@
+{
+  "video_details": {
+    "video_id": "L9ldYBq-eGQ",
+    "title": "Ganesh Swami I Modular Data Infrastructure For AI With Covalent I Agentic Ethereum 2025",
+    "description": "Join Ganesh Swami with Covalent for a workshop titled \"Modular Data Infrastructure For AI\".\n\nAgentic Ethereum is an online, async hackathon that runs from Jan. 31 to Feb. 12, 2025.  With over $175,000 USD in prizes, Agentic Ethereum is a great way to dive into the world of autonomous AI agents and explore how they can revolutionize projects on Ethereum. Start the year with groundbreaking innovation!\n\n----------------\n\nFollow us:  \n\nhttps://x.com/ethglobal\nCheck us out: https://ethglobal.com\nEmail us at: hello@ethglobal.com",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/L9ldYBq-eGQ/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/L9ldYBq-eGQ/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/L9ldYBq-eGQ/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/L9ldYBq-eGQ/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/L9ldYBq-eGQ/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "caption_status": "false",
+    "embed_html": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/L9ldYBq-eGQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  },
+  "captions": [
+    {
+      "text": "[Music]",
+      "start": 1.85,
+      "duration": 7.63
+    },
+    {
+      "text": "hello everyone I'm Ganesh Swami I'm one",
+      "start": 7.399,
+      "duration": 4.24
+    },
+    {
+      "text": "of the co-founders of coent and today",
+      "start": 9.48,
+      "duration": 4.6
+    },
+    {
+      "text": "I'm going to do a quick walk through the",
+      "start": 11.639,
+      "duration": 6.321
+    },
+    {
+      "text": "AI agent SDK this is a typescript SK",
+      "start": 14.08,
+      "duration": 6.52
+    },
+    {
+      "text": "that we've built for developers and you",
+      "start": 17.96,
+      "duration": 5.72
+    },
+    {
+      "text": "can use this SK to launch agents so",
+      "start": 20.6,
+      "duration": 6.2
+    },
+    {
+      "text": "these agents are uh can perform any kind",
+      "start": 23.68,
+      "duration": 6.079
+    },
+    {
+      "text": "of task but it's not just these agents",
+      "start": 26.8,
+      "duration": 5.479
+    },
+    {
+      "text": "you also make these agents autonomous",
+      "start": 29.759,
+      "duration": 4.721
+    },
+    {
+      "text": "and we're introducing this concept known",
+      "start": 32.279,
+      "duration": 5.44
+    },
+    {
+      "text": "as a zero employee Enterprise Ze in",
+      "start": 34.48,
+      "duration": 6.36
+    },
+    {
+      "text": "short and what this does is that it uh",
+      "start": 37.719,
+      "duration": 5.36
+    },
+    {
+      "text": "brings together this swarm of agents",
+      "start": 40.84,
+      "duration": 5.359
+    },
+    {
+      "text": "that can iteratively and collaboratively",
+      "start": 43.079,
+      "duration": 5.8
+    },
+    {
+      "text": "collaboratively solve any uh kind of",
+      "start": 46.199,
+      "duration": 6.52
+    },
+    {
+      "text": "complex problem uh and you can see uh",
+      "start": 48.879,
+      "duration": 7.0
+    },
+    {
+      "text": "all of the inner workings of uh of of",
+      "start": 52.719,
+      "duration": 5.64
+    },
+    {
+      "text": "how these agents are able to collaborate",
+      "start": 55.879,
+      "duration": 4.16
+    },
+    {
+      "text": "and so this is relying on a technique",
+      "start": 58.359,
+      "duration": 3.921
+    },
+    {
+      "text": "called Chain of Thought models this is a",
+      "start": 60.039,
+      "duration": 5.681
+    },
+    {
+      "text": "new way of using these llms so uh what",
+      "start": 62.28,
+      "duration": 5.8
+    },
+    {
+      "text": "you're doing is you just like if you",
+      "start": 65.72,
+      "duration": 4.8
+    },
+    {
+      "text": "were to ask someone uh give me a",
+      "start": 68.08,
+      "duration": 4.6
+    },
+    {
+      "text": "solution to a math problem uh they're",
+      "start": 70.52,
+      "duration": 3.8
+    },
+    {
+      "text": "not going to give you like a Google",
+      "start": 72.68,
+      "duration": 3.119
+    },
+    {
+      "text": "search result right Google search",
+      "start": 74.32,
+      "duration": 3.159
+    },
+    {
+      "text": "results you type in a query it gives you",
+      "start": 75.799,
+      "duration": 4.28
+    },
+    {
+      "text": "an instantaneous result uh here what it",
+      "start": 77.479,
+      "duration": 5.201
+    },
+    {
+      "text": "does is they probably go away and then",
+      "start": 80.079,
+      "duration": 4.481
+    },
+    {
+      "text": "take a couple of minutes couple of hours",
+      "start": 82.68,
+      "duration": 3.119
+    },
+    {
+      "text": "and then work through a couple of",
+      "start": 84.56,
+      "duration": 3.48
+    },
+    {
+      "text": "solutions uh think through the problem",
+      "start": 85.799,
+      "duration": 5.041
+    },
+    {
+      "text": "reason through the problem and and then",
+      "start": 88.04,
+      "duration": 5.48
+    },
+    {
+      "text": "uh suggest a solution and if it's not",
+      "start": 90.84,
+      "duration": 4.8
+    },
+    {
+      "text": "able to provide a solution it's able to",
+      "start": 93.52,
+      "duration": 4.44
+    },
+    {
+      "text": "show you uh the inner workings of how",
+      "start": 95.64,
+      "duration": 3.799
+    },
+    {
+      "text": "far it was able to get so that's",
+      "start": 97.96,
+      "duration": 2.56
+    },
+    {
+      "text": "basically what's happening with these",
+      "start": 99.439,
+      "duration": 3.241
+    },
+    {
+      "text": "new form of llms and so we rely on this",
+      "start": 100.52,
+      "duration": 4.72
+    },
+    {
+      "text": "technique to have these agents uh",
+      "start": 102.68,
+      "duration": 5.88
+    },
+    {
+      "text": "basically ping pong and challenge each",
+      "start": 105.24,
+      "duration": 6.04
+    },
+    {
+      "text": "other and bring autonomy to their inner",
+      "start": 108.56,
+      "duration": 5.12
+    },
+    {
+      "text": "workings and this is what makes them uh",
+      "start": 111.28,
+      "duration": 6.759
+    },
+    {
+      "text": "super exciting so uh let's J jump right",
+      "start": 113.68,
+      "duration": 6.96
+    },
+    {
+      "text": "into the code so the first thing I would",
+      "start": 118.039,
+      "duration": 6.04
+    },
+    {
+      "text": "uh ask you to do is this agent s is",
+      "start": 120.64,
+      "duration": 6.72
+    },
+    {
+      "text": "fresh off the press uh we literally just",
+      "start": 124.079,
+      "duration": 6.921
+    },
+    {
+      "text": "released this as open source uh today",
+      "start": 127.36,
+      "duration": 5.92
+    },
+    {
+      "text": "and so uh the first thing I would",
+      "start": 131.0,
+      "duration": 5.4
+    },
+    {
+      "text": "recommend you read is the blog post that",
+      "start": 133.28,
+      "duration": 6.239
+    },
+    {
+      "text": "announces the Ze concept and so I'm",
+      "start": 136.4,
+      "duration": 4.839
+    },
+    {
+      "text": "going to share my screen now and then",
+      "start": 139.519,
+      "duration": 3.921
+    },
+    {
+      "text": "the rest of the uh this recording will",
+      "start": 141.239,
+      "duration": 6.601
+    },
+    {
+      "text": "have with the screen share",
+      "start": 143.44,
+      "duration": 4.4
+    },
+    {
+      "text": "and so this blog post is just on the",
+      "start": 152.08,
+      "duration": 3.68
+    },
+    {
+      "text": "Coan hq.com so you can just go to the",
+      "start": 153.72,
+      "duration": 5.76
+    },
+    {
+      "text": "blog and see this is the agent um SDK",
+      "start": 155.76,
+      "duration": 6.24
+    },
+    {
+      "text": "version 2 uh you know we've had to",
+      "start": 159.48,
+      "duration": 5.28
+    },
+    {
+      "text": "rebuild this SDK from the grand app",
+      "start": 162.0,
+      "duration": 4.2
+    },
+    {
+      "text": "because a lot of the assumptions we've",
+      "start": 164.76,
+      "duration": 4.68
+    },
+    {
+      "text": "made um uh during bu during the like the",
+      "start": 166.2,
+      "duration": 5.16
+    },
+    {
+      "text": "first version of the SDK which by the",
+      "start": 169.44,
+      "duration": 4.12
+    },
+    {
+      "text": "way was only in December and crypto AI",
+      "start": 171.36,
+      "duration": 5.2
+    },
+    {
+      "text": "agents all the stuff moves like so fast",
+      "start": 173.56,
+      "duration": 6.599
+    },
+    {
+      "text": "so you have to uh rethink and uh uh you",
+      "start": 176.56,
+      "duration": 5.039
+    },
+    {
+      "text": "know challenge your assumptions at all",
+      "start": 180.159,
+      "duration": 3.44
+    },
+    {
+      "text": "points so this is basically telling you",
+      "start": 181.599,
+      "duration": 4.121
+    },
+    {
+      "text": "what's going on here uh We've doubled",
+      "start": 183.599,
+      "duration": 4.2
+    },
+    {
+      "text": "down on the crypto use cases as opposed",
+      "start": 185.72,
+      "duration": 5.4
+    },
+    {
+      "text": "to building a generalized um you know AI",
+      "start": 187.799,
+      "duration": 6.561
+    },
+    {
+      "text": "uh agent tool and so uh it just tells",
+      "start": 191.12,
+      "duration": 5.24
+    },
+    {
+      "text": "you how you can do all of this stuff and",
+      "start": 194.36,
+      "duration": 4.32
+    },
+    {
+      "text": "then the next thing what you need to do",
+      "start": 196.36,
+      "duration": 5.36
+    },
+    {
+      "text": "is you need to go to the um to the",
+      "start": 198.68,
+      "duration": 9.479
+    },
+    {
+      "text": "GitHub uh repo so this is uh right",
+      "start": 201.72,
+      "duration": 9.28
+    },
+    {
+      "text": "here actually before to the GitHub repo",
+      "start": 208.159,
+      "duration": 4.961
+    },
+    {
+      "text": "I would recommend you go to the docs",
+      "start": 211.0,
+      "duration": 5.239
+    },
+    {
+      "text": "which gives you an overview so go to cxt",
+      "start": 213.12,
+      "duration": 6.039
+    },
+    {
+      "text": "dobu and this is the overview of how the",
+      "start": 216.239,
+      "duration": 6.041
+    },
+    {
+      "text": "sdka works uh the different components",
+      "start": 219.159,
+      "duration": 5.36
+    },
+    {
+      "text": "how do you actually build an agent how",
+      "start": 222.28,
+      "duration": 4.8
+    },
+    {
+      "text": "do you piece together tools uh and how",
+      "start": 224.519,
+      "duration": 5.681
+    },
+    {
+      "text": "do you build uh a Ze workflow so let's",
+      "start": 227.08,
+      "duration": 5.68
+    },
+    {
+      "text": "walk through some of the concepts",
+      "start": 230.2,
+      "duration": 6.44
+    },
+    {
+      "text": "here so the first concept is uh an llm",
+      "start": 232.76,
+      "duration": 6.119
+    },
+    {
+      "text": "right so what an llm does is it's just a",
+      "start": 236.64,
+      "duration": 3.959
+    },
+    {
+      "text": "thin wrapper or one of the language",
+      "start": 238.879,
+      "duration": 4.0
+    },
+    {
+      "text": "models but the beautiful thing here is",
+      "start": 240.599,
+      "duration": 4.401
+    },
+    {
+      "text": "uh you're able to access about a dozen",
+      "start": 242.879,
+      "duration": 4.44
+    },
+    {
+      "text": "different llms so what you see here uh",
+      "start": 245.0,
+      "duration": 6.519
+    },
+    {
+      "text": "is the open AI llm deep SE Gro Gemini",
+      "start": 247.319,
+      "duration": 5.881
+    },
+    {
+      "text": "and then they obviously take different",
+      "start": 251.519,
+      "duration": 3.92
+    },
+    {
+      "text": "environment variables and so you",
+      "start": 253.2,
+      "duration": 4.719
+    },
+    {
+      "text": "literally just have to uh initialize an",
+      "start": 255.439,
+      "duration": 5.64
+    },
+    {
+      "text": "LM with the provider and with the the",
+      "start": 257.919,
+      "duration": 5.681
+    },
+    {
+      "text": "name of the actual model so that's",
+      "start": 261.079,
+      "duration": 4.481
+    },
+    {
+      "text": "what's uh pretty uh interesting about",
+      "start": 263.6,
+      "duration": 4.68
+    },
+    {
+      "text": "this uh the second thing you need to",
+      "start": 265.56,
+      "duration": 4.84
+    },
+    {
+      "text": "Second concept you need to be",
+      "start": 268.28,
+      "duration": 4.68
+    },
+    {
+      "text": "aware of is what is known as an agent",
+      "start": 270.4,
+      "duration": 5.32
+    },
+    {
+      "text": "and so an agent it basically has a name",
+      "start": 272.96,
+      "duration": 5.72
+    },
+    {
+      "text": "it uh obviously uses a model uh it has a",
+      "start": 275.72,
+      "duration": 4.319
+    },
+    {
+      "text": "description of what the agent is",
+      "start": 278.68,
+      "duration": 4.2
+    },
+    {
+      "text": "supposed to do and a set of instructions",
+      "start": 280.039,
+      "duration": 6.16
+    },
+    {
+      "text": "uh on you know uh what is the uh what is",
+      "start": 282.88,
+      "duration": 5.84
+    },
+    {
+      "text": "the basis of this agent and so here this",
+      "start": 286.199,
+      "duration": 4.161
+    },
+    {
+      "text": "specific agent this example is a",
+      "start": 288.72,
+      "duration": 5.28
+    },
+    {
+      "text": "reporting agent uh relies on uh open AIS",
+      "start": 290.36,
+      "duration": 6.679
+    },
+    {
+      "text": "uh 4.0 mini and this agent is",
+      "start": 294.0,
+      "duration": 5.52
+    },
+    {
+      "text": "responsible for generating reports and",
+      "start": 297.039,
+      "duration": 4.16
+    },
+    {
+      "text": "uh it generates a report on the current",
+      "start": 299.52,
+      "duration": 3.72
+    },
+    {
+      "text": "state of the company so that's basically",
+      "start": 301.199,
+      "duration": 4.161
+    },
+    {
+      "text": "how an agent does now what's also",
+      "start": 303.24,
+      "duration": 4.48
+    },
+    {
+      "text": "special is that these agents are",
+      "start": 305.36,
+      "duration": 4.04
+    },
+    {
+      "text": "completely stateless which means they",
+      "start": 307.72,
+      "duration": 3.08
+    },
+    {
+      "text": "don't have any kind of memory or",
+      "start": 309.4,
+      "duration": 3.88
+    },
+    {
+      "text": "something and so here uh or they cannot",
+      "start": 310.8,
+      "duration": 4.52
+    },
+    {
+      "text": "really access the outside world and so",
+      "start": 313.28,
+      "duration": 4.16
+    },
+    {
+      "text": "here this is where you would add tools",
+      "start": 315.32,
+      "duration": 5.4
+    },
+    {
+      "text": "so you would just uh go add some tools",
+      "start": 317.44,
+      "duration": 5.92
+    },
+    {
+      "text": "we have uh one tool currently built but",
+      "start": 320.72,
+      "duration": 4.479
+    },
+    {
+      "text": "there's a lot more being built behind",
+      "start": 323.36,
+      "duration": 4.399
+    },
+    {
+      "text": "the scenes and you're also welcome to",
+      "start": 325.199,
+      "duration": 6.84
+    },
+    {
+      "text": "contribute uh tools to uh the the SDK so",
+      "start": 327.759,
+      "duration": 5.761
+    },
+    {
+      "text": "one of the tools we have is the Gold",
+      "start": 332.039,
+      "duration": 4.481
+    },
+    {
+      "text": "Rush onchain data tool and so this",
+      "start": 333.52,
+      "duration": 5.16
+    },
+    {
+      "text": "allows you to get token balances NFD",
+      "start": 336.52,
+      "duration": 4.119
+    },
+    {
+      "text": "Holdings transaction history all kinds",
+      "start": 338.68,
+      "duration": 3.959
+    },
+    {
+      "text": "of things and so when you go back to the",
+      "start": 340.639,
+      "duration": 5.081
+    },
+    {
+      "text": "agent and you give it the tools that",
+      "start": 342.639,
+      "duration": 5.68
+    },
+    {
+      "text": "what the agent is able to do when you",
+      "start": 345.72,
+      "duration": 5.88
+    },
+    {
+      "text": "run the agent using agent. run it's able",
+      "start": 348.319,
+      "duration": 7.681
+    },
+    {
+      "text": "to uh try it's able to solve the problem",
+      "start": 351.6,
+      "duration": 6.76
+    },
+    {
+      "text": "and the instructions that you've given",
+      "start": 356.0,
+      "duration": 4.68
+    },
+    {
+      "text": "uh but also use these external tools so",
+      "start": 358.36,
+      "duration": 4.08
+    },
+    {
+      "text": "it's important to describe these tools",
+      "start": 360.68,
+      "duration": 4.28
+    },
+    {
+      "text": "in a very uh you know in a very",
+      "start": 362.44,
+      "duration": 4.759
+    },
+    {
+      "text": "descriptive way so that the llm knows",
+      "start": 364.96,
+      "duration": 4.6
+    },
+    {
+      "text": "okay at this point I have access to this",
+      "start": 367.199,
+      "duration": 4.161
+    },
+    {
+      "text": "tool and therefore I can basically",
+      "start": 369.56,
+      "duration": 3.479
+    },
+    {
+      "text": "Outsource the thinking this tool and",
+      "start": 371.36,
+      "duration": 3.92
+    },
+    {
+      "text": "then the framework automatically calls",
+      "start": 373.039,
+      "duration": 5.081
+    },
+    {
+      "text": "this it's basically function calling um",
+      "start": 375.28,
+      "duration": 4.6
+    },
+    {
+      "text": "and uh so that's like the cool thing",
+      "start": 378.12,
+      "duration": 5.519
+    },
+    {
+      "text": "about this uh this uh the agent stuff uh",
+      "start": 379.88,
+      "duration": 5.599
+    },
+    {
+      "text": "and here this is some description on you",
+      "start": 383.639,
+      "duration": 3.881
+    },
+    {
+      "text": "know what the tools can do not only can",
+      "start": 385.479,
+      "duration": 4.681
+    },
+    {
+      "text": "It call external apis uh like the Gold",
+      "start": 387.52,
+      "duration": 6.399
+    },
+    {
+      "text": "Rush um API the Gold Rush API gives you",
+      "start": 390.16,
+      "duration": 5.56
+    },
+    {
+      "text": "access to about a 100 different",
+      "start": 393.919,
+      "duration": 4.041
+    },
+    {
+      "text": "blockchains it's also another coal",
+      "start": 395.72,
+      "duration": 4.599
+    },
+    {
+      "text": "product but the other beautiful thing is",
+      "start": 397.96,
+      "duration": 4.799
+    },
+    {
+      "text": "that it can also structure the output",
+      "start": 400.319,
+      "duration": 6.121
+    },
+    {
+      "text": "from uh these these um these agents uh",
+      "start": 402.759,
+      "duration": 5.121
+    },
+    {
+      "text": "so this is how you create a tool you",
+      "start": 406.44,
+      "duration": 4.4
+    },
+    {
+      "text": "create a schema and so on and then the",
+      "start": 407.88,
+      "duration": 4.92
+    },
+    {
+      "text": "most exciting thing is actually the Ze",
+      "start": 410.84,
+      "duration": 5.359
+    },
+    {
+      "text": "workflow so what the Z workflow does is",
+      "start": 412.8,
+      "duration": 5.799
+    },
+    {
+      "text": "you combine a set of agents and then you",
+      "start": 416.199,
+      "duration": 5.321
+    },
+    {
+      "text": "give it some kind of like goal and then",
+      "start": 418.599,
+      "duration": 5.561
+    },
+    {
+      "text": "what essentially this workflow does is",
+      "start": 421.52,
+      "duration": 5.76
+    },
+    {
+      "text": "internally it has a router that uh",
+      "start": 424.16,
+      "duration": 5.719
+    },
+    {
+      "text": "basically does uh pingpong between the",
+      "start": 427.28,
+      "duration": 5.52
+    },
+    {
+      "text": "different uh agents and their respective",
+      "start": 429.879,
+      "duration": 6.361
+    },
+    {
+      "text": "tools and uh any kind of memory that is",
+      "start": 432.8,
+      "duration": 7.16
+    },
+    {
+      "text": "uh stored is stored on the Ze layer uh",
+      "start": 436.24,
+      "duration": 6.44
+    },
+    {
+      "text": "and so uh in theory what you can do is",
+      "start": 439.96,
+      "duration": 5.76
+    },
+    {
+      "text": "you can actually use uh Gemini for let's",
+      "start": 442.68,
+      "duration": 6.0
+    },
+    {
+      "text": "say a multimodel uh agent and then you",
+      "start": 445.72,
+      "duration": 4.56
+    },
+    {
+      "text": "can use uh",
+      "start": 448.68,
+      "duration": 3.919
+    },
+    {
+      "text": "uh let's say uh deep seek because it's",
+      "start": 450.28,
+      "duration": 4.08
+    },
+    {
+      "text": "really good at certain set of problems",
+      "start": 452.599,
+      "duration": 3.88
+    },
+    {
+      "text": "and you can actually get these two uh",
+      "start": 454.36,
+      "duration": 4.32
+    },
+    {
+      "text": "models actually speak to each other and",
+      "start": 456.479,
+      "duration": 5.041
+    },
+    {
+      "text": "pig bong uh you know and iterate and",
+      "start": 458.68,
+      "duration": 5.32
+    },
+    {
+      "text": "then solve this problem and so that's",
+      "start": 461.52,
+      "duration": 5.359
+    },
+    {
+      "text": "really what's cool about uh this whole",
+      "start": 464.0,
+      "duration": 6.759
+    },
+    {
+      "text": "thing and then uh one I jump to the",
+      "start": 466.879,
+      "duration": 5.961
+    },
+    {
+      "text": "actual repo and give you a lay of the",
+      "start": 470.759,
+      "duration": 5.081
+    },
+    {
+      "text": "land all of this is open source so uh",
+      "start": 472.84,
+      "duration": 6.319
+    },
+    {
+      "text": "what we're looking is to uh get Builders",
+      "start": 475.84,
+      "duration": 4.12
+    },
+    {
+      "text": "to",
+      "start": 479.159,
+      "duration": 3.241
+    },
+    {
+      "text": "either build using the SD or directly",
+      "start": 479.96,
+      "duration": 5.16
+    },
+    {
+      "text": "contribute to the SD so I'll get into",
+      "start": 482.4,
+      "duration": 5.799
+    },
+    {
+      "text": "the layout of the of the repo in a bit",
+      "start": 485.12,
+      "duration": 6.639
+    },
+    {
+      "text": "so here what we have is um this this",
+      "start": 488.199,
+      "duration": 5.601
+    },
+    {
+      "text": "thing is completely open so just go to",
+      "start": 491.759,
+      "duration": 6.521
+    },
+    {
+      "text": "ck.com aient SK it's also linked from uh",
+      "start": 493.8,
+      "duration": 6.56
+    },
+    {
+      "text": "the blog post it's also linked from cxt",
+      "start": 498.28,
+      "duration": 4.0
+    },
+    {
+      "text": "dobu uh it should be everywhere it's",
+      "start": 500.36,
+      "duration": 3.64
+    },
+    {
+      "text": "from the coent homepage uh it's hard to",
+      "start": 502.28,
+      "duration": 4.199
+    },
+    {
+      "text": "miss you know if if you miss if you're",
+      "start": 504.0,
+      "duration": 4.159
+    },
+    {
+      "text": "if you still miss it I think we've uh",
+      "start": 506.479,
+      "duration": 3.56
+    },
+    {
+      "text": "done a bad job here but you know it's",
+      "start": 508.159,
+      "duration": 4.36
+    },
+    {
+      "text": "it's available it's uh easily accessible",
+      "start": 510.039,
+      "duration": 4.281
+    },
+    {
+      "text": "and then you can Outsource this uh sorry",
+      "start": 512.519,
+      "duration": 4.161
+    },
+    {
+      "text": "you can you can uh you can uh check out",
+      "start": 514.32,
+      "duration": 3.639
+    },
+    {
+      "text": "this this code and then build it",
+      "start": 516.68,
+      "duration": 4.32
+    },
+    {
+      "text": "yourself and so on so uh what this does",
+      "start": 517.959,
+      "duration": 5.08
+    },
+    {
+      "text": "is uh",
+      "start": 521.0,
+      "duration": 5.2
+    },
+    {
+      "text": "basically you can go to the the packages",
+      "start": 523.039,
+      "duration": 5.121
+    },
+    {
+      "text": "and within the packages you have the AI",
+      "start": 526.2,
+      "duration": 5.28
+    },
+    {
+      "text": "agent SDK and then you can uh look at",
+      "start": 528.16,
+      "duration": 5.679
+    },
+    {
+      "text": "the source and then you have all of",
+      "start": 531.48,
+      "duration": 4.4
+    },
+    {
+      "text": "these uh llms you have the base and the",
+      "start": 533.839,
+      "duration": 4.0
+    },
+    {
+      "text": "state so let's take for example you want",
+      "start": 535.88,
+      "duration": 4.68
+    },
+    {
+      "text": "to contribute a new llm so so go to llm",
+      "start": 537.839,
+      "duration": 5.0
+    },
+    {
+      "text": "and then you open up index.ts and so",
+      "start": 540.56,
+      "duration": 4.68
+    },
+    {
+      "text": "what you see here is you have some",
+      "start": 542.839,
+      "duration": 5.201
+    },
+    {
+      "text": "definitions for open AI models uh deep",
+      "start": 545.24,
+      "duration": 6.44
+    },
+    {
+      "text": "seek models Gro model Gemini model uh",
+      "start": 548.04,
+      "duration": 5.239
+    },
+    {
+      "text": "and then you know it's missing anthropic",
+      "start": 551.68,
+      "duration": 3.839
+    },
+    {
+      "text": "anthropic is another Fantastic Model",
+      "start": 553.279,
+      "duration": 4.441
+    },
+    {
+      "text": "it's uh Missing other kinds of like",
+      "start": 555.519,
+      "duration": 5.801
+    },
+    {
+      "text": "hosted models uh maybe even uh uh so",
+      "start": 557.72,
+      "duration": 6.08
+    },
+    {
+      "text": "another nice contribution could be is uh",
+      "start": 561.32,
+      "duration": 5.88
+    },
+    {
+      "text": "refer to arash's uh inference API or one",
+      "start": 563.8,
+      "duration": 5.68
+    },
+    {
+      "text": "of the other providers out there uh",
+      "start": 567.2,
+      "duration": 4.44
+    },
+    {
+      "text": "llama is another really cool kind of",
+      "start": 569.48,
+      "duration": 5.479
+    },
+    {
+      "text": "model and so that is something you can",
+      "start": 571.64,
+      "duration": 5.56
+    },
+    {
+      "text": "contribute to and then something else",
+      "start": 574.959,
+      "duration": 4.841
+    },
+    {
+      "text": "you can contribute to is you go back to",
+      "start": 577.2,
+      "duration": 4.759
+    },
+    {
+      "text": "uh the tools and then you have the list",
+      "start": 579.8,
+      "duration": 4.12
+    },
+    {
+      "text": "of tools right so here we have the Gold",
+      "start": 581.959,
+      "duration": 4.201
+    },
+    {
+      "text": "Rush uh tool so for NFD balances token",
+      "start": 583.92,
+      "duration": 4.84
+    },
+    {
+      "text": "balances and transactions and so on uh",
+      "start": 586.16,
+      "duration": 4.64
+    },
+    {
+      "text": "but you can add any other kind of tool",
+      "start": 588.76,
+      "duration": 4.36
+    },
+    {
+      "text": "right let's say uh you want to add a",
+      "start": 590.8,
+      "duration": 5.32
+    },
+    {
+      "text": "tool to do uh contract signing or you",
+      "start": 593.12,
+      "duration": 8.32
+    },
+    {
+      "text": "want to check the uh a tool to um maybe",
+      "start": 596.12,
+      "duration": 7.959
+    },
+    {
+      "text": "uh verify if the particular transaction",
+      "start": 601.44,
+      "duration": 5.12
+    },
+    {
+      "text": "is safe all kinds of things right so",
+      "start": 604.079,
+      "duration": 3.801
+    },
+    {
+      "text": "that's something definitely we're",
+      "start": 606.56,
+      "duration": 3.88
+    },
+    {
+      "text": "looking to build a big library of tools",
+      "start": 607.88,
+      "duration": 4.16
+    },
+    {
+      "text": "and then there's a bunch of other stuff",
+      "start": 610.44,
+      "duration": 3.48
+    },
+    {
+      "text": "for example there's the actual like",
+      "start": 612.04,
+      "duration": 5.2
+    },
+    {
+      "text": "workflow uh in the Ze folder so that's",
+      "start": 613.92,
+      "duration": 5.12
+    },
+    {
+      "text": "basically the workflow how it itates",
+      "start": 617.24,
+      "duration": 5.48
+    },
+    {
+      "text": "with the problems and then you have um",
+      "start": 619.04,
+      "duration": 7.32
+    },
+    {
+      "text": "the agent itself so this is uh basically",
+      "start": 622.72,
+      "duration": 6.679
+    },
+    {
+      "text": "how like all of the materials beside uh",
+      "start": 626.36,
+      "duration": 4.88
+    },
+    {
+      "text": "inside the agent including the routers",
+      "start": 629.399,
+      "duration": 3.801
+    },
+    {
+      "text": "and so on so that's basically what's",
+      "start": 631.24,
+      "duration": 4.279
+    },
+    {
+      "text": "going on with the the repo the",
+      "start": 633.2,
+      "duration": 4.759
+    },
+    {
+      "text": "documentation is also available here so",
+      "start": 635.519,
+      "duration": 5.041
+    },
+    {
+      "text": "you go to the docs uh and you can also",
+      "start": 637.959,
+      "duration": 5.361
+    },
+    {
+      "text": "make uh documentation uh contribute to",
+      "start": 640.56,
+      "duration": 5.36
+    },
+    {
+      "text": "the documentation uh though that's more",
+      "start": 643.32,
+      "duration": 4.92
+    },
+    {
+      "text": "like uh I don't know if that's worthy",
+      "start": 645.92,
+      "duration": 4.08
+    },
+    {
+      "text": "enough of a contribution but definitely",
+      "start": 648.24,
+      "duration": 3.279
+    },
+    {
+      "text": "if you find any kind of gotas you know",
+      "start": 650.0,
+      "duration": 4.72
+    },
+    {
+      "text": "open up a PR and now it's much much",
+      "start": 651.519,
+      "duration": 5.241
+    },
+    {
+      "text": "appreciated there's two two more things",
+      "start": 654.72,
+      "duration": 4.16
+    },
+    {
+      "text": "I want to talk about which is how do you",
+      "start": 656.76,
+      "duration": 4.519
+    },
+    {
+      "text": "actually use users library and what are",
+      "start": 658.88,
+      "duration": 4.12
+    },
+    {
+      "text": "the use cases you can build using the",
+      "start": 661.279,
+      "duration": 5.12
+    },
+    {
+      "text": "API uh using the SDK so uh first thing",
+      "start": 663.0,
+      "duration": 5.24
+    },
+    {
+      "text": "is like how do you actually use this so",
+      "start": 666.399,
+      "duration": 4.801
+    },
+    {
+      "text": "to use this we've uh built a very neat",
+      "start": 668.24,
+      "duration": 9.32
+    },
+    {
+      "text": "kind of tool called um create Z app so",
+      "start": 671.2,
+      "duration": 7.56
+    },
+    {
+      "text": "you can just",
+      "start": 677.56,
+      "duration": 3.519
+    },
+    {
+      "text": "go uh to the quick",
+      "start": 678.76,
+      "duration": 8.199
+    },
+    {
+      "text": "start and do npx coent hqc create zaa",
+      "start": 681.079,
+      "duration": 8.801
+    },
+    {
+      "text": "and what this does is it asks asks you a",
+      "start": 686.959,
+      "duration": 4.721
+    },
+    {
+      "text": "b bunch of questions right now there's",
+      "start": 689.88,
+      "duration": 3.92
+    },
+    {
+      "text": "one template it'll soon have multiple",
+      "start": 691.68,
+      "duration": 4.76
+    },
+    {
+      "text": "templates and this creates a fully uh",
+      "start": 693.8,
+      "duration": 7.479
+    },
+    {
+      "text": "bootstrapped Tool uh to create a Ze so",
+      "start": 696.44,
+      "duration": 6.16
+    },
+    {
+      "text": "you know it just gets everything out of",
+      "start": 701.279,
+      "duration": 3.081
+    },
+    {
+      "text": "the box now this is not very different",
+      "start": 702.6,
+      "duration": 4.679
+    },
+    {
+      "text": "from create react app or create next app",
+      "start": 704.36,
+      "duration": 4.36
+    },
+    {
+      "text": "if you're familiar with those kinds of",
+      "start": 707.279,
+      "duration": 3.921
+    },
+    {
+      "text": "like um you know helper helper tools so",
+      "start": 708.72,
+      "duration": 3.84
+    },
+    {
+      "text": "that's basically what's happening here",
+      "start": 711.2,
+      "duration": 3.0
+    },
+    {
+      "text": "and then you get the whole source code",
+      "start": 712.56,
+      "duration": 3.12
+    },
+    {
+      "text": "and then you can like you know use the",
+      "start": 714.2,
+      "duration": 3.199
+    },
+    {
+      "text": "agent and so on so this is like",
+      "start": 715.68,
+      "duration": 3.24
+    },
+    {
+      "text": "something that's really really cool and",
+      "start": 717.399,
+      "duration": 2.921
+    },
+    {
+      "text": "then F thing I want to talk about is",
+      "start": 718.92,
+      "duration": 2.88
+    },
+    {
+      "text": "what kind of contributions are we uh",
+      "start": 720.32,
+      "duration": 3.759
+    },
+    {
+      "text": "looking at so what we have here is",
+      "start": 721.8,
+      "duration": 4.68
+    },
+    {
+      "text": "something known as Ze use cases it's on",
+      "start": 724.079,
+      "duration": 6.161
+    },
+    {
+      "text": "the cx. build uh documentation site and",
+      "start": 726.48,
+      "duration": 6.0
+    },
+    {
+      "text": "you go here uh there's a whole bunch of",
+      "start": 730.24,
+      "duration": 5.08
+    },
+    {
+      "text": "use cases that we've uh written uh on",
+      "start": 732.48,
+      "duration": 5.52
+    },
+    {
+      "text": "what we would love to be love to see",
+      "start": 735.32,
+      "duration": 5.519
+    },
+    {
+      "text": "built with the SDK and so something like",
+      "start": 738.0,
+      "duration": 5.32
+    },
+    {
+      "text": "this is is meteor something like this is",
+      "start": 740.839,
+      "duration": 6.041
+    },
+    {
+      "text": "you know uh worthy of a uh of a you know",
+      "start": 743.32,
+      "duration": 6.12
+    },
+    {
+      "text": "a grant and uh further you know",
+      "start": 746.88,
+      "duration": 5.519
+    },
+    {
+      "text": "investment and so uh this is going to be",
+      "start": 749.44,
+      "duration": 5.399
+    },
+    {
+      "text": "almost not just using S but also",
+      "start": 752.399,
+      "duration": 4.281
+    },
+    {
+      "text": "contributing to the skk itself in terms",
+      "start": 754.839,
+      "duration": 3.481
+    },
+    {
+      "text": "of the Tooling in terms of the logic in",
+      "start": 756.68,
+      "duration": 4.04
+    },
+    {
+      "text": "terms of like debugging uh maybe there's",
+      "start": 758.32,
+      "duration": 4.8
+    },
+    {
+      "text": "some specialized llm that you require U",
+      "start": 760.72,
+      "duration": 3.88
+    },
+    {
+      "text": "maybe it's going to create a chart so",
+      "start": 763.12,
+      "duration": 3.159
+    },
+    {
+      "text": "you need some kind of like uh you know",
+      "start": 764.6,
+      "duration": 4.599
+    },
+    {
+      "text": "uh multimodal maybe it's uh uh maybe",
+      "start": 766.279,
+      "duration": 5.481
+    },
+    {
+      "text": "it's like like notebook llm or something",
+      "start": 769.199,
+      "duration": 4.521
+    },
+    {
+      "text": "that that creates a podcast after it you",
+      "start": 771.76,
+      "duration": 4.36
+    },
+    {
+      "text": "know it gives you a voice message all",
+      "start": 773.72,
+      "duration": 4.04
+    },
+    {
+      "text": "kinds of things so I think there's no",
+      "start": 776.12,
+      "duration": 3.88
+    },
+    {
+      "text": "limit to what you can build with it so",
+      "start": 777.76,
+      "duration": 3.639
+    },
+    {
+      "text": "this is what makes it super super",
+      "start": 780.0,
+      "duration": 3.839
+    },
+    {
+      "text": "exciting so good luck hackers I just",
+      "start": 781.399,
+      "duration": 4.361
+    },
+    {
+      "text": "want to leave you with one final thought",
+      "start": 783.839,
+      "duration": 5.281
+    },
+    {
+      "text": "uh I started coent uh at a hackathon so",
+      "start": 785.76,
+      "duration": 6.6
+    },
+    {
+      "text": "you know there's one one weekend I was",
+      "start": 789.12,
+      "duration": 5.519
+    },
+    {
+      "text": "just able to sit down and uh build",
+      "start": 792.36,
+      "duration": 5.0
+    },
+    {
+      "text": "something in two days uh which was",
+      "start": 794.639,
+      "duration": 5.161
+    },
+    {
+      "text": "incredible and uh coin has come a long",
+      "start": 797.36,
+      "duration": 5.8
+    },
+    {
+      "text": "way since that that uh one weekend and I",
+      "start": 799.8,
+      "duration": 5.719
+    },
+    {
+      "text": "really wish that uh for all of your",
+      "start": 803.16,
+      "duration": 5.6
+    },
+    {
+      "text": "projects to uh grow to this kind of",
+      "start": 805.519,
+      "duration": 5.88
+    },
+    {
+      "text": "scale so just telling you that just",
+      "start": 808.76,
+      "duration": 4.0
+    },
+    {
+      "text": "because it seems like a hackathon",
+      "start": 811.399,
+      "duration": 3.201
+    },
+    {
+      "text": "project doesn't mean that it's a",
+      "start": 812.76,
+      "duration": 4.0
+    },
+    {
+      "text": "throwaway it could be the start of",
+      "start": 814.6,
+      "duration": 5.12
+    },
+    {
+      "text": "something uh it could be you know that",
+      "start": 816.76,
+      "duration": 6.199
+    },
+    {
+      "text": "Kindle that uh lights up a big fire so",
+      "start": 819.72,
+      "duration": 6.04
+    },
+    {
+      "text": "uh I wish you all the very best and uh",
+      "start": 822.959,
+      "duration": 6.931
+    },
+    {
+      "text": "Happy hacking thank you",
+      "start": 825.76,
+      "duration": 10.7
+    },
+    {
+      "text": "[Music]",
+      "start": 829.89,
+      "duration": 6.57
+    }
+  ],
+  "available_caption_tracks": [
+    {
+      "id": "AUieDabGVtT4phSoeFUT3TsrEJmYznVVaHzbMuHKOb_ava44LI8",
+      "language": "en",
+      "name": ""
+    }
+  ]
+}

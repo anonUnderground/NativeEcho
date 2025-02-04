@@ -1,0 +1,40 @@
+{
+  "video_details": {
+    "video_id": "_a6XbruXz5M",
+    "title": "Stratus Operator I Decentralized AI and Cloud Security With OpSec I Argentic Ethereum 2025",
+    "description": "Join Stratus Operator with OpSec for a workshop titled \"Decentralized AI and Cloud Security With OpSec\".\n\nAgentic Ethereum is an online, async hackathon that runs from Jan. 31 to Feb. 12, 2025.  With over $175,000 USD in prizes, Agentic Ethereum is a great way to dive into the world of autonomous AI agents and explore how they can revolutionize projects on Ethereum. Start the year with groundbreaking innovation!\n\n----------------\n\nFollow us:  \n\nhttps://x.com/ethglobal\nCheck us out: https://ethglobal.com\nEmail us at: hello@ethglobal.com",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/_a6XbruXz5M/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/_a6XbruXz5M/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/_a6XbruXz5M/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/_a6XbruXz5M/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/_a6XbruXz5M/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "caption_status": "false",
+    "embed_html": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/_a6XbruXz5M\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  },
+  "captions": {
+    "error": "\nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=_a6XbruXz5M! This is most likely caused by:\n\nSubtitles are disabled for this video\n\nIf you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!"
+  },
+  "available_caption_tracks": []
+}

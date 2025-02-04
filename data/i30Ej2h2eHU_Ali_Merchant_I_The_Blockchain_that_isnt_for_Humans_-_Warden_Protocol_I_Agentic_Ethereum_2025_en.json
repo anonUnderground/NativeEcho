@@ -1,0 +1,1285 @@
+{
+  "video_details": {
+    "video_id": "i30Ej2h2eHU",
+    "title": "Ali Merchant I The Blockchain that isn't for Humans - Warden Protocol I Agentic Ethereum 2025",
+    "description": "Join Ali Merchant with Warden Protocol for a workshop titled \"The Blockchain that isn't for Humans\".\n\nAgentic Ethereum is an online, async hackathon that runs from Jan. 31 to Feb. 12, 2025.  With over $175,000 USD in prizes, Agentic Ethereum is a great way to dive into the world of autonomous AI agents and explore how they can revolutionize projects on Ethereum. Start the year with groundbreaking innovation!\n\n----------------\n\nFollow us:  \n\nhttps://x.com/ethglobal\nCheck us out: https://ethglobal.com\nEmail us at: hello@ethglobal.com",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/i30Ej2h2eHU/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/i30Ej2h2eHU/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/i30Ej2h2eHU/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/i30Ej2h2eHU/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/i30Ej2h2eHU/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "caption_status": "false",
+    "embed_html": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/i30Ej2h2eHU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  },
+  "captions": [
+    {
+      "text": "[Music]",
+      "start": 1.85,
+      "duration": 9.2
+    },
+    {
+      "text": "thank you so much for logging into this",
+      "start": 11.84,
+      "duration": 3.919
+    },
+    {
+      "text": "tutorial my name is Ali and I'm the head",
+      "start": 13.36,
+      "duration": 5.4
+    },
+    {
+      "text": "of devl at Warden protocols today in",
+      "start": 15.759,
+      "duration": 4.841
+    },
+    {
+      "text": "this video I will be talking about",
+      "start": 18.76,
+      "duration": 4.4
+    },
+    {
+      "text": "Warden agent kit Warden agent kit",
+      "start": 20.6,
+      "duration": 4.599
+    },
+    {
+      "text": "provides developers with tools to create",
+      "start": 23.16,
+      "duration": 4.08
+    },
+    {
+      "text": "agents with minimal knowledge of",
+      "start": 25.199,
+      "duration": 4.4
+    },
+    {
+      "text": "solidity it simplifies the process of",
+      "start": 27.24,
+      "duration": 4.879
+    },
+    {
+      "text": "building agents allowing integration of",
+      "start": 29.599,
+      "duration": 4.761
+    },
+    {
+      "text": "custom business logic through solidity",
+      "start": 32.119,
+      "duration": 4.76
+    },
+    {
+      "text": "smart contracts the warden agent kit",
+      "start": 34.36,
+      "duration": 4.92
+    },
+    {
+      "text": "comes with a ready to use SOL contract",
+      "start": 36.879,
+      "duration": 4.601
+    },
+    {
+      "text": "template that automates onchain",
+      "start": 39.28,
+      "duration": 3.84
+    },
+    {
+      "text": "transactions based on specific",
+      "start": 41.48,
+      "duration": 3.64
+    },
+    {
+      "text": "conditions these templates can also be",
+      "start": 43.12,
+      "duration": 4.52
+    },
+    {
+      "text": "extended for Advance use cases including",
+      "start": 45.12,
+      "duration": 5.599
+    },
+    {
+      "text": "integration of predictive models to make",
+      "start": 47.64,
+      "duration": 5.12
+    },
+    {
+      "text": "it accessible for web2 developers the",
+      "start": 50.719,
+      "duration": 4.36
+    },
+    {
+      "text": "ven agent kit is built with typescript",
+      "start": 52.76,
+      "duration": 4.279
+    },
+    {
+      "text": "enabling seamless integration with",
+      "start": 55.079,
+      "duration": 5.64
+    },
+    {
+      "text": "familiar tools and workflows it supports",
+      "start": 57.039,
+      "duration": 6.081
+    },
+    {
+      "text": "Lang chain integration allowing",
+      "start": 60.719,
+      "duration": 4.841
+    },
+    {
+      "text": "developers to leverage Lang Chain's",
+      "start": 63.12,
+      "duration": 5.359
+    },
+    {
+      "text": "extensive Suite of tools building and",
+      "start": 65.56,
+      "duration": 5.76
+    },
+    {
+      "text": "managing agents all Lang chain tools can",
+      "start": 68.479,
+      "duration": 5.481
+    },
+    {
+      "text": "be integrated further expanding the",
+      "start": 71.32,
+      "duration": 4.92
+    },
+    {
+      "text": "capabilities of Agents built with the",
+      "start": 73.96,
+      "duration": 4.68
+    },
+    {
+      "text": "kit understanding these components is",
+      "start": 76.24,
+      "duration": 5.08
+    },
+    {
+      "text": "crucial because they each serve specific",
+      "start": 78.64,
+      "duration": 4.4
+    },
+    {
+      "text": "purposes in your agent development",
+      "start": 81.32,
+      "duration": 4.2
+    },
+    {
+      "text": "Journey starting with the core",
+      "start": 83.04,
+      "duration": 4.56
+    },
+    {
+      "text": "module this is the foundation of",
+      "start": 85.52,
+      "duration": 4.08
+    },
+    {
+      "text": "everything which is available under",
+      "start": 87.6,
+      "duration": 5.08
+    },
+    {
+      "text": "water in protocol agent kit core which",
+      "start": 89.6,
+      "duration": 7.0
+    },
+    {
+      "text": "you can find as an npm package in this",
+      "start": 92.68,
+      "duration": 7.6
+    },
+    {
+      "text": "core module this is where think of this",
+      "start": 96.6,
+      "duration": 6.72
+    },
+    {
+      "text": "as the engine that powers all your agent",
+      "start": 100.28,
+      "duration": 5.28
+    },
+    {
+      "text": "operations this provides Action System",
+      "start": 103.32,
+      "duration": 3.479
+    },
+    {
+      "text": "this is where all the blockchain",
+      "start": 105.56,
+      "duration": 4.08
+    },
+    {
+      "text": "Integrations are defined each action is",
+      "start": 106.799,
+      "duration": 5.721
+    },
+    {
+      "text": "carefully typed and validated ensuring",
+      "start": 109.64,
+      "duration": 4.759
+    },
+    {
+      "text": "you always know what data you are",
+      "start": 112.52,
+      "duration": 4.84
+    },
+    {
+      "text": "dealing with so we have for example get",
+      "start": 114.399,
+      "duration": 5.04
+    },
+    {
+      "text": "balance to check asset balances get",
+      "start": 117.36,
+      "duration": 4.32
+    },
+    {
+      "text": "price fetching current market prices",
+      "start": 119.439,
+      "duration": 4.28
+    },
+    {
+      "text": "send token for execution transfers",
+      "start": 121.68,
+      "duration": 3.92
+    },
+    {
+      "text": "create space for managing agent Works",
+      "start": 123.719,
+      "duration": 4.441
+    },
+    {
+      "text": "spaces and many more other operations as",
+      "start": 125.6,
+      "duration": 5.079
+    },
+    {
+      "text": "you can see over here the other core",
+      "start": 128.16,
+      "duration": 5.6
+    },
+    {
+      "text": "part of the warden agent kit is the Lang",
+      "start": 130.679,
+      "duration": 6.801
+    },
+    {
+      "text": "chain extension the Lang chain extension",
+      "start": 133.76,
+      "duration": 5.64
+    },
+    {
+      "text": "which can also be downloaded from the",
+      "start": 137.48,
+      "duration": 4.32
+    },
+    {
+      "text": "npm package",
+      "start": 139.4,
+      "duration": 5.919
+    },
+    {
+      "text": "side now what makes this special is how",
+      "start": 141.8,
+      "duration": 4.96
+    },
+    {
+      "text": "you can transform",
+      "start": 145.319,
+      "duration": 3.721
+    },
+    {
+      "text": "swordens what makes this extension",
+      "start": 146.76,
+      "duration": 5.4
+    },
+    {
+      "text": "special is how it transforms warden's",
+      "start": 149.04,
+      "duration": 6.44
+    },
+    {
+      "text": "action into Lang chain tools this means",
+      "start": 152.16,
+      "duration": 5.52
+    },
+    {
+      "text": "your agent can understand natural",
+      "start": 155.48,
+      "duration": 4.479
+    },
+    {
+      "text": "langage commands they can make",
+      "start": 157.68,
+      "duration": 4.16
+    },
+    {
+      "text": "Intelligent Decisions about market",
+      "start": 159.959,
+      "duration": 4.0
+    },
+    {
+      "text": "conditions and they can explain actions",
+      "start": 161.84,
+      "duration": 3.96
+    },
+    {
+      "text": "in human rable",
+      "start": 163.959,
+      "duration": 4.64
+    },
+    {
+      "text": "terms the last part that we have out of",
+      "start": 165.8,
+      "duration": 5.96
+    },
+    {
+      "text": "the box is the integration with X this",
+      "start": 168.599,
+      "duration": 5.401
+    },
+    {
+      "text": "module extends your agents capabilities",
+      "start": 171.76,
+      "duration": 5.16
+    },
+    {
+      "text": "into social media allowing them to post",
+      "start": 174.0,
+      "duration": 5.08
+    },
+    {
+      "text": "updates about the operation monitor",
+      "start": 176.92,
+      "duration": 3.48
+    },
+    {
+      "text": "Market sentiments",
+      "start": 179.08,
+      "duration": 3.2
+    },
+    {
+      "text": "engage with community members share",
+      "start": 180.4,
+      "duration": 4.399
+    },
+    {
+      "text": "analysis and insights Etc these",
+      "start": 182.28,
+      "duration": 4.239
+    },
+    {
+      "text": "Integrations is particularly powerful",
+      "start": 184.799,
+      "duration": 3.641
+    },
+    {
+      "text": "because they combine blockchain data and",
+      "start": 186.519,
+      "duration": 4.161
+    },
+    {
+      "text": "social Integrations what's really cool",
+      "start": 188.44,
+      "duration": 4.4
+    },
+    {
+      "text": "about this is you can use Lang Chain's",
+      "start": 190.68,
+      "duration": 5.04
+    },
+    {
+      "text": "extensive list of providers and",
+      "start": 192.84,
+      "duration": 5.039
+    },
+    {
+      "text": "integrate them with your agent enhancing",
+      "start": 195.72,
+      "duration": 3.92
+    },
+    {
+      "text": "the capabilities of your",
+      "start": 197.879,
+      "duration": 4.0
+    },
+    {
+      "text": "agent in the next part of the tutorial",
+      "start": 199.64,
+      "duration": 4.0
+    },
+    {
+      "text": "we will be going through a simple",
+      "start": 201.879,
+      "duration": 5.161
+    },
+    {
+      "text": "tutorial to build a CLI agent okay so in",
+      "start": 203.64,
+      "duration": 5.319
+    },
+    {
+      "text": "the next part of the tutorial we are",
+      "start": 207.04,
+      "duration": 5.32
+    },
+    {
+      "text": "going to clone the now if we look into",
+      "start": 208.959,
+      "duration": 5.441
+    },
+    {
+      "text": "this agent kit we can find that there is",
+      "start": 212.36,
+      "duration": 5.239
+    },
+    {
+      "text": "an examples folder where we can find an",
+      "start": 214.4,
+      "duration": 5.88
+    },
+    {
+      "text": "example template that we have created",
+      "start": 217.599,
+      "duration": 5.2
+    },
+    {
+      "text": "this is a simple CA agent that allows",
+      "start": 220.28,
+      "duration": 5.2
+    },
+    {
+      "text": "you to interact with the warden chain",
+      "start": 222.799,
+      "duration": 5.481
+    },
+    {
+      "text": "let's look into the",
+      "start": 225.48,
+      "duration": 2.8
+    },
+    {
+      "text": "code all right so let's begin our dive",
+      "start": 228.68,
+      "duration": 5.44
+    },
+    {
+      "text": "into the code this is a simple walk",
+      "start": 231.48,
+      "duration": 5.88
+    },
+    {
+      "text": "through of the CLI agent as you can see",
+      "start": 234.12,
+      "duration": 5.319
+    },
+    {
+      "text": "the code starts by importing necessary",
+      "start": 237.36,
+      "duration": 4.719
+    },
+    {
+      "text": "dep dependencies for building the CLI",
+      "start": 239.439,
+      "duration": 5.681
+    },
+    {
+      "text": "chatbot this includes scheme ports like",
+      "start": 242.079,
+      "duration": 5.921
+    },
+    {
+      "text": "ven agent kit for web three",
+      "start": 245.12,
+      "duration": 6.479
+    },
+    {
+      "text": "functionalities and then we have got the",
+      "start": 248.0,
+      "duration": 7.32
+    },
+    {
+      "text": "ven agent toolkit which is for langin",
+      "start": 251.599,
+      "duration": 6.92
+    },
+    {
+      "text": "components and then um we have got other",
+      "start": 255.32,
+      "duration": 6.039
+    },
+    {
+      "text": "variables like do environment to manage",
+      "start": 258.519,
+      "duration": 4.521
+    },
+    {
+      "text": "the environment",
+      "start": 261.359,
+      "duration": 4.881
+    },
+    {
+      "text": "variables now the first function that we",
+      "start": 263.04,
+      "duration": 5.12
+    },
+    {
+      "text": "will work through is the initialized",
+      "start": 266.24,
+      "duration": 4.679
+    },
+    {
+      "text": "agent function now now this does three",
+      "start": 268.16,
+      "duration": 6.52
+    },
+    {
+      "text": "things number one it creates an open AI",
+      "start": 270.919,
+      "duration": 6.361
+    },
+    {
+      "text": "instance using a chat GPT",
+      "start": 274.68,
+      "duration": 6.64
+    },
+    {
+      "text": "model uh which is defined here and then",
+      "start": 277.28,
+      "duration": 6.639
+    },
+    {
+      "text": "we set up a private key with the",
+      "start": 281.32,
+      "duration": 6.04
+    },
+    {
+      "text": "environment variables and then we use",
+      "start": 283.919,
+      "duration": 6.161
+    },
+    {
+      "text": "this private key for wey",
+      "start": 287.36,
+      "duration": 4.52
+    },
+    {
+      "text": "transactions the next thing that you",
+      "start": 290.08,
+      "duration": 4.88
+    },
+    {
+      "text": "will see here is the tool kit and the",
+      "start": 291.88,
+      "duration": 5.92
+    },
+    {
+      "text": "memory management system now again does",
+      "start": 294.96,
+      "duration": 5.04
+    },
+    {
+      "text": "a couple of things number one it creates",
+      "start": 297.8,
+      "duration": 5.679
+    },
+    {
+      "text": "a toolkit with vb3 capabilities um it",
+      "start": 300.0,
+      "duration": 5.56
+    },
+    {
+      "text": "then like sets up memories to maintain",
+      "start": 303.479,
+      "duration": 4.28
+    },
+    {
+      "text": "conversation history it also like",
+      "start": 305.56,
+      "duration": 4.0
+    },
+    {
+      "text": "configures the agent with a unique",
+      "start": 307.759,
+      "duration": 4.16
+    },
+    {
+      "text": "thread ID which we will use",
+      "start": 309.56,
+      "duration": 4.4
+    },
+    {
+      "text": "later and the last thing that this",
+      "start": 311.919,
+      "duration": 4.881
+    },
+    {
+      "text": "function implements is the react agent",
+      "start": 313.96,
+      "duration": 5.56
+    },
+    {
+      "text": "creation Now this does a couple of",
+      "start": 316.8,
+      "duration": 5.119
+    },
+    {
+      "text": "things again one it creates a react",
+      "start": 319.52,
+      "duration": 4.72
+    },
+    {
+      "text": "agent combining the langage model and",
+      "start": 321.919,
+      "duration": 4.801
+    },
+    {
+      "text": "tools uh the second thing it does is",
+      "start": 324.24,
+      "duration": 4.239
+    },
+    {
+      "text": "includes memory for conversion",
+      "start": 326.72,
+      "duration": 3.919
+    },
+    {
+      "text": "persistence and the third thing it does",
+      "start": 328.479,
+      "duration": 4.481
+    },
+    {
+      "text": "is sets up a message modifier for",
+      "start": 330.639,
+      "duration": 4.721
+    },
+    {
+      "text": "consistent agent",
+      "start": 332.96,
+      "duration": 4.84
+    },
+    {
+      "text": "Behavior the next thing that we will be",
+      "start": 335.36,
+      "duration": 5.399
+    },
+    {
+      "text": "looking at is the chatboard",
+      "start": 337.8,
+      "duration": 5.2
+    },
+    {
+      "text": "implementation now we're going to do",
+      "start": 340.759,
+      "duration": 3.921
+    },
+    {
+      "text": "like a couple of things here number one",
+      "start": 343.0,
+      "duration": 4.44
+    },
+    {
+      "text": "is we're going to do um we're going to",
+      "start": 344.68,
+      "duration": 5.359
+    },
+    {
+      "text": "like set up the Readiness for interface",
+      "start": 347.44,
+      "duration": 4.64
+    },
+    {
+      "text": "for command interactions that we'll see",
+      "start": 350.039,
+      "duration": 5.761
+    },
+    {
+      "text": "in the in the live example that we do",
+      "start": 352.08,
+      "duration": 6.48
+    },
+    {
+      "text": "and then we also do an interactive Loop",
+      "start": 355.8,
+      "duration": 5.239
+    },
+    {
+      "text": "for the user chat to have",
+      "start": 358.56,
+      "duration": 5.079
+    },
+    {
+      "text": "happen and the last thing that we sort",
+      "start": 361.039,
+      "duration": 5.28
+    },
+    {
+      "text": "of do here is chat Loop processing so",
+      "start": 363.639,
+      "duration": 5.241
+    },
+    {
+      "text": "this kind of takes care of um",
+      "start": 366.319,
+      "duration": 4.72
+    },
+    {
+      "text": "continuingly accepting user response",
+      "start": 368.88,
+      "duration": 5.24
+    },
+    {
+      "text": "until like exit is entered and then we",
+      "start": 371.039,
+      "duration": 6.16
+    },
+    {
+      "text": "process each input through the agent um",
+      "start": 374.12,
+      "duration": 5.68
+    },
+    {
+      "text": "making sure that we stream the responses",
+      "start": 377.199,
+      "duration": 4.921
+    },
+    {
+      "text": "back to the",
+      "start": 379.8,
+      "duration": 5.48
+    },
+    {
+      "text": "user so in the end we have a couple of",
+      "start": 382.12,
+      "duration": 5.6
+    },
+    {
+      "text": "different supporting functions like",
+      "start": 385.28,
+      "duration": 4.72
+    },
+    {
+      "text": "response handling and error handling so",
+      "start": 387.72,
+      "duration": 4.12
+    },
+    {
+      "text": "with response handling we handle",
+      "start": 390.0,
+      "duration": 4.4
+    },
+    {
+      "text": "different type of responses we display",
+      "start": 391.84,
+      "duration": 5.72
+    },
+    {
+      "text": "the responses in a formatted manner for",
+      "start": 394.4,
+      "duration": 5.519
+    },
+    {
+      "text": "better reading and then we maintain the",
+      "start": 397.56,
+      "duration": 3.96
+    },
+    {
+      "text": "conversation flow and with error",
+      "start": 399.919,
+      "duration": 3.0
+    },
+    {
+      "text": "handling we make sure that the",
+      "start": 401.52,
+      "duration": 3.2
+    },
+    {
+      "text": "orchestration of the entire application",
+      "start": 402.919,
+      "duration": 4.081
+    },
+    {
+      "text": "flow happens correctly we Implement",
+      "start": 404.72,
+      "duration": 4.68
+    },
+    {
+      "text": "correct error handling processes and",
+      "start": 407.0,
+      "duration": 6.12
+    },
+    {
+      "text": "then we ensure clean exits on",
+      "start": 409.4,
+      "duration": 6.799
+    },
+    {
+      "text": "error yeah and that's that and we can",
+      "start": 413.12,
+      "duration": 7.68
+    },
+    {
+      "text": "now try to run this function",
+      "start": 416.199,
+      "duration": 6.961
+    },
+    {
+      "text": "all right so let us look at our agent in",
+      "start": 420.8,
+      "duration": 5.44
+    },
+    {
+      "text": "action and we can invoke it by simply",
+      "start": 423.16,
+      "duration": 6.599
+    },
+    {
+      "text": "using npm star",
+      "start": 426.24,
+      "duration": 6.6
+    },
+    {
+      "text": "um well the prerequisite for this is of",
+      "start": 429.759,
+      "duration": 5.521
+    },
+    {
+      "text": "course is you need to install the npm",
+      "start": 432.84,
+      "duration": 6.359
+    },
+    {
+      "text": "packages using NP install and you can",
+      "start": 435.28,
+      "duration": 5.639
+    },
+    {
+      "text": "find instructions about that in the",
+      "start": 439.199,
+      "duration": 4.921
+    },
+    {
+      "text": "readme so once you start the agent you",
+      "start": 440.919,
+      "duration": 6.921
+    },
+    {
+      "text": "can see that the agent is running and it",
+      "start": 444.12,
+      "duration": 5.919
+    },
+    {
+      "text": "is asking you for a prompt",
+      "start": 447.84,
+      "duration": 4.72
+    },
+    {
+      "text": "uh I'm not really sure what type of",
+      "start": 450.039,
+      "duration": 4.72
+    },
+    {
+      "text": "promts are available with this agent so",
+      "start": 452.56,
+      "duration": 5.4
+    },
+    {
+      "text": "my first question to it will be what",
+      "start": 454.759,
+      "duration": 5.12
+    },
+    {
+      "text": "type of",
+      "start": 457.96,
+      "duration": 4.16
+    },
+    {
+      "text": "actions do you",
+      "start": 459.879,
+      "duration": 5.401
+    },
+    {
+      "text": "support and um since this is made using",
+      "start": 462.12,
+      "duration": 5.639
+    },
+    {
+      "text": "Lang chain it can really understand",
+      "start": 465.28,
+      "duration": 5.639
+    },
+    {
+      "text": "normal English language and it can",
+      "start": 467.759,
+      "duration": 6.921
+    },
+    {
+      "text": "translate that into um actionable items",
+      "start": 470.919,
+      "duration": 4.761
+    },
+    {
+      "text": "for",
+      "start": 474.68,
+      "duration": 4.799
+    },
+    {
+      "text": "us so as you can see the promt tells us",
+      "start": 475.68,
+      "duration": 6.0
+    },
+    {
+      "text": "a couple of things so we can of course",
+      "start": 479.479,
+      "duration": 5.881
+    },
+    {
+      "text": "manage spaces manage Keys key chains",
+      "start": 481.68,
+      "duration": 5.84
+    },
+    {
+      "text": "balances price checks Etc so all of the",
+      "start": 485.36,
+      "duration": 5.16
+    },
+    {
+      "text": "different things that are available with",
+      "start": 487.52,
+      "duration": 6.239
+    },
+    {
+      "text": "the ven protocol out of the box so let's",
+      "start": 490.52,
+      "duration": 4.56
+    },
+    {
+      "text": "try a couple of things so the first",
+      "start": 493.759,
+      "duration": 3.041
+    },
+    {
+      "text": "thing that I'm going to do is I'm going",
+      "start": 495.08,
+      "duration": 5.959
+    },
+    {
+      "text": "to start with managing my spaces so what",
+      "start": 496.8,
+      "duration": 6.76
+    },
+    {
+      "text": "I want to know is how",
+      "start": 501.039,
+      "duration": 7.201
+    },
+    {
+      "text": "many spaces do I",
+      "start": 503.56,
+      "duration": 9.399
+    },
+    {
+      "text": "have and and as you can see um I have",
+      "start": 508.24,
+      "duration": 7.4
+    },
+    {
+      "text": "three spaces that I have created I'll",
+      "start": 512.959,
+      "duration": 5.241
+    },
+    {
+      "text": "just move this out of the way sorry all",
+      "start": 515.64,
+      "duration": 5.079
+    },
+    {
+      "text": "right so you can see I have um three",
+      "start": 518.2,
+      "duration": 5.56
+    },
+    {
+      "text": "spaces available and what I'm going to",
+      "start": 520.719,
+      "duration": 6.321
+    },
+    {
+      "text": "do is create a new space and then let's",
+      "start": 523.76,
+      "duration": 8.199
+    },
+    {
+      "text": "see if that space will be seen",
+      "start": 527.04,
+      "duration": 4.919
+    },
+    {
+      "text": "here okay so the new space has been",
+      "start": 534.399,
+      "duration": 5.081
+    },
+    {
+      "text": "created and I'm going to ask it again",
+      "start": 537.32,
+      "duration": 8.0
+    },
+    {
+      "text": "again how many spaces do I have and",
+      "start": 539.48,
+      "duration": 7.599
+    },
+    {
+      "text": "hopefully it should return a new space",
+      "start": 545.32,
+      "duration": 3.959
+    },
+    {
+      "text": "so yeah um now previously I had three",
+      "start": 547.079,
+      "duration": 4.32
+    },
+    {
+      "text": "spaces and now I've got like four spaces",
+      "start": 549.279,
+      "duration": 5.12
+    },
+    {
+      "text": "under my belt so yeah this is a simple",
+      "start": 551.399,
+      "duration": 5.56
+    },
+    {
+      "text": "example of spaces we can do other things",
+      "start": 554.399,
+      "duration": 5.281
+    },
+    {
+      "text": "like we can look at the keys available",
+      "start": 556.959,
+      "duration": 5.681
+    },
+    {
+      "text": "so um how many",
+      "start": 559.68,
+      "duration": 7.96
+    },
+    {
+      "text": "keys do oh maybe just let's say uh list",
+      "start": 562.64,
+      "duration": 7.04
+    },
+    {
+      "text": "all the keys",
+      "start": 567.64,
+      "duration": 6.04
+    },
+    {
+      "text": "in space ID let's say the the new space",
+      "start": 569.68,
+      "duration": 5.12
+    },
+    {
+      "text": "that we",
+      "start": 573.68,
+      "duration": 4.24
+    },
+    {
+      "text": "created and hopefully should be zero",
+      "start": 574.8,
+      "duration": 4.96
+    },
+    {
+      "text": "right because there we have not created",
+      "start": 577.92,
+      "duration": 6.24
+    },
+    {
+      "text": "any keys yet but if we ask that how many",
+      "start": 579.76,
+      "duration": 11.319
+    },
+    {
+      "text": "keys do I have in space ID let's say",
+      "start": 584.16,
+      "duration": 10.88
+    },
+    {
+      "text": "18 um it has keys that were like",
+      "start": 591.079,
+      "duration": 5.44
+    },
+    {
+      "text": "previously created so we've got like",
+      "start": 595.04,
+      "duration": 4.56
+    },
+    {
+      "text": "these two keys that we created right",
+      "start": 596.519,
+      "duration": 7.32
+    },
+    {
+      "text": "let's see what else can I",
+      "start": 599.6,
+      "duration": 8.52
+    },
+    {
+      "text": "do and we should again get a couple of",
+      "start": 603.839,
+      "duration": 8.041
+    },
+    {
+      "text": "options let's choose from",
+      "start": 608.12,
+      "duration": 3.76
+    },
+    {
+      "text": "that the send tokens and then we need",
+      "start": 614.24,
+      "duration": 6.48
+    },
+    {
+      "text": "um a couple of things the recipient",
+      "start": 618.279,
+      "duration": 6.081
+    },
+    {
+      "text": "address the amount and the key ID so",
+      "start": 620.72,
+      "duration": 5.76
+    },
+    {
+      "text": "let's",
+      "start": 624.36,
+      "duration": 6.56
+    },
+    {
+      "text": "say so let's say we put in",
+      "start": 626.48,
+      "duration": 11.12
+    },
+    {
+      "text": "address as this and amount to be",
+      "start": 630.92,
+      "duration": 9.039
+    },
+    {
+      "text": "0.01",
+      "start": 637.6,
+      "duration": 6.44
+    },
+    {
+      "text": "e and let's say the",
+      "start": 639.959,
+      "duration": 5.761
+    },
+    {
+      "text": "key",
+      "start": 644.04,
+      "duration": 5.56
+    },
+    {
+      "text": "is 18 all right this is basically the",
+      "start": 645.72,
+      "duration": 6.04
+    },
+    {
+      "text": "space ID that we have",
+      "start": 649.6,
+      "duration": 4.239
+    },
+    {
+      "text": "created okay",
+      "start": 651.76,
+      "duration": 5.759
+    },
+    {
+      "text": "so yeah the transaction is successful",
+      "start": 653.839,
+      "duration": 5.721
+    },
+    {
+      "text": "and we are able to like successfully and",
+      "start": 657.519,
+      "duration": 5.721
+    },
+    {
+      "text": "some test eats awesome thank you so much",
+      "start": 659.56,
+      "duration": 7.24
+    },
+    {
+      "text": "for logging into this video uh hopefully",
+      "start": 663.24,
+      "duration": 5.76
+    },
+    {
+      "text": "you learn something new if you have any",
+      "start": 666.8,
+      "duration": 4.52
+    },
+    {
+      "text": "questions drop us a line on Discord or",
+      "start": 669.0,
+      "duration": 6.36
+    },
+    {
+      "text": "reach out to us at developers wpr.org",
+      "start": 671.32,
+      "duration": 6.759
+    },
+    {
+      "text": "thank you so much we're excited to see",
+      "start": 675.36,
+      "duration": 4.599
+    },
+    {
+      "text": "what you build with Warden Agent Kid",
+      "start": 678.079,
+      "duration": 3.491
+    },
+    {
+      "text": "cheers",
+      "start": 679.959,
+      "duration": 20.371
+    },
+    {
+      "text": "[Music]",
+      "start": 681.57,
+      "duration": 18.76
+    }
+  ],
+  "available_caption_tracks": [
+    {
+      "id": "AUieDaaxiy2_f_8aagKDLJrwplwXe0ub8SyEYgWVegsp2d8AXaQ",
+      "language": "en",
+      "name": ""
+    }
+  ]
+}
