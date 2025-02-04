@@ -1,0 +1,14 @@
+# Ignore secrets file
+secrets.json
+
+# Ignore Python cache and environment files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+*.env
+
+# Ignore system files
+.DS_Store
