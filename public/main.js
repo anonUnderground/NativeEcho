@@ -49,7 +49,7 @@ document.getElementById('youtubeForm').addEventListener('submit', async function
       form.style.display = 'block';
     }
   });
-  
+    
   document.getElementById('backBtn').addEventListener('click', function() {
     document.getElementById('result').style.display = 'none';
     document.getElementById('youtubeForm').style.display = 'block';

@@ -1,4 +1,29 @@
-button {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  
+  button {
     padding: 10px 20px;
     background: #007BFF;
     border: none;
@@ -11,11 +36,37 @@ button {
     background: #0056b3;
   }
   
-  /* You can add specific styles for the debug button if needed */
+  /* Specific styles for the debug button */
   .debug-button {
     background: #28a745;
   }
   
   .debug-button:hover {
     background: #218838;
+  }
+  
+  /* Styles for the video embed and captions */
+  .player-container {
+    width: 640px;
+    height: 360px;
+    margin-bottom: 20px;
+  }
+  
+  .caption-container {
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    background: #fff;
+  }
+  
+  .caption {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  /* (Optional) Active caption highlighting */
+  .active-caption {
+    background-color: #ffff99;
   }  
