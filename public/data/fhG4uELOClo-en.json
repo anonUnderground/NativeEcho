@@ -1,0 +1,2876 @@
+{
+  "video_details": {
+    "video_id": "fhG4uELOClo",
+    "title": "Steph Orpilla I Speedrun Nillion's SecretVault I Agentic Ethereum 2025",
+    "description": "Protect your AI agent data with Nillion's SecretVault—a fully decentralized storage solution that easily secures and encrypts sensitive information. In this workshop, Steph Orpilla, Head of DevRel at Nillion, demonstrates how to create, store, and retrieve private data using Nil DB Nodes, Nillion SecretVault Wrappers, and Nillion Query Language (nql).\n\nWhether you’re building AI agent swarm memory, encrypting user PII, or sharing secure off-chain context, this quickstart covers the entire flow—from schema creation to encrypted record reads. Learn how to integrate SecretVault into your hackathon projects with minimal overhead, all via simple REST APIs and user-friendly libraries.\n\n00:00 Introduction & Prizes\n00:07 Overview: Nillion SecretVault\n01:23 Use Cases & Encryption Flow\n02:31 Quickstart: Installing the Wrappers\n03:40 Building & Posting Schemas\n05:06 Writing Encrypted Data to Nodes\n06:40 Reading & Decrypting Records\n08:01 Implementation Tips & Best Practices\n09:18 Registering an Organization\n10:41 Joining the Community & Final Remarks\n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  \n\n🤖 *Agentic Ethereum*\nAgentic Ethereum is an online, async hackathon that runs from Jan. 31 to Feb. 12, 2025.  With over $175,000 USD in prizes, Agentic Ethereum is a great way to dive into the world of autonomous AI agents and explore how they can revolutionize projects on Ethereum. Start the year with groundbreaking innovation! Watch the full playlist: https://youtube.com/playlist?list=PLXzKMXK2aHh7jxP_flgRf5nZ_WDgFpBy3&si=RZozbd9C5KrG6Bf3\n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  \n\n✅ *Follow Nillion*\nX: https://x.com/nillionnetwork\nWebsite: https://nillion.com\n\n✅ *Follow ETHGlobal*\nX: https://x.com/ETHGlobal​\nWarpcast: https://warpcast.com/ethglobal\nWebsite: https://ethglobal.com\nYouTube: https://www.youtube.com/c/ETHGlobal \n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  \n\n_Are you interested in Ethereum development and entrepreneurship?_\n👉 Sign up for the next ETHGlobal event: https://ethglobal.com/events\n🎁 Get exclusive access and perks with ETHGlobal Plus! https://ethglobal.com/plus\n📣 Want us to throw an event in your city? Tell us where! https://ethglobal.com/city\n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+    "caption_status": "false",
+    "embed_html": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/fhG4uELOClo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  },
+  "captions": [
+    {
+      "text": "hi everyone welcome to this session I'm",
+      "start": 7.279,
+      "duration": 6.48
+    },
+    {
+      "text": "just going to hide the",
+      "start": 10.28,
+      "duration": 3.479
+    },
+    {
+      "text": "controls today I'm going to run a",
+      "start": 13.879,
+      "duration": 6.601
+    },
+    {
+      "text": "session called speedrun secret vault uh",
+      "start": 17.199,
+      "duration": 5.041
+    },
+    {
+      "text": "and just to introduce myself quickly I'm",
+      "start": 20.48,
+      "duration": 4.039
+    },
+    {
+      "text": "Steph orilia I'm the head of De",
+      "start": 22.24,
+      "duration": 5.52
+    },
+    {
+      "text": "developer relations at Millian and I'm",
+      "start": 24.519,
+      "duration": 5.52
+    },
+    {
+      "text": "excited for you all to kind of like",
+      "start": 27.76,
+      "duration": 4.2
+    },
+    {
+      "text": "stand secret fault and start building",
+      "start": 30.039,
+      "duration": 4.401
+    },
+    {
+      "text": "with it during e Global",
+      "start": 31.96,
+      "duration": 4.599
+    },
+    {
+      "text": "agentic and just because I know you're",
+      "start": 34.44,
+      "duration": 5.599
+    },
+    {
+      "text": "all curious um we are giving away $5,000",
+      "start": 36.559,
+      "duration": 6.48
+    },
+    {
+      "text": "in prizes for this hackathon the first",
+      "start": 40.039,
+      "duration": 5.921
+    },
+    {
+      "text": "uh set of prizes is for best use of",
+      "start": 43.039,
+      "duration": 4.68
+    },
+    {
+      "text": "million secret vault and there's a",
+      "start": 45.96,
+      "duration": 4.079
+    },
+    {
+      "text": "little star next to that prize because",
+      "start": 47.719,
+      "duration": 4.121
+    },
+    {
+      "text": "this Workshop is all about million",
+      "start": 50.039,
+      "duration": 3.801
+    },
+    {
+      "text": "secret vault and I'll get you up and",
+      "start": 51.84,
+      "duration": 4.359
+    },
+    {
+      "text": "running with million secret vault really",
+      "start": 53.84,
+      "duration": 4.6
+    },
+    {
+      "text": "fast so you can use it and integrate it",
+      "start": 56.199,
+      "duration": 4.961
+    },
+    {
+      "text": "into all of your projects for the acon",
+      "start": 58.44,
+      "duration": 5.96
+    },
+    {
+      "text": "the other prize is uh a prize for",
+      "start": 61.16,
+      "duration": 5.959
+    },
+    {
+      "text": "building an agent framework integration",
+      "start": 64.4,
+      "duration": 5.399
+    },
+    {
+      "text": "there's a $1,000 prize for the best",
+      "start": 67.119,
+      "duration": 4.481
+    },
+    {
+      "text": "framework integration and that's for",
+      "start": 69.799,
+      "duration": 4.121
+    },
+    {
+      "text": "anyone who happens to create a library",
+      "start": 71.6,
+      "duration": 4.92
+    },
+    {
+      "text": "or a developer tool that makes it easier",
+      "start": 73.92,
+      "duration": 6.199
+    },
+    {
+      "text": "for other developers or users to use Nan",
+      "start": 76.52,
+      "duration": 6.0
+    },
+    {
+      "text": "with um an agent of your choice so maybe",
+      "start": 80.119,
+      "duration": 5.201
+    },
+    {
+      "text": "that's Eliza maybe that's something on",
+      "start": 82.52,
+      "duration": 6.12
+    },
+    {
+      "text": "open AI um any type of AI agent",
+      "start": 85.32,
+      "duration": 4.88
+    },
+    {
+      "text": "framework integration could could win",
+      "start": 88.64,
+      "duration": 3.519
+    },
+    {
+      "text": "that prize so this one is kind of a wild",
+      "start": 90.2,
+      "duration": 4.32
+    },
+    {
+      "text": "card and it's more open-ended um and",
+      "start": 92.159,
+      "duration": 4.161
+    },
+    {
+      "text": "then the other prize again there's four",
+      "start": 94.52,
+      "duration": 4.36
+    },
+    {
+      "text": "of them for the best use of secret fault",
+      "start": 96.32,
+      "duration": 3.96
+    },
+    {
+      "text": "which I'll show you",
+      "start": 98.88,
+      "duration": 4.0
+    },
+    {
+      "text": "next oh and you can scan this QR code",
+      "start": 100.28,
+      "duration": 6.159
+    },
+    {
+      "text": "here to learn more about the prizes and",
+      "start": 102.88,
+      "duration": 6.599
+    },
+    {
+      "text": "understand what you have to do to",
+      "start": 106.439,
+      "duration": 5.64
+    },
+    {
+      "text": "qualify but now I want to talk about",
+      "start": 109.479,
+      "duration": 5.6
+    },
+    {
+      "text": "Millian secret vault so secret vault is",
+      "start": 112.079,
+      "duration": 5.72
+    },
+    {
+      "text": "a decentralized storage solution and",
+      "start": 115.079,
+      "duration": 5.561
+    },
+    {
+      "text": "it's for keeping sensitive data secret",
+      "start": 117.799,
+      "duration": 5.68
+    },
+    {
+      "text": "and it works by storing encrypted shares",
+      "start": 120.64,
+      "duration": 6.04
+    },
+    {
+      "text": "across a decentralized cluster of nil GB",
+      "start": 123.479,
+      "duration": 5.84
+    },
+    {
+      "text": "nodes the reason that secret vault is so",
+      "start": 126.68,
+      "duration": 5.919
+    },
+    {
+      "text": "cool is that your data stays secure so",
+      "start": 129.319,
+      "duration": 4.92
+    },
+    {
+      "text": "this is really great if you're building",
+      "start": 132.599,
+      "duration": 4.081
+    },
+    {
+      "text": "anything with your AI agents that's",
+      "start": 134.239,
+      "duration": 5.36
+    },
+    {
+      "text": "maybe using user data so if your agent",
+      "start": 136.68,
+      "duration": 5.08
+    },
+    {
+      "text": "is storing user data somewhere it should",
+      "start": 139.599,
+      "duration": 4.601
+    },
+    {
+      "text": "be stored in a place where user data is",
+      "start": 141.76,
+      "duration": 5.32
+    },
+    {
+      "text": "kept super secure um this could also be",
+      "start": 144.2,
+      "duration": 5.96
+    },
+    {
+      "text": "useful if your agents are in a swarm and",
+      "start": 147.08,
+      "duration": 4.4
+    },
+    {
+      "text": "they're talking to each other and they",
+      "start": 150.16,
+      "duration": 3.48
+    },
+    {
+      "text": "need to share data with one another but",
+      "start": 151.48,
+      "duration": 3.88
+    },
+    {
+      "text": "they don't want to leak that data out",
+      "start": 153.64,
+      "duration": 4.4
+    },
+    {
+      "text": "because that would uh create just like a",
+      "start": 155.36,
+      "duration": 4.84
+    },
+    {
+      "text": "leak where someone else could take in",
+      "start": 158.04,
+      "duration": 3.88
+    },
+    {
+      "text": "that data and understand what the Swarm",
+      "start": 160.2,
+      "duration": 4.08
+    },
+    {
+      "text": "is doing and then your product is not as",
+      "start": 161.92,
+      "duration": 5.08
+    },
+    {
+      "text": "useful potentially so with Nan secret",
+      "start": 164.28,
+      "duration": 5.56
+    },
+    {
+      "text": "vault you encrypt data and when you",
+      "start": 167.0,
+      "duration": 5.8
+    },
+    {
+      "text": "encrypt the data you split it into",
+      "start": 169.84,
+      "duration": 4.96
+    },
+    {
+      "text": "different shares and each of those",
+      "start": 172.8,
+      "duration": 4.28
+    },
+    {
+      "text": "shares is stored in a different million",
+      "start": 174.8,
+      "duration": 6.28
+    },
+    {
+      "text": "DB node so that any node doesn't see the",
+      "start": 177.08,
+      "duration": 5.92
+    },
+    {
+      "text": "encrypted data they just see a share",
+      "start": 181.08,
+      "duration": 3.92
+    },
+    {
+      "text": "that's meaningless so that's how we're",
+      "start": 183.0,
+      "duration": 5.04
+    },
+    {
+      "text": "using secret vault to secure data uh one",
+      "start": 185.0,
+      "duration": 4.92
+    },
+    {
+      "text": "of my favorite things about using secret",
+      "start": 188.04,
+      "duration": 4.839
+    },
+    {
+      "text": "vault is it's very easy in my opinion to",
+      "start": 189.92,
+      "duration": 5.52
+    },
+    {
+      "text": "integrate because the way you access and",
+      "start": 192.879,
+      "duration": 4.681
+    },
+    {
+      "text": "interact with secret vault is through",
+      "start": 195.44,
+      "duration": 5.32
+    },
+    {
+      "text": "easy to use apis uh before web 3 I was",
+      "start": 197.56,
+      "duration": 6.36
+    },
+    {
+      "text": "in a web 2 development background and I",
+      "start": 200.76,
+      "duration": 5.199
+    },
+    {
+      "text": "was always using apis so when I came",
+      "start": 203.92,
+      "duration": 5.0
+    },
+    {
+      "text": "into web 3 and I had to get used to um",
+      "start": 205.959,
+      "duration": 5.321
+    },
+    {
+      "text": "more complex ways of reading and writing",
+      "start": 208.92,
+      "duration": 4.0
+    },
+    {
+      "text": "either through clients or through",
+      "start": 211.28,
+      "duration": 3.8
+    },
+    {
+      "text": "anything else I found myself missing",
+      "start": 212.92,
+      "duration": 5.28
+    },
+    {
+      "text": "apis a lot because it felt so easy to",
+      "start": 215.08,
+      "duration": 4.48
+    },
+    {
+      "text": "understand how to interact with",
+      "start": 218.2,
+      "duration": 3.239
+    },
+    {
+      "text": "something and secret vault is cool",
+      "start": 219.56,
+      "duration": 4.28
+    },
+    {
+      "text": "because you can use apis to create",
+      "start": 221.439,
+      "duration": 4.8
+    },
+    {
+      "text": "schemas and then read and write data to",
+      "start": 223.84,
+      "duration": 5.24
+    },
+    {
+      "text": "these schema collections um so that",
+      "start": 226.239,
+      "duration": 4.92
+    },
+    {
+      "text": "storing and retrieving data feels very",
+      "start": 229.08,
+      "duration": 4.439
+    },
+    {
+      "text": "familiar and easy and then the last",
+      "start": 231.159,
+      "duration": 4.041
+    },
+    {
+      "text": "reason I really like building with",
+      "start": 233.519,
+      "duration": 3.761
+    },
+    {
+      "text": "secret vault is because we provide a",
+      "start": 235.2,
+      "duration": 4.239
+    },
+    {
+      "text": "couple powerful libraries that you can",
+      "start": 237.28,
+      "duration": 5.039
+    },
+    {
+      "text": "use out of the box the first library is",
+      "start": 239.439,
+      "duration": 6.121
+    },
+    {
+      "text": "called nil ql that's nil query language",
+      "start": 242.319,
+      "duration": 5.0
+    },
+    {
+      "text": "and that's for the encryption and",
+      "start": 245.56,
+      "duration": 4.44
+    },
+    {
+      "text": "decryption of any of that private data",
+      "start": 247.319,
+      "duration": 5.081
+    },
+    {
+      "text": "that you want to store in secret vault",
+      "start": 250.0,
+      "duration": 5.079
+    },
+    {
+      "text": "the second library is called million SV",
+      "start": 252.4,
+      "duration": 4.399
+    },
+    {
+      "text": "wrappers that's million secret vault",
+      "start": 255.079,
+      "duration": 3.641
+    },
+    {
+      "text": "wrappers and that's basically a",
+      "start": 256.799,
+      "duration": 4.96
+    },
+    {
+      "text": "JavaScript npm package that does a lot",
+      "start": 258.72,
+      "duration": 5.6
+    },
+    {
+      "text": "of the API calling for you because",
+      "start": 261.759,
+      "duration": 5.44
+    },
+    {
+      "text": "you're writing to multiple nodes um if",
+      "start": 264.32,
+      "duration": 4.8
+    },
+    {
+      "text": "you were using the apis directly you",
+      "start": 267.199,
+      "duration": 4.921
+    },
+    {
+      "text": "would have to use n number of apis one",
+      "start": 269.12,
+      "duration": 5.04
+    },
+    {
+      "text": "per node but if you use the wrapper",
+      "start": 272.12,
+      "duration": 4.04
+    },
+    {
+      "text": "Library it simplifies that so you just",
+      "start": 274.16,
+      "duration": 4.599
+    },
+    {
+      "text": "tell the library oh I want this node",
+      "start": 276.16,
+      "duration": 4.319
+    },
+    {
+      "text": "that node and that node these three node",
+      "start": 278.759,
+      "duration": 4.921
+    },
+    {
+      "text": "URLs and then it handles all of the API",
+      "start": 280.479,
+      "duration": 5.44
+    },
+    {
+      "text": "calls for you so that's a little bit",
+      "start": 283.68,
+      "duration": 4.6
+    },
+    {
+      "text": "about secret",
+      "start": 285.919,
+      "duration": 4.961
+    },
+    {
+      "text": "vault and then the other thing to talk",
+      "start": 288.28,
+      "duration": 5.68
+    },
+    {
+      "text": "about is nql that was that encryption",
+      "start": 290.88,
+      "duration": 5.52
+    },
+    {
+      "text": "and decryption secret data library that",
+      "start": 293.96,
+      "duration": 4.76
+    },
+    {
+      "text": "I was telling you about before so this",
+      "start": 296.4,
+      "duration": 6.0
+    },
+    {
+      "text": "is an example of um a record that I",
+      "start": 298.72,
+      "duration": 5.72
+    },
+    {
+      "text": "might want to store inside of secret",
+      "start": 302.4,
+      "duration": 5.6
+    },
+    {
+      "text": "vault it looks like a Json uh data",
+      "start": 304.44,
+      "duration": 5.479
+    },
+    {
+      "text": "payload but there's a couple things to",
+      "start": 308.0,
+      "duration": 4.96
+    },
+    {
+      "text": "note there are these a lot markers",
+      "start": 309.919,
+      "duration": 6.56
+    },
+    {
+      "text": "within the data and anywhere that a lot",
+      "start": 312.96,
+      "duration": 6.6
+    },
+    {
+      "text": "is Will signal to nql the encryption",
+      "start": 316.479,
+      "duration": 5.28
+    },
+    {
+      "text": "library that that value needs to be",
+      "start": 319.56,
+      "duration": 4.44
+    },
+    {
+      "text": "encrypted so the first value that I want",
+      "start": 321.759,
+      "duration": 5.56
+    },
+    {
+      "text": "to encrypt is name that's allotted so my",
+      "start": 324.0,
+      "duration": 5.96
+    },
+    {
+      "text": "name will be encrypted in the resting",
+      "start": 327.319,
+      "duration": 5.16
+    },
+    {
+      "text": "data I also want to encrypt the number",
+      "start": 329.96,
+      "duration": 4.76
+    },
+    {
+      "text": "of years that I've been in web 3 so I",
+      "start": 332.479,
+      "duration": 4.681
+    },
+    {
+      "text": "also have an A Lot property there",
+      "start": 334.72,
+      "duration": 4.88
+    },
+    {
+      "text": "showing this number should be encrypted",
+      "start": 337.16,
+      "duration": 5.08
+    },
+    {
+      "text": "before it's stored for rating of the",
+      "start": 339.6,
+      "duration": 4.92
+    },
+    {
+      "text": "product imagine that's something that's",
+      "start": 342.24,
+      "duration": 5.36
+    },
+    {
+      "text": "just in a survey that's not sensitive to",
+      "start": 344.52,
+      "duration": 5.64
+    },
+    {
+      "text": "my application so I don't need to aot",
+      "start": 347.6,
+      "duration": 4.28
+    },
+    {
+      "text": "that that can just be stored in plain",
+      "start": 350.16,
+      "duration": 6.2
+    },
+    {
+      "text": "text and when nql runs on this record",
+      "start": 351.88,
+      "duration": 6.92
+    },
+    {
+      "text": "when you uh encrypt it with the library",
+      "start": 356.36,
+      "duration": 4.44
+    },
+    {
+      "text": "this is what the resulting data could",
+      "start": 358.8,
+      "duration": 5.44
+    },
+    {
+      "text": "look like so I have three different sets",
+      "start": 360.8,
+      "duration": 6.6
+    },
+    {
+      "text": "of data and each of these sets has those",
+      "start": 364.24,
+      "duration": 5.32
+    },
+    {
+      "text": "encrypted properties so you can see name",
+      "start": 367.4,
+      "duration": 5.56
+    },
+    {
+      "text": "and years in web 3 in all three of these",
+      "start": 369.56,
+      "duration": 6.6
+    },
+    {
+      "text": "is written with a share and the shares",
+      "start": 372.96,
+      "duration": 5.56
+    },
+    {
+      "text": "are different between nodes so the first",
+      "start": 376.16,
+      "duration": 5.36
+    },
+    {
+      "text": "node will receive this payload with",
+      "start": 378.52,
+      "duration": 4.799
+    },
+    {
+      "text": "different shares than the second node",
+      "start": 381.52,
+      "duration": 3.28
+    },
+    {
+      "text": "with different shares than the third",
+      "start": 383.319,
+      "duration": 5.44
+    },
+    {
+      "text": "node so if someone were to um crack the",
+      "start": 384.8,
+      "duration": 6.2
+    },
+    {
+      "text": "security of one node they would still",
+      "start": 388.759,
+      "duration": 4.72
+    },
+    {
+      "text": "have no idea what the name or the number",
+      "start": 391.0,
+      "duration": 4.84
+    },
+    {
+      "text": "of years in web 3 would be for this",
+      "start": 393.479,
+      "duration": 4.12
+    },
+    {
+      "text": "record because it's encrypted with a",
+      "start": 395.84,
+      "duration": 3.96
+    },
+    {
+      "text": "share and the share is completely",
+      "start": 397.599,
+      "duration": 6.16
+    },
+    {
+      "text": "meaningless but when you um use no ql to",
+      "start": 399.8,
+      "duration": 7.88
+    },
+    {
+      "text": "decrypt or to recombine this record it",
+      "start": 403.759,
+      "duration": 6.0
+    },
+    {
+      "text": "will give you this back so you'll be",
+      "start": 407.68,
+      "duration": 4.2
+    },
+    {
+      "text": "able to see the name the years in web 3",
+      "start": 409.759,
+      "duration": 4.28
+    },
+    {
+      "text": "and the rating of the product in plain",
+      "start": 411.88,
+      "duration": 5.159
+    },
+    {
+      "text": "text um because it's recombining those",
+      "start": 414.039,
+      "duration": 6.641
+    },
+    {
+      "text": "shares and so these three records are",
+      "start": 417.039,
+      "duration": 6.761
+    },
+    {
+      "text": "separately uploaded to one node each of",
+      "start": 420.68,
+      "duration": 5.76
+    },
+    {
+      "text": "secret vault and that's how uh the data",
+      "start": 423.8,
+      "duration": 4.079
+    },
+    {
+      "text": "is",
+      "start": 426.44,
+      "duration": 4.36
+    },
+    {
+      "text": "stored so to put all of that together",
+      "start": 427.879,
+      "duration": 6.44
+    },
+    {
+      "text": "the full flow of using secret vault is",
+      "start": 430.8,
+      "duration": 5.88
+    },
+    {
+      "text": "um to create either an AI agent or an",
+      "start": 434.319,
+      "duration": 5.681
+    },
+    {
+      "text": "app so that's down here that AI agent or",
+      "start": 436.68,
+      "duration": 7.079
+    },
+    {
+      "text": "app takes in data so imagine um if you",
+      "start": 440.0,
+      "duration": 6.12
+    },
+    {
+      "text": "had an agent you're prompting the user",
+      "start": 443.759,
+      "duration": 4.681
+    },
+    {
+      "text": "to tell you your their name and how long",
+      "start": 446.12,
+      "duration": 4.44
+    },
+    {
+      "text": "they've been in web 3 and also the",
+      "start": 448.44,
+      "duration": 4.439
+    },
+    {
+      "text": "rating of the product so they give you",
+      "start": 450.56,
+      "duration": 4.96
+    },
+    {
+      "text": "all that information and then the agent",
+      "start": 452.879,
+      "duration": 6.241
+    },
+    {
+      "text": "says okay I will encrypt those fields so",
+      "start": 455.52,
+      "duration": 5.44
+    },
+    {
+      "text": "the agent encrypts the private data",
+      "start": 459.12,
+      "duration": 4.84
+    },
+    {
+      "text": "fields with the no ql library that",
+      "start": 460.96,
+      "duration": 5.84
+    },
+    {
+      "text": "results in the three different encrypted",
+      "start": 463.96,
+      "duration": 5.32
+    },
+    {
+      "text": "records and then each of those records",
+      "start": 466.8,
+      "duration": 6.0
+    },
+    {
+      "text": "is uploaded to a separate nil DB node",
+      "start": 469.28,
+      "duration": 5.319
+    },
+    {
+      "text": "and then when you need to decrypt the",
+      "start": 472.8,
+      "duration": 5.839
+    },
+    {
+      "text": "data or read it the agent can call the",
+      "start": 474.599,
+      "duration": 6.641
+    },
+    {
+      "text": "nodes the nodes give the pieces of the",
+      "start": 478.639,
+      "duration": 5.161
+    },
+    {
+      "text": "data and then you can recombine the",
+      "start": 481.24,
+      "duration": 5.44
+    },
+    {
+      "text": "three pieces to decrypt the data again",
+      "start": 483.8,
+      "duration": 6.28
+    },
+    {
+      "text": "with no ql and that that all happens in",
+      "start": 486.68,
+      "duration": 6.359
+    },
+    {
+      "text": "a really easy flow through the",
+      "start": 490.08,
+      "duration": 6.0
+    },
+    {
+      "text": "wrappers okay so now let's actually",
+      "start": 493.039,
+      "duration": 5.641
+    },
+    {
+      "text": "speedrun this flow so by speedrun I mean",
+      "start": 496.08,
+      "duration": 3.88
+    },
+    {
+      "text": "we're going to go through the quick",
+      "start": 498.68,
+      "duration": 4.639
+    },
+    {
+      "text": "start really fast oh I can hear somebody",
+      "start": 499.96,
+      "duration": 5.959
+    },
+    {
+      "text": "does somebody have a",
+      "start": 503.319,
+      "duration": 5.28
+    },
+    {
+      "text": "question Okay cool so we're going to go",
+      "start": 505.919,
+      "duration": 4.56
+    },
+    {
+      "text": "through the Quick Start really fast I'm",
+      "start": 508.599,
+      "duration": 4.081
+    },
+    {
+      "text": "you can code along with me if you want",
+      "start": 510.479,
+      "duration": 4.521
+    },
+    {
+      "text": "uh but if you miss anything you can send",
+      "start": 512.68,
+      "duration": 4.88
+    },
+    {
+      "text": "a message in partner Nilan on Discord",
+      "start": 515.0,
+      "duration": 4.839
+    },
+    {
+      "text": "and I'll look at it afterwards um or",
+      "start": 517.56,
+      "duration": 3.959
+    },
+    {
+      "text": "just let me know if anything's unclear",
+      "start": 519.839,
+      "duration": 3.841
+    },
+    {
+      "text": "and I can stop and address the question",
+      "start": 521.519,
+      "duration": 3.361
+    },
+    {
+      "text": "but I'm just going to run through the",
+      "start": 523.68,
+      "duration": 2.96
+    },
+    {
+      "text": "quick start straight on my",
+      "start": 524.88,
+      "duration": 4.56
+    },
+    {
+      "text": "machine",
+      "start": 526.64,
+      "duration": 6.0
+    },
+    {
+      "text": "okay um there we",
+      "start": 529.44,
+      "duration": 6.28
+    },
+    {
+      "text": "go so I'm just going to go to docs.",
+      "start": 532.64,
+      "duration": 6.72
+    },
+    {
+      "text": "nan.com QuickStart",
+      "start": 535.72,
+      "duration": 3.64
+    },
+    {
+      "text": "and you can see there's different things",
+      "start": 539.8,
+      "duration": 4.24
+    },
+    {
+      "text": "that you can start building so I'm going",
+      "start": 541.48,
+      "duration": 5.0
+    },
+    {
+      "text": "to click the secret vault quick start",
+      "start": 544.04,
+      "duration": 5.16
+    },
+    {
+      "text": "because I want to run through this",
+      "start": 546.48,
+      "duration": 6.24
+    },
+    {
+      "text": "one so in this quick start it'll take a",
+      "start": 549.2,
+      "duration": 6.36
+    },
+    {
+      "text": "little bit about about excuse me 15",
+      "start": 552.72,
+      "duration": 5.239
+    },
+    {
+      "text": "minutes and we're going to build a",
+      "start": 555.56,
+      "duration": 4.92
+    },
+    {
+      "text": "privacy preserving data collection for a",
+      "start": 557.959,
+      "duration": 5.0
+    },
+    {
+      "text": "web 3 experience survey So within that",
+      "start": 560.48,
+      "duration": 4.44
+    },
+    {
+      "text": "survey we're going to have the name and",
+      "start": 562.959,
+      "duration": 4.401
+    },
+    {
+      "text": "years in web 3 properties which we will",
+      "start": 564.92,
+      "duration": 5.0
+    },
+    {
+      "text": "encrypt and then we'll leave the",
+      "start": 567.36,
+      "duration": 5.52
+    },
+    {
+      "text": "um experience ratings out uh we'll we'll",
+      "start": 569.92,
+      "duration": 4.919
+    },
+    {
+      "text": "just store them in plain text so that",
+      "start": 572.88,
+      "duration": 4.0
+    },
+    {
+      "text": "anyone can read them if they wanted",
+      "start": 574.839,
+      "duration": 4.801
+    },
+    {
+      "text": "to and this is going to be a nodejs",
+      "start": 576.88,
+      "duration": 4.639
+    },
+    {
+      "text": "project that I create completely from",
+      "start": 579.64,
+      "duration": 4.56
+    },
+    {
+      "text": "scratch as it says in the quick start so",
+      "start": 581.519,
+      "duration": 6.0
+    },
+    {
+      "text": "let's start building the the project I'm",
+      "start": 584.2,
+      "duration": 4.68
+    },
+    {
+      "text": "just going to minimize this and I'll",
+      "start": 587.519,
+      "duration": 4.241
+    },
+    {
+      "text": "keep this on the left side of my screen",
+      "start": 588.88,
+      "duration": 4.84
+    },
+    {
+      "text": "and then I have a terminal over here",
+      "start": 591.76,
+      "duration": 3.519
+    },
+    {
+      "text": "that I'll leave on the right and I'll",
+      "start": 593.72,
+      "duration": 3.72
+    },
+    {
+      "text": "also pull up a code editor so the first",
+      "start": 595.279,
+      "duration": 4.281
+    },
+    {
+      "text": "thing that we need to do is create a",
+      "start": 597.44,
+      "duration": 4.88
+    },
+    {
+      "text": "directory for our project so I'm going",
+      "start": 599.56,
+      "duration": 4.48
+    },
+    {
+      "text": "to",
+      "start": 602.32,
+      "duration": 6.12
+    },
+    {
+      "text": "make a directory and I'll CD into that",
+      "start": 604.04,
+      "duration": 6.96
+    },
+    {
+      "text": "directory next we need to initialize the",
+      "start": 608.44,
+      "duration": 4.68
+    },
+    {
+      "text": "project so it's going to be initialized",
+      "start": 611.0,
+      "duration": 5.399
+    },
+    {
+      "text": "um as a module so I'll npm in it",
+      "start": 613.12,
+      "duration": 6.6
+    },
+    {
+      "text": "es6 and that will just set the type as",
+      "start": 616.399,
+      "duration": 6.12
+    },
+    {
+      "text": "module inside of the package Json the",
+      "start": 619.72,
+      "duration": 4.96
+    },
+    {
+      "text": "next thing I have to do is install the",
+      "start": 622.519,
+      "duration": 5.121
+    },
+    {
+      "text": "SV wrappers package this is the package",
+      "start": 624.68,
+      "duration": 7.599
+    },
+    {
+      "text": "that manages um secret keys and all of",
+      "start": 627.64,
+      "duration": 8.999
+    },
+    {
+      "text": "the oops oh wrappers so this is the",
+      "start": 632.279,
+      "duration": 7.8
+    },
+    {
+      "text": "package that uh manages all of the keys",
+      "start": 636.639,
+      "duration": 7.401
+    },
+    {
+      "text": "and also creates JWT API tokens based on",
+      "start": 640.079,
+      "duration": 7.241
+    },
+    {
+      "text": "your organization config for uh secret",
+      "start": 644.04,
+      "duration": 6.72
+    },
+    {
+      "text": "vault so I have all of that and I'm just",
+      "start": 647.32,
+      "duration": 6.04
+    },
+    {
+      "text": "going to open up cursor since this is a",
+      "start": 650.76,
+      "duration": 6.199
+    },
+    {
+      "text": "gentic uh I'm going to use a agent",
+      "start": 653.36,
+      "duration": 7.12
+    },
+    {
+      "text": "powered um code editor for my project",
+      "start": 656.959,
+      "duration": 5.281
+    },
+    {
+      "text": "and I'll just open the terminal at the",
+      "start": 660.48,
+      "duration": 5.12
+    },
+    {
+      "text": "bottom so that um I can do everything",
+      "start": 662.24,
+      "duration": 6.279
+    },
+    {
+      "text": "within uh",
+      "start": 665.6,
+      "duration": 5.88
+    },
+    {
+      "text": "firster okay so we've set up the project",
+      "start": 668.519,
+      "duration": 4.88
+    },
+    {
+      "text": "the next thing I need to do is create a",
+      "start": 671.48,
+      "duration": 4.24
+    },
+    {
+      "text": "file that will hold my organization",
+      "start": 673.399,
+      "duration": 5.0
+    },
+    {
+      "text": "config so now I have this org config",
+      "start": 675.72,
+      "duration": 5.28
+    },
+    {
+      "text": "file within the quick start I have a",
+      "start": 678.399,
+      "duration": 5.401
+    },
+    {
+      "text": "demo organization config that I'll copy",
+      "start": 681.0,
+      "duration": 5.16
+    },
+    {
+      "text": "into or",
+      "start": 683.8,
+      "duration": 5.159
+    },
+    {
+      "text": "config and now let's quickly talk about",
+      "start": 686.16,
+      "duration": 7.359
+    },
+    {
+      "text": "the or config so any um if if you are",
+      "start": 688.959,
+      "duration": 7.201
+    },
+    {
+      "text": "creating an entity to use secret fault",
+      "start": 693.519,
+      "duration": 3.921
+    },
+    {
+      "text": "you'll create an",
+      "start": 696.16,
+      "duration": 4.0
+    },
+    {
+      "text": "organization um I'm just using the demo",
+      "start": 697.44,
+      "duration": 4.839
+    },
+    {
+      "text": "organization from the quick start but",
+      "start": 700.16,
+      "duration": 3.96
+    },
+    {
+      "text": "you can actually register your own",
+      "start": 702.279,
+      "duration": 3.841
+    },
+    {
+      "text": "organization and I recommend that you do",
+      "start": 704.12,
+      "duration": 4.76
+    },
+    {
+      "text": "this for your projects uh here in the",
+      "start": 706.12,
+      "duration": 5.32
+    },
+    {
+      "text": "portal so you you would just use this",
+      "start": 708.88,
+      "duration": 5.199
+    },
+    {
+      "text": "registration portal you could get start",
+      "start": 711.44,
+      "duration": 4.839
+    },
+    {
+      "text": "a new organization you'd enter whatever",
+      "start": 714.079,
+      "duration": 4.721
+    },
+    {
+      "text": "you want the name to be and select nodes",
+      "start": 716.279,
+      "duration": 4.24
+    },
+    {
+      "text": "these are the three demo nodes that will",
+      "start": 718.8,
+      "duration": 3.36
+    },
+    {
+      "text": "be selected for you and these are",
+      "start": 720.519,
+      "duration": 3.56
+    },
+    {
+      "text": "actually the nodes that my organization",
+      "start": 722.16,
+      "duration": 5.56
+    },
+    {
+      "text": "is using as well so I'm skipping that",
+      "start": 724.079,
+      "duration": 5.44
+    },
+    {
+      "text": "step because I already have my",
+      "start": 727.72,
+      "duration": 5.479
+    },
+    {
+      "text": "organization credentials uh but along",
+      "start": 729.519,
+      "duration": 6.56
+    },
+    {
+      "text": "with the organization credentials I have",
+      "start": 733.199,
+      "duration": 6.44
+    },
+    {
+      "text": "the node config the node config contains",
+      "start": 736.079,
+      "duration": 5.841
+    },
+    {
+      "text": "the URLs and the decentralized",
+      "start": 739.639,
+      "duration": 4.921
+    },
+    {
+      "text": "identifiers for each of the nodes and",
+      "start": 741.92,
+      "duration": 4.88
+    },
+    {
+      "text": "the nodes are what I will be uploading",
+      "start": 744.56,
+      "duration": 4.719
+    },
+    {
+      "text": "my data to each of these nodes will get",
+      "start": 746.8,
+      "duration": 4.479
+    },
+    {
+      "text": "a different piece of that data which is",
+      "start": 749.279,
+      "duration": 4.041
+    },
+    {
+      "text": "why it's important to have the node",
+      "start": 751.279,
+      "duration": 4.841
+    },
+    {
+      "text": "information inside of the node config um",
+      "start": 753.32,
+      "duration": 5.079
+    },
+    {
+      "text": "along with the organization so the",
+      "start": 756.12,
+      "duration": 5.24
+    },
+    {
+      "text": "organization secret key is actually what",
+      "start": 758.399,
+      "duration": 5.68
+    },
+    {
+      "text": "is generating API tokens for each of",
+      "start": 761.36,
+      "duration": 6.08
+    },
+    {
+      "text": "these nodes so that um inside of secret",
+      "start": 764.079,
+      "duration": 6.361
+    },
+    {
+      "text": "vault you know that the organization is",
+      "start": 767.44,
+      "duration": 5.959
+    },
+    {
+      "text": "the correct person or the correct entity",
+      "start": 770.44,
+      "duration": 5.72
+    },
+    {
+      "text": "that's writing to the secret vault um",
+      "start": 773.399,
+      "duration": 3.68
+    },
+    {
+      "text": "data",
+      "start": 776.16,
+      "duration": 3.799
+    },
+    {
+      "text": "store Okay so we've got our or",
+      "start": 777.079,
+      "duration": 4.921
+    },
+    {
+      "text": "credentials the next thing we need to do",
+      "start": 779.959,
+      "duration": 4.68
+    },
+    {
+      "text": "is actually create a collection schema",
+      "start": 782.0,
+      "duration": 5.279
+    },
+    {
+      "text": "so I'll create a file for that schema.",
+      "start": 784.639,
+      "duration": 5.401
+    },
+    {
+      "text": "Json this is empty for now but I'm going",
+      "start": 787.279,
+      "duration": 6.56
+    },
+    {
+      "text": "to copy the web 3 experience schema into",
+      "start": 790.04,
+      "duration": 6.799
+    },
+    {
+      "text": "the schema Json and now we can take a",
+      "start": 793.839,
+      "duration": 5.881
+    },
+    {
+      "text": "look so all of the schemas for secret",
+      "start": 796.839,
+      "duration": 7.761
+    },
+    {
+      "text": "vault follow the draft 7 Json schema uh",
+      "start": 799.72,
+      "duration": 7.799
+    },
+    {
+      "text": "schema and within that you can add a",
+      "start": 804.6,
+      "duration": 5.16
+    },
+    {
+      "text": "title for your schema and then you start",
+      "start": 807.519,
+      "duration": 4.601
+    },
+    {
+      "text": "to define the shape of the data that",
+      "start": 809.76,
+      "duration": 4.879
+    },
+    {
+      "text": "you'll be uploading into secret vault if",
+      "start": 812.12,
+      "duration": 4.56
+    },
+    {
+      "text": "you've ever used something like mongod",
+      "start": 814.639,
+      "duration": 4.961
+    },
+    {
+      "text": "DB it's very similar to that where you",
+      "start": 816.68,
+      "duration": 5.0
+    },
+    {
+      "text": "set all of the properties that you",
+      "start": 819.6,
+      "duration": 4.84
+    },
+    {
+      "text": "expect um to be uploading so the first",
+      "start": 821.68,
+      "duration": 5.519
+    },
+    {
+      "text": "thing I'm expecting is an ID this will",
+      "start": 824.44,
+      "duration": 5.839
+    },
+    {
+      "text": "always be set for every record and then",
+      "start": 827.199,
+      "duration": 5.921
+    },
+    {
+      "text": "I will be uploading a person's name the",
+      "start": 830.279,
+      "duration": 4.92
+    },
+    {
+      "text": "number of years they've been in web 3",
+      "start": 833.12,
+      "duration": 4.92
+    },
+    {
+      "text": "and then a collection of responses to",
+      "start": 835.199,
+      "duration": 5.44
+    },
+    {
+      "text": "questions so each question will have a",
+      "start": 838.04,
+      "duration": 4.44
+    },
+    {
+      "text": "question number so like question number",
+      "start": 840.639,
+      "duration": 4.2
+    },
+    {
+      "text": "one question number two and the answer",
+      "start": 842.48,
+      "duration": 5.56
+    },
+    {
+      "text": "to the question will be a rating between",
+      "start": 844.839,
+      "duration": 6.161
+    },
+    {
+      "text": "one and five so for my survey that I'm",
+      "start": 848.04,
+      "duration": 6.12
+    },
+    {
+      "text": "building I want people to be able to um",
+      "start": 851.0,
+      "duration": 5.32
+    },
+    {
+      "text": "rate their experience their user",
+      "start": 854.16,
+      "duration": 3.799
+    },
+    {
+      "text": "experience with different things so I'm",
+      "start": 856.32,
+      "duration": 3.319
+    },
+    {
+      "text": "asking them to rate their experience",
+      "start": 857.959,
+      "duration": 4.641
+    },
+    {
+      "text": "with solidity uh with the ux wallets",
+      "start": 859.639,
+      "duration": 4.961
+    },
+    {
+      "text": "things like that so that I can get a",
+      "start": 862.6,
+      "duration": 4.799
+    },
+    {
+      "text": "general understanding of how um the ux",
+      "start": 864.6,
+      "duration": 7.0
+    },
+    {
+      "text": "is improving in web 3 this year okay so",
+      "start": 867.399,
+      "duration": 7.201
+    },
+    {
+      "text": "previously we were talking about how um",
+      "start": 871.6,
+      "duration": 5.359
+    },
+    {
+      "text": "secret vault is really cool because you",
+      "start": 874.6,
+      "duration": 5.479
+    },
+    {
+      "text": "can have secret data inside of the Vault",
+      "start": 876.959,
+      "duration": 5.601
+    },
+    {
+      "text": "and the way that you mark data inside of",
+      "start": 880.079,
+      "duration": 7.241
+    },
+    {
+      "text": "the schema to be secret is with share so",
+      "start": 882.56,
+      "duration": 7.36
+    },
+    {
+      "text": "if something is a share it's not the",
+      "start": 887.32,
+      "duration": 5.56
+    },
+    {
+      "text": "actual name we're uploading the share of",
+      "start": 889.92,
+      "duration": 6.279
+    },
+    {
+      "text": "the name so that is that string if I go",
+      "start": 892.88,
+      "duration": 6.68
+    },
+    {
+      "text": "back to my presentation",
+      "start": 896.199,
+      "duration": 7.041
+    },
+    {
+      "text": "oops so if this is the original record",
+      "start": 899.56,
+      "duration": 6.12
+    },
+    {
+      "text": "uh the share is the piece of the",
+      "start": 903.24,
+      "duration": 4.64
+    },
+    {
+      "text": "encrypted data that's going into the",
+      "start": 905.68,
+      "duration": 4.44
+    },
+    {
+      "text": "node and so anything that's going to be",
+      "start": 907.88,
+      "duration": 4.959
+    },
+    {
+      "text": "encrypted we're marking um with the",
+      "start": 910.12,
+      "duration": 4.88
+    },
+    {
+      "text": "share and the type of a share is a",
+      "start": 912.839,
+      "duration": 4.721
+    },
+    {
+      "text": "string so you can see that both name and",
+      "start": 915.0,
+      "duration": 5.44
+    },
+    {
+      "text": "years in web 3 are",
+      "start": 917.56,
+      "duration": 6.839
+    },
+    {
+      "text": "shares while uh the array of responses",
+      "start": 920.44,
+      "duration": 5.88
+    },
+    {
+      "text": "the properties are just in plain text so",
+      "start": 924.399,
+      "duration": 4.68
+    },
+    {
+      "text": "they're in integers strings dates",
+      "start": 926.32,
+      "duration": 5.28
+    },
+    {
+      "text": "whatever is going into that response",
+      "start": 929.079,
+      "duration": 5.0
+    },
+    {
+      "text": "array doesn't need to be encrypted so",
+      "start": 931.6,
+      "duration": 4.719
+    },
+    {
+      "text": "there's no shares",
+      "start": 934.079,
+      "duration": 6.32
+    },
+    {
+      "text": "there okay so that's our schema and in",
+      "start": 936.319,
+      "duration": 7.801
+    },
+    {
+      "text": "order to start uploading data to the",
+      "start": 940.399,
+      "duration": 5.92
+    },
+    {
+      "text": "collection we actually have to first",
+      "start": 944.12,
+      "duration": 5.68
+    },
+    {
+      "text": "upload the schema to all three nodes so",
+      "start": 946.319,
+      "duration": 5.281
+    },
+    {
+      "text": "in order to do that I'm going to create",
+      "start": 949.8,
+      "duration": 4.08
+    },
+    {
+      "text": "a minic script that will take this",
+      "start": 951.6,
+      "duration": 5.44
+    },
+    {
+      "text": "schema and actually upload it so I've",
+      "start": 953.88,
+      "duration": 5.879
+    },
+    {
+      "text": "created a file and with within this file",
+      "start": 957.04,
+      "duration": 6.2
+    },
+    {
+      "text": "I'll just paste in the",
+      "start": 959.759,
+      "duration": 3.481
+    },
+    {
+      "text": "script and I'll explain what it's",
+      "start": 963.36,
+      "duration": 4.279
+    },
+    {
+      "text": "doing okay so this is the script for",
+      "start": 968.199,
+      "duration": 5.401
+    },
+    {
+      "text": "posting a schema to all of the different",
+      "start": 971.319,
+      "duration": 4.76
+    },
+    {
+      "text": "nodes at the top you can see I'm",
+      "start": 973.6,
+      "duration": 5.2
+    },
+    {
+      "text": "importing the secret vault wrappers um",
+      "start": 976.079,
+      "duration": 5.281
+    },
+    {
+      "text": "that's just the collection that helps do",
+      "start": 978.8,
+      "duration": 5.159
+    },
+    {
+      "text": "all of the API calls I'm also importing",
+      "start": 981.36,
+      "duration": 5.159
+    },
+    {
+      "text": "org config the org config is what we",
+      "start": 983.959,
+      "duration": 5.32
+    },
+    {
+      "text": "previously created that has the keys um",
+      "start": 986.519,
+      "duration": 5.0
+    },
+    {
+      "text": "and the identities of all of the nodes",
+      "start": 989.279,
+      "duration": 4.321
+    },
+    {
+      "text": "so that we know where to upload the",
+      "start": 991.519,
+      "duration": 3.641
+    },
+    {
+      "text": "schema",
+      "start": 993.6,
+      "duration": 4.719
+    },
+    {
+      "text": "to so now that I have all of that I can",
+      "start": 995.16,
+      "duration": 6.0
+    },
+    {
+      "text": "run this to create a wrapper and",
+      "start": 998.319,
+      "duration": 5.721
+    },
+    {
+      "text": "initialize an organization the org has",
+      "start": 1001.16,
+      "duration": 4.679
+    },
+    {
+      "text": "been initialized with those nodes and",
+      "start": 1004.04,
+      "duration": 2.799
+    },
+    {
+      "text": "also the",
+      "start": 1005.839,
+      "duration": 3.601
+    },
+    {
+      "text": "credentials and in order to actually",
+      "start": 1006.839,
+      "duration": 5.521
+    },
+    {
+      "text": "create a schema I have to give the",
+      "start": 1009.44,
+      "duration": 5.519
+    },
+    {
+      "text": "wrapper the schema file which is the",
+      "start": 1012.36,
+      "duration": 5.479
+    },
+    {
+      "text": "schema. Json and the collection name",
+      "start": 1014.959,
+      "duration": 5.24
+    },
+    {
+      "text": "which in this case is web 3 experience",
+      "start": 1017.839,
+      "duration": 4.521
+    },
+    {
+      "text": "survey this can be anything you want",
+      "start": 1020.199,
+      "duration": 3.64
+    },
+    {
+      "text": "it's just so that if you're looking at",
+      "start": 1022.36,
+      "duration": 3.559
+    },
+    {
+      "text": "all your schemas you can easily",
+      "start": 1023.839,
+      "duration": 3.96
+    },
+    {
+      "text": "understand oh that's my experience",
+      "start": 1025.919,
+      "duration": 4.88
+    },
+    {
+      "text": "survey so after that you can create the",
+      "start": 1027.799,
+      "duration": 5.24
+    },
+    {
+      "text": "schema and it should upload to all three",
+      "start": 1030.799,
+      "duration": 5.28
+    },
+    {
+      "text": "nodes but let's actually test this out",
+      "start": 1033.039,
+      "duration": 5.601
+    },
+    {
+      "text": "so I'm just going to run node host",
+      "start": 1036.079,
+      "duration": 6.0
+    },
+    {
+      "text": "schema which is this",
+      "start": 1038.64,
+      "duration": 3.439
+    },
+    {
+      "text": "file awesome so this was successful and",
+      "start": 1042.24,
+      "duration": 6.079
+    },
+    {
+      "text": "it created a new collection schema for",
+      "start": 1045.679,
+      "duration": 5.401
+    },
+    {
+      "text": "all three nodes so this node this node",
+      "start": 1048.319,
+      "duration": 5.401
+    },
+    {
+      "text": "and this node and you'll also see that",
+      "start": 1051.08,
+      "duration": 5.32
+    },
+    {
+      "text": "the ID of the schema is the same for all",
+      "start": 1053.72,
+      "duration": 4.839
+    },
+    {
+      "text": "three nodes and that's really important",
+      "start": 1056.4,
+      "duration": 4.12
+    },
+    {
+      "text": "because you want to be able to write to",
+      "start": 1058.559,
+      "duration": 4.161
+    },
+    {
+      "text": "the same schema and not have to worry",
+      "start": 1060.52,
+      "duration": 4.32
+    },
+    {
+      "text": "about like oh did I use a different ID",
+      "start": 1062.72,
+      "duration": 4.24
+    },
+    {
+      "text": "for one node from the other node it",
+      "start": 1064.84,
+      "duration": 4.12
+    },
+    {
+      "text": "should all be very consistent so that",
+      "start": 1066.96,
+      "duration": 4.599
+    },
+    {
+      "text": "the only difference between nodes is the",
+      "start": 1068.96,
+      "duration": 5.2
+    },
+    {
+      "text": "encrypted Share value um and that's",
+      "start": 1071.559,
+      "duration": 4.441
+    },
+    {
+      "text": "because those need to be different so",
+      "start": 1074.16,
+      "duration": 3.6
+    },
+    {
+      "text": "that when you recombine them you get the",
+      "start": 1076.0,
+      "duration": 4.559
+    },
+    {
+      "text": "True Value",
+      "start": 1077.76,
+      "duration": 6.12
+    },
+    {
+      "text": "all right so now we have schemas across",
+      "start": 1080.559,
+      "duration": 5.161
+    },
+    {
+      "text": "all of the different nodes the next",
+      "start": 1083.88,
+      "duration": 3.36
+    },
+    {
+      "text": "thing we're going to do is create a",
+      "start": 1085.72,
+      "duration": 3.68
+    },
+    {
+      "text": "script to actually interact with the",
+      "start": 1087.24,
+      "duration": 4.919
+    },
+    {
+      "text": "secret vault data so that's writing data",
+      "start": 1089.4,
+      "duration": 4.519
+    },
+    {
+      "text": "to our schema collection and then",
+      "start": 1092.159,
+      "duration": 4.121
+    },
+    {
+      "text": "reading data from the schema collection",
+      "start": 1093.919,
+      "duration": 6.401
+    },
+    {
+      "text": "so let's create one more script which is",
+      "start": 1096.28,
+      "duration": 7.16
+    },
+    {
+      "text": "index.js and inside of this",
+      "start": 1100.32,
+      "duration": 5.76
+    },
+    {
+      "text": "script I'll copy",
+      "start": 1103.44,
+      "duration": 5.719
+    },
+    {
+      "text": "in some things",
+      "start": 1106.08,
+      "duration": 4.839
+    },
+    {
+      "text": "so the first thing is importing",
+      "start": 1109.159,
+      "duration": 3.721
+    },
+    {
+      "text": "dependencies we actually don't need The",
+      "start": 1110.919,
+      "duration": 3.921
+    },
+    {
+      "text": "UU ID package so I'm going to leave that",
+      "start": 1112.88,
+      "duration": 5.0
+    },
+    {
+      "text": "out oh the AI is trying to autocomplete",
+      "start": 1114.84,
+      "duration": 5.64
+    },
+    {
+      "text": "for me I don't want this um okay so",
+      "start": 1117.88,
+      "duration": 5.48
+    },
+    {
+      "text": "we're gonna import the wrappers package",
+      "start": 1120.48,
+      "duration": 4.76
+    },
+    {
+      "text": "the same one we did before and also the",
+      "start": 1123.36,
+      "duration": 4.799
+    },
+    {
+      "text": "or config the next thing we need to do",
+      "start": 1125.24,
+      "duration": 6.919
+    },
+    {
+      "text": "is um create a a const for the schema ID",
+      "start": 1128.159,
+      "duration": 6.201
+    },
+    {
+      "text": "and we can read this straight from the",
+      "start": 1132.159,
+      "duration": 4.961
+    },
+    {
+      "text": "console log of the other script this is",
+      "start": 1134.36,
+      "duration": 5.0
+    },
+    {
+      "text": "going to be hardcoded to the schema we",
+      "start": 1137.12,
+      "duration": 6.559
+    },
+    {
+      "text": "just uploaded to um secret",
+      "start": 1139.36,
+      "duration": 8.0
+    },
+    {
+      "text": "vault after that we'll create a data",
+      "start": 1143.679,
+      "duration": 8.081
+    },
+    {
+      "text": "payload and this will just be oops this",
+      "start": 1147.36,
+      "duration": 6.679
+    },
+    {
+      "text": "this will just be uh some data that we",
+      "start": 1151.76,
+      "duration": 5.96
+    },
+    {
+      "text": "want to post to the schema so remember",
+      "start": 1154.039,
+      "duration": 5.52
+    },
+    {
+      "text": "that each of the encrypted fields are",
+      "start": 1157.72,
+      "duration": 4.079
+    },
+    {
+      "text": "marked with a lot ahead of time to show",
+      "start": 1159.559,
+      "duration": 4.12
+    },
+    {
+      "text": "that these will be encrypted and then",
+      "start": 1161.799,
+      "duration": 4.161
+    },
+    {
+      "text": "once they're uploaded to secret fault",
+      "start": 1163.679,
+      "duration": 5.201
+    },
+    {
+      "text": "they'll have transformed into shares so",
+      "start": 1165.96,
+      "duration": 4.0
+    },
+    {
+      "text": "instead of",
+      "start": 1168.88,
+      "duration": 5.12
+    },
+    {
+      "text": "vitalic um let's say",
+      "start": 1169.96,
+      "duration": 7.199
+    },
+    {
+      "text": "satosi Satoshi Nakamoto he's probably",
+      "start": 1174.0,
+      "duration": 5.84
+    },
+    {
+      "text": "been in web 3 longer than anyone maybe",
+      "start": 1177.159,
+      "duration": 5.161
+    },
+    {
+      "text": "16 years and I'll just leave his",
+      "start": 1179.84,
+      "duration": 6.76
+    },
+    {
+      "text": "responses to uh the survey",
+      "start": 1182.32,
+      "duration": 6.96
+    },
+    {
+      "text": "Asis so now we have a data payload and",
+      "start": 1186.6,
+      "duration": 6.199
+    },
+    {
+      "text": "we just have to add the main",
+      "start": 1189.28,
+      "duration": 6.08
+    },
+    {
+      "text": "function let's run through this main F",
+      "start": 1192.799,
+      "duration": 5.36
+    },
+    {
+      "text": "function quickly so inside of the main",
+      "start": 1195.36,
+      "duration": 4.92
+    },
+    {
+      "text": "function the first thing we're doing is",
+      "start": 1198.159,
+      "duration": 5.121
+    },
+    {
+      "text": "initializing a collection using the org",
+      "start": 1200.28,
+      "duration": 5.72
+    },
+    {
+      "text": "config nodes and credentials and also",
+      "start": 1203.28,
+      "duration": 5.08
+    },
+    {
+      "text": "the schema ID that we hardcoded above",
+      "start": 1206.0,
+      "duration": 4.36
+    },
+    {
+      "text": "here so now we've initialized a",
+      "start": 1208.36,
+      "duration": 4.799
+    },
+    {
+      "text": "collection um for this",
+      "start": 1210.36,
+      "duration": 5.199
+    },
+    {
+      "text": "schema when we have the collection ready",
+      "start": 1213.159,
+      "duration": 5.0
+    },
+    {
+      "text": "we can start writing data to the nodes",
+      "start": 1215.559,
+      "duration": 5.161
+    },
+    {
+      "text": "so this collection function write to",
+      "start": 1218.159,
+      "duration": 5.321
+    },
+    {
+      "text": "nodes is coming from that rappers",
+      "start": 1220.72,
+      "duration": 4.68
+    },
+    {
+      "text": "package and it's just going to write",
+      "start": 1223.48,
+      "duration": 4.16
+    },
+    {
+      "text": "that data to all three nodes in the",
+      "start": 1225.4,
+      "duration": 5.08
+    },
+    {
+      "text": "collection and then it will log out the",
+      "start": 1227.64,
+      "duration": 5.56
+    },
+    {
+      "text": "new IDs I'm just going to comment this",
+      "start": 1230.48,
+      "duration": 6.28
+    },
+    {
+      "text": "second part out for now because um after",
+      "start": 1233.2,
+      "duration": 5.04
+    },
+    {
+      "text": "after we write the data we can read the",
+      "start": 1236.76,
+      "duration": 3.76
+    },
+    {
+      "text": "data but I just want us to focus on",
+      "start": 1238.24,
+      "duration": 4.16
+    },
+    {
+      "text": "writing the data to this collection",
+      "start": 1240.52,
+      "duration": 5.72
+    },
+    {
+      "text": "first uh and then we'll read the data",
+      "start": 1242.4,
+      "duration": 6.44
+    },
+    {
+      "text": "okay so we have the function and we can",
+      "start": 1246.24,
+      "duration": 5.28
+    },
+    {
+      "text": "run node",
+      "start": 1248.84,
+      "duration": 2.68
+    },
+    {
+      "text": "index.js this writes data to all three",
+      "start": 1252.64,
+      "duration": 4.919
+    },
+    {
+      "text": "of those nodes so you can see on node",
+      "start": 1255.159,
+      "duration": 4.0
+    },
+    {
+      "text": "one it's created",
+      "start": 1257.559,
+      "duration": 4.12
+    },
+    {
+      "text": "this ID on node two it's created the",
+      "start": 1259.159,
+      "duration": 5.0
+    },
+    {
+      "text": "same ID and on node 3 it's created the",
+      "start": 1261.679,
+      "duration": 4.36
+    },
+    {
+      "text": "same ID so you can see that it's",
+      "start": 1264.159,
+      "duration": 5.561
+    },
+    {
+      "text": "uploaded this ID to all three of those",
+      "start": 1266.039,
+      "duration": 6.841
+    },
+    {
+      "text": "nodes so the data is successfully in all",
+      "start": 1269.72,
+      "duration": 5.319
+    },
+    {
+      "text": "three nodes in the",
+      "start": 1272.88,
+      "duration": 4.32
+    },
+    {
+      "text": "collection now let's try reading the",
+      "start": 1275.039,
+      "duration": 4.481
+    },
+    {
+      "text": "data so I'll comment this",
+      "start": 1277.2,
+      "duration": 5.8
+    },
+    {
+      "text": "out and we'll just read the data from",
+      "start": 1279.52,
+      "duration": 6.2
+    },
+    {
+      "text": "The Collection I'm going to remove this",
+      "start": 1283.0,
+      "duration": 5.039
+    },
+    {
+      "text": "SCE because we didn't actually upload",
+      "start": 1285.72,
+      "duration": 5.4
+    },
+    {
+      "text": "any any data right now um so this is",
+      "start": 1288.039,
+      "duration": 5.601
+    },
+    {
+      "text": "just saying okay take the collection",
+      "start": 1291.12,
+      "duration": 4.799
+    },
+    {
+      "text": "read from all three nodes and the reason",
+      "start": 1293.64,
+      "duration": 4.08
+    },
+    {
+      "text": "that this bracket is empty is because",
+      "start": 1295.919,
+      "duration": 4.081
+    },
+    {
+      "text": "we're not actually passing in a filter",
+      "start": 1297.72,
+      "duration": 5.199
+    },
+    {
+      "text": "if you wanted to you could filter um for",
+      "start": 1300.0,
+      "duration": 5.32
+    },
+    {
+      "text": "different things in plain text like",
+      "start": 1302.919,
+      "duration": 5.36
+    },
+    {
+      "text": "maybe you would want to filter for a",
+      "start": 1305.32,
+      "duration": 5.08
+    },
+    {
+      "text": "specific rating to a response you could",
+      "start": 1308.279,
+      "duration": 4.64
+    },
+    {
+      "text": "do that um by passing in a valid filter",
+      "start": 1310.4,
+      "duration": 4.56
+    },
+    {
+      "text": "here but I'm just going to read the the",
+      "start": 1312.919,
+      "duration": 4.321
+    },
+    {
+      "text": "records that are currently inside of the",
+      "start": 1314.96,
+      "duration": 4.839
+    },
+    {
+      "text": "secret vault",
+      "start": 1317.24,
+      "duration": 4.439
+    },
+    {
+      "text": "okay so we see one record this is that",
+      "start": 1319.799,
+      "duration": 5.441
+    },
+    {
+      "text": "most recent record that's just Satoshi",
+      "start": 1321.679,
+      "duration": 6.681
+    },
+    {
+      "text": "Nakamoto um let's add one more record",
+      "start": 1325.24,
+      "duration": 7.36
+    },
+    {
+      "text": "and then we'll write and read",
+      "start": 1328.36,
+      "duration": 4.24
+    },
+    {
+      "text": "so maybe this can be Jacob from eth",
+      "start": 1333.96,
+      "duration": 7.64
+    },
+    {
+      "text": "Global famous I have a feeling he's been",
+      "start": 1338.039,
+      "duration": 6.481
+    },
+    {
+      "text": "in web 3 for like I'm going to say 10",
+      "start": 1341.6,
+      "duration": 5.679
+    },
+    {
+      "text": "years we'll have to ask him afterwards",
+      "start": 1344.52,
+      "duration": 4.72
+    },
+    {
+      "text": "and we'll say that he gives both",
+      "start": 1347.279,
+      "duration": 4.321
+    },
+    {
+      "text": "questions of five because he finds the",
+      "start": 1349.24,
+      "duration": 6.6
+    },
+    {
+      "text": "ux awesome so going back down I'm going",
+      "start": 1351.6,
+      "duration": 6.84
+    },
+    {
+      "text": "to comment all of this code back in so",
+      "start": 1355.84,
+      "duration": 5.319
+    },
+    {
+      "text": "that it will read or excuse me it'll",
+      "start": 1358.44,
+      "duration": 4.76
+    },
+    {
+      "text": "write Jacob's record to our data",
+      "start": 1361.159,
+      "duration": 4.161
+    },
+    {
+      "text": "collection and then it'll read all of",
+      "start": 1363.2,
+      "duration": 4.24
+    },
+    {
+      "text": "the decrypted collection data so we",
+      "start": 1365.32,
+      "duration": 5.359
+    },
+    {
+      "text": "should see both satoshi's and Jacob's",
+      "start": 1367.44,
+      "duration": 6.56
+    },
+    {
+      "text": "record uh inside of the",
+      "start": 1370.679,
+      "duration": 5.201
+    },
+    {
+      "text": "logs",
+      "start": 1374.0,
+      "duration": 5.12
+    },
+    {
+      "text": "so coming up here uh the first thing",
+      "start": 1375.88,
+      "duration": 6.36
+    },
+    {
+      "text": "that happened is this wrote to the",
+      "start": 1379.12,
+      "duration": 4.84
+    },
+    {
+      "text": "secret vault so it created one new",
+      "start": 1382.24,
+      "duration": 5.88
+    },
+    {
+      "text": "record 39f blah blah blah and then when",
+      "start": 1383.96,
+      "duration": 6.719
+    },
+    {
+      "text": "it needs to read it reads both records",
+      "start": 1388.12,
+      "duration": 4.4
+    },
+    {
+      "text": "that are inside of the secret vault so",
+      "start": 1390.679,
+      "duration": 5.041
+    },
+    {
+      "text": "the first record down here is Satoshi",
+      "start": 1392.52,
+      "duration": 5.32
+    },
+    {
+      "text": "which was previously uploaded and then",
+      "start": 1395.72,
+      "duration": 4.88
+    },
+    {
+      "text": "we can also see Jacob which was just",
+      "start": 1397.84,
+      "duration": 5.36
+    },
+    {
+      "text": "uploaded so you can see that with secret",
+      "start": 1400.6,
+      "duration": 5.439
+    },
+    {
+      "text": "vault we were able to encrypt and write",
+      "start": 1403.2,
+      "duration": 5.4
+    },
+    {
+      "text": "data and then read all of the data back",
+      "start": 1406.039,
+      "duration": 5.24
+    },
+    {
+      "text": "because we have that organization secret",
+      "start": 1408.6,
+      "duration": 5.76
+    },
+    {
+      "text": "key that's needed to read and write from",
+      "start": 1411.279,
+      "duration": 6.201
+    },
+    {
+      "text": "secret vault and also create new",
+      "start": 1414.36,
+      "duration": 5.76
+    },
+    {
+      "text": "schemas so that's a little bit on secret",
+      "start": 1417.48,
+      "duration": 5.28
+    },
+    {
+      "text": "vault I think we just speedran all of",
+      "start": 1420.12,
+      "duration": 5.12
+    },
+    {
+      "text": "the quick start in I want to say less",
+      "start": 1422.76,
+      "duration": 4.96
+    },
+    {
+      "text": "than 10 minutes so I think this should",
+      "start": 1425.24,
+      "duration": 5.559
+    },
+    {
+      "text": "give you enough uh to use secret vault",
+      "start": 1427.72,
+      "duration": 4.959
+    },
+    {
+      "text": "in pretty much any flow that you're",
+      "start": 1430.799,
+      "duration": 4.721
+    },
+    {
+      "text": "doing for your AI agents uh if you",
+      "start": 1432.679,
+      "duration": 4.641
+    },
+    {
+      "text": "wanted to do this from scratch yourself",
+      "start": 1435.52,
+      "duration": 3.44
+    },
+    {
+      "text": "you would just go register a new",
+      "start": 1437.32,
+      "duration": 4.4
+    },
+    {
+      "text": "organization so you would get um your",
+      "start": 1438.96,
+      "duration": 5.64
+    },
+    {
+      "text": "own secret keys for your organization",
+      "start": 1441.72,
+      "duration": 4.439
+    },
+    {
+      "text": "and then you could start creating",
+      "start": 1444.6,
+      "duration": 4.04
+    },
+    {
+      "text": "collection schemas based on whatever",
+      "start": 1446.159,
+      "duration": 5.281
+    },
+    {
+      "text": "data you want your agent to read and",
+      "start": 1448.64,
+      "duration": 5.48
+    },
+    {
+      "text": "write um inside of secret vault so that",
+      "start": 1451.44,
+      "duration": 5.96
+    },
+    {
+      "text": "could be user data Maybe it's um shared",
+      "start": 1454.12,
+      "duration": 6.36
+    },
+    {
+      "text": "State between agents so that they know",
+      "start": 1457.4,
+      "duration": 6.24
+    },
+    {
+      "text": "parts of what each other are doing um",
+      "start": 1460.48,
+      "duration": 6.4
+    },
+    {
+      "text": "maybe it's memory so that if you're",
+      "start": 1463.64,
+      "duration": 5.639
+    },
+    {
+      "text": "creating context for an agent they have",
+      "start": 1466.88,
+      "duration": 6.399
+    },
+    {
+      "text": "tons of different uh things to draw from",
+      "start": 1469.279,
+      "duration": 6.4
+    },
+    {
+      "text": "anything like that would be an awesome",
+      "start": 1473.279,
+      "duration": 4.841
+    },
+    {
+      "text": "application for using million secret",
+      "start": 1475.679,
+      "duration": 5.561
+    },
+    {
+      "text": "vault and oh one more thing to mention",
+      "start": 1478.12,
+      "duration": 5.64
+    },
+    {
+      "text": "is that um if you come and visit us in",
+      "start": 1481.24,
+      "duration": 4.799
+    },
+    {
+      "text": "Discord we have office hours every",
+      "start": 1483.76,
+      "duration": 4.24
+    },
+    {
+      "text": "single day twice a day so one of the",
+      "start": 1486.039,
+      "duration": 4.921
+    },
+    {
+      "text": "office hours is at uh I believe it's 10:",
+      "start": 1488.0,
+      "duration": 5.559
+    },
+    {
+      "text": "am European Time and the other office",
+      "start": 1490.96,
+      "duration": 6.319
+    },
+    {
+      "text": "hour is at 10:00 a.m. PST so whatever",
+      "start": 1493.559,
+      "duration": 5.321
+    },
+    {
+      "text": "your time zone is you should probably",
+      "start": 1497.279,
+      "duration": 3.441
+    },
+    {
+      "text": "have at least one office hour every",
+      "start": 1498.88,
+      "duration": 4.159
+    },
+    {
+      "text": "weekday that will work for you and we",
+      "start": 1500.72,
+      "duration": 4.079
+    },
+    {
+      "text": "would love to hear what you're building",
+      "start": 1503.039,
+      "duration": 4.561
+    },
+    {
+      "text": "and also help if you have any questions",
+      "start": 1504.799,
+      "duration": 4.76
+    },
+    {
+      "text": "um we're really excited to see what you",
+      "start": 1507.6,
+      "duration": 5.16
+    },
+    {
+      "text": "all build",
+      "start": 1509.559,
+      "duration": 3.201
+    }
+  ]
+}
