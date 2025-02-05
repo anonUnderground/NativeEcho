@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch Agents</title>
+</head>
+<body>
+  <label>Username: <input type="text" id="username"></label>
+  <label>Password: <input type="password" id="password"></label>
+  <button id="fetchBtn">Fetch Agents</button>
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById("fetchBtn").addEventListener("click", async () => {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const output = document.getElementById("output");
+
+      if (!username || !password) {
+        output.textContent = "Enter both username and password.";
+        return;
+      }
+
+      const url = "https://autonome.alt.technology/echo-sizyel/agents";
+      const authHeader = "Basic " + btoa(unescape(encodeURIComponent(username + ":" + password)));
+
+      try {
+        const response = await fetch(url, { headers: { "Authorization": authHeader } });
+        const data = await response.json();
+        output.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        output.textContent = "Error: " + error.message;
+      }
+    });
+  </script>
+</body>
+</html>

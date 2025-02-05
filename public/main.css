@@ -1,43 +1,21 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 800px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-  }
-  
-  button {
+button {
     padding: 10px 20px;
     background: #007BFF;
     border: none;
     color: #fff;
     cursor: pointer;
+    margin-top: 10px;
   }
   
   button:hover {
     background: #0056b3;
   }
   
-  .caption-container {
-    height: 300px;
-    overflow-y: scroll;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 20px;
+  /* You can add specific styles for the debug button if needed */
+  .debug-button {
+    background: #28a745;
   }
   
-  .caption {
-    margin-bottom: 10px;
+  .debug-button:hover {
+    background: #218838;
   }  
