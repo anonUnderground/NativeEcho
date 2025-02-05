@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Caption Translator</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Caption Translator</h1>
+    <form id="youtubeForm">
+      <label for="youtube_url">Paste YouTube URL:</label>
+      <input type="text" id="youtube_url" name="youtube_url" placeholder="https://www.youtube.com/watch?v=...">
+      <br>
+      <label for="language">Language (e.g., en):</label>
+      <input type="text" id="language" name="language" value="en">
+      <br>
+      <button type="submit">Get Video & Captions</button>
+    </form>
+    <div id="result" style="display:none;">
+      <h2 id="videoTitle"></h2>
+      <div id="videoEmbed"></div>
+      <h3>Captions:</h3>
+      <div id="captions" class="caption-container"></div>
+      <button id="backBtn">Back</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
