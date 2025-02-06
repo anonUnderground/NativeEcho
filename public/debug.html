@@ -1,94 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Debug: Call Gaia API</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    button {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    pre {
-      margin-top: 20px;
-      padding: 10px;
-      background: #fff;
-      border: 1px solid #ccc;
-      white-space: pre-wrap;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Debug Gaia Endpoint</title>
 </head>
 <body>
-  <h1>Debug: Call Gaia API</h1>
+  <h1>Debug Gaia Endpoint</h1>
   <button id="testGaiaAPIBtn">Test Gaia API</button>
   <pre id="output"></pre>
+  
   <script>
-    async function callGaiaAPI() {
-      // Hard-coded Gaia API key (include "Bearer " prefix)
-      const gaiaKey = "Bearer gaia-MTJkNmY5YzgtNmEwYi00ZGM1LWE4YTQtZWY4MTQzOTFjOGZk--xYeNwCIEozvR0Nx";
-      // API endpoint as defined by your documentation
-      const url = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
-      
-      // Build the payload matching your curl command
-      const payload = {
-        messages: [
-          {
-            role: "system",
-            content: "You are a helpful assistant."
-          },
-          {
-            role: "user",
-            content: "What is the capital of France?"
-          }
-        ]
-      };
+    document.getElementById("testGaiaAPIBtn").addEventListener("click", async () => {
+      const outputEl = document.getElementById("output");
+      outputEl.textContent = "Sending request to server...";
 
       try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': gaiaKey
-          },
-          body: JSON.stringify(payload)
-        });
-
+        const response = await fetch("/test-translate", { method: "POST" });
         if (!response.ok) {
           const errorText = await response.text();
-          console.error("Gaia API error:", errorText);
-          return errorText;
+          outputEl.textContent = "Error from server:\n" + errorText;
+          return;
         }
 
         const data = await response.json();
-        console.log("Gaia API response:", data);
-        return data;
-      } catch (error) {
-        console.error("Error calling Gaia API:", error);
-        return error.message;
+        outputEl.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        outputEl.textContent = "Network or server error:\n" + err.message;
       }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const testButton = document.getElementById("testGaiaAPIBtn");
-      const output = document.getElementById("output");
-
-      testButton.addEventListener("click", async () => {
-        output.textContent = "Sending Gaia API request...";
-        const result = await callGaiaAPI();
-        output.textContent = JSON.stringify(result, null, 2);
-      });
     });
   </script>
 </body>

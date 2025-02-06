@@ -27,7 +27,7 @@ if (!gaiaAuth) {
   process.exit(1);
 }
 
-// If global.fetch is not available (for Node versions < 18), use node-fetch.
+// If global.fetch is not available (Node < 18), use node-fetch
 if (!global.fetch) {
   global.fetch = require('node-fetch');
 }
@@ -36,11 +36,11 @@ if (!global.fetch) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the public folder
+// Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
- * Extracts a YouTube video ID from a URL.
+ * Extract YouTube video ID from URL
  */
 function getVideoId(youtubeUrl) {
   if (youtubeUrl.includes("watch?v=")) {
@@ -53,7 +53,7 @@ function getVideoId(youtubeUrl) {
 }
 
 /**
- * Retrieves video details from the YouTube Data API.
+ * Retrieve video details from YouTube Data API
  */
 async function getVideoDetails(videoId) {
   const youtube = google.youtube({
@@ -69,7 +69,7 @@ async function getVideoDetails(videoId) {
   if (!response.data.items || response.data.items.length === 0) {
     throw new Error(`No video found with ID: ${videoId}`);
   }
-  
+
   const item = response.data.items[0];
   console.log("Retrieved video snippet:", item.snippet);
   return {
@@ -82,7 +82,7 @@ async function getVideoDetails(videoId) {
 }
 
 /**
- * Retrieves captions for the video using youtube-captions-scraper.
+ * Retrieve captions using youtube-captions-scraper
  */
 async function getCaptions(videoId, lang = 'en') {
   try {
@@ -98,21 +98,19 @@ async function getCaptions(videoId, lang = 'en') {
   }
 }
 
-// Endpoint to process the YouTube URL
+/**
+ * Endpoint: /process
+ *   - Extracts YouTube video details
+ *   - Fetches captions
+ */
 app.post('/process', async (req, res) => {
   const youtubeUrl = req.body.youtube_url;
   const language = req.body.language || 'en';
   try {
     console.log("Processing YouTube URL:", youtubeUrl);
     const videoId = getVideoId(youtubeUrl);
-    console.log("Extracted videoId:", videoId);
-    
     const videoDetails = await getVideoDetails(videoId);
-    console.log("Video details:", videoDetails);
-    
     const captions = await getCaptions(videoId, language);
-    console.log("Captions response:", captions);
-    
     res.json({ videoDetails, captions });
   } catch (err) {
     console.error("Error processing video:", err);
@@ -120,85 +118,30 @@ app.post('/process', async (req, res) => {
   }
 });
 
-// Existing /translate endpoint (if needed)
-app.post('/translate', async (req, res) => {
-  const { captions, language } = req.body;
-  console.log("Received /translate request with language:", language);
-  if (!captions || !language) {
-    console.error("Missing captions or language in request");
-    return res.status(400).json({ error: "Missing captions or language" });
-  }
-
-  const payload = {
-    messages: [
-      {
-        role: "system",
-        content: `You are a helpful assistant tasked with translating JSON. Translate to ${language} and return only the JSON.`
-      },
-      {
-        role: "user",
-        content: JSON.stringify({ captions: captions })
-      }
-    ]
-  };
-
-  console.log("Payload for Gaia API (/translate):", JSON.stringify(payload, null, 2));
-  try {
-    // Replace with your actual Gaia API URL
-    const gaiaUrl = 'https://your-gaia-api-domain/v1/chat/completions';
-    const response = await fetch(gaiaUrl, {
-      method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'Authorization': gaiaAuth,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    console.log("Gaia API response status (/translate):", response.status);
-
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error("Error response from Gaia API (/translate):", errorData);
-      return res.status(response.status).json({ error: errorData });
-    }
-
-    const responseData = await response.json();
-    console.log("Gaia API response data (/translate):", responseData);
-    res.json(responseData);
-  } catch (error) {
-    console.error("Error in /translate:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// New simplified endpoint for testing: /test-translate
+/**
+ * Endpoint: /test-translate
+ *   - Calls Gaia with a fixed prompt for debugging.
+ */
 app.post('/test-translate', async (req, res) => {
   console.log("Received /test-translate request for fixed payload.");
-  // Build the payload without a model field
+
+  // Hard-coded example payload
   const payload = {
     messages: [
-      {
-        role: "system",
-        content: "You are a helpful assistant."
-      },
-      {
-        role: "user",
-        content: "What is the capital of France?"
-      }
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "user", content: "What is the capital of France?" }
     ]
   };
 
-  console.log("Payload for Gaia API (/test-translate):", JSON.stringify(payload, null, 2));
   try {
-    // Update the URL below to your Gaia API URL (using HTTPS if available)
+    // Example Gaia endpoint (replace with your actual domain if needed)
     const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
+
     const response = await fetch(gaiaUrl, {
       method: 'POST',
       headers: {
         'accept': 'application/json',
-        'Authorization': gaiaAuth,
+        'Authorization': gaiaAuth, // loaded from secrets.json
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
@@ -220,6 +163,7 @@ app.post('/test-translate', async (req, res) => {
   }
 });
 
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
