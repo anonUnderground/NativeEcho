@@ -69,4 +69,40 @@ body {
   /* (Optional) Active caption highlighting */
   .active-caption {
     background-color: #ffff99;
+  } 
+  /* New styles for the dual caption boxes and translation controls */
+.captions-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .caption-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #fff;
+    overflow-y: scroll;
+    height: 300px;
+  }
+  
+  .translation-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+  }
+  
+  .translation-controls label {
+    margin-bottom: 5px;
+  }
+  
+  .translation-controls select,
+  .translation-controls button {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
   }  

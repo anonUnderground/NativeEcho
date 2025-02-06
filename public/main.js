@@ -26,20 +26,33 @@ document.getElementById('youtubeForm').addEventListener('submit', async function
       
       const data = await response.json();
       
-      // Update the UI with video details and captions
+      // Update the UI with video details
       document.getElementById('videoTitle').textContent = data.videoDetails.title;
       document.getElementById('videoEmbed').innerHTML = data.videoDetails.embed_html;
       
-      const captionsDiv = document.getElementById('captions');
-      captionsDiv.innerHTML = '';
+      // Update the captions in both boxes
+      const originalDiv = document.getElementById('captions-original');
+      const translatedDiv = document.getElementById('captions-translated');
+      originalDiv.innerHTML = '';
+      translatedDiv.innerHTML = '';
+      
       if (data.captions.error) {
-        captionsDiv.innerHTML = `<p>Error retrieving captions: ${data.captions.error}</p>`;
+        originalDiv.innerHTML = `<p>Error retrieving captions: ${data.captions.error}</p>`;
+        translatedDiv.innerHTML = `<p>Error retrieving captions: ${data.captions.error}</p>`;
       } else {
         data.captions.forEach(caption => {
-          const p = document.createElement('p');
-          p.classList.add('caption');
-          p.innerHTML = `<strong>${parseFloat(caption.start).toFixed(2)}s:</strong> ${caption.text}`;
-          captionsDiv.appendChild(p);
+          const captionHTML = `<strong>${parseFloat(caption.start).toFixed(2)}s:</strong> ${caption.text}`;
+          
+          const pOriginal = document.createElement('p');
+          pOriginal.classList.add('caption');
+          pOriginal.innerHTML = captionHTML;
+          originalDiv.appendChild(pOriginal);
+          
+          const pTranslated = document.createElement('p');
+          pTranslated.classList.add('caption');
+          // For now, the translated box shows the same text as the original.
+          pTranslated.innerHTML = captionHTML;
+          translatedDiv.appendChild(pTranslated);
         });
       }
       
@@ -49,8 +62,16 @@ document.getElementById('youtubeForm').addEventListener('submit', async function
       form.style.display = 'block';
     }
   });
-    
+  
+  // Handler for the "Back" button
   document.getElementById('backBtn').addEventListener('click', function() {
     document.getElementById('result').style.display = 'none';
     document.getElementById('youtubeForm').style.display = 'block';
+  });
+  
+  // Placeholder event for the "Translate with Gaia" button
+  document.getElementById('translateButton').addEventListener('click', function() {
+    // This is where you will eventually call your translation API.
+    // For now, it does nothing.
+    alert("Translate with Gaia clicked. (API integration pending)");
   });  

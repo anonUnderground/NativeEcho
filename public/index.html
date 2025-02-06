@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +16,37 @@
       <label for="language">Language (e.g., en):</label>
       <input type="text" id="language" name="language" value="en">
       <br>
-      <button type="submit">Get Video & Captions</button>
+      <button type="submit">Get Video &amp; Captions</button>
     </form>
-    <!-- The results section will show the video embed and captions -->
+    <!-- The results section -->
     <div id="result" style="display:none;">
       <h2 id="videoTitle"></h2>
       <div id="videoEmbed" class="player-container"></div>
       <h3>Captions:</h3>
-      <div id="captions" class="caption-container"></div>
+      <div class="captions-flex">
+        <div id="captions-original" class="caption-box">
+          <!-- Original captions will be populated here -->
+        </div>
+        <div class="translation-controls">
+          <label for="language-select">Select Language:</label>
+          <select id="language-select">
+            <option value="es">Spanish</option>
+            <option value="ar">Arabic</option>
+            <option value="zh">Mandarin</option>
+            <option value="ko">Korean</option>
+            <option value="pt">Portuguese</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+          <button id="translateButton">Translate with Gaia</button>
+        </div>
+        <div id="captions-translated" class="caption-box">
+          <!-- Translated captions will be populated here (initially same as original) -->
+        </div>
+      </div>
       <button id="backBtn">Back</button>
     </div>
-    <!-- New button to navigate to debug.html -->
+    <!-- Debug button remains as is -->
     <button class="debug-button" onclick="window.location.href='debug.html'">Go to Debug</button>
   </div>
   <script src="main.js"></script>

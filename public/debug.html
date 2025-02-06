@@ -3,10 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Fetch Agents</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input {
+      margin-left: 5px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    pre {
+      margin-top: 20px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
-  <label>Username: <input type="text" id="username"></label>
-  <label>Password: <input type="password" id="password"></label>
+  <label>Username: <input type="text" id="username" placeholder="Enter username"></label>
+  <label>Password: <input type="password" id="password" placeholder="Enter password"></label>
   <button id="fetchBtn">Fetch Agents</button>
   <pre id="output"></pre>
 
@@ -21,11 +52,23 @@
         return;
       }
 
+      // This is your endpoint to fetch agents
       const url = "https://autonome.alt.technology/echo-sizyel/agents";
+      
+      // Build the Basic Auth header dynamically
       const authHeader = "Basic " + btoa(unescape(encodeURIComponent(username + ":" + password)));
 
       try {
-        const response = await fetch(url, { headers: { "Authorization": authHeader } });
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Authorization": authHeader,
+            "Content-Type": "application/json"
+          }
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
         const data = await response.json();
         output.textContent = JSON.stringify(data, null, 2);
       } catch (error) {
