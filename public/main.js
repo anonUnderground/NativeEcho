@@ -74,4 +74,4 @@ document.getElementById('youtubeForm').addEventListener('submit', async function
     // This is where you will eventually call your translation API.
     // For now, it does nothing.
     alert("Translate with Gaia clicked. (API integration pending)");
-  });  
+  });

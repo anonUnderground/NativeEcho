@@ -2,19 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fetch Agents</title>
+  <title>Debug: Call Gaia API</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       background-color: #f4f4f4;
-    }
-    label {
-      display: block;
-      margin-bottom: 10px;
-    }
-    input {
-      margin-left: 5px;
     }
     button {
       margin-top: 10px;
@@ -32,48 +25,70 @@
       padding: 10px;
       background: #fff;
       border: 1px solid #ccc;
+      white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
-  <label>Username: <input type="text" id="username" placeholder="Enter username"></label>
-  <label>Password: <input type="password" id="password" placeholder="Enter password"></label>
-  <button id="fetchBtn">Fetch Agents</button>
+  <h1>Debug: Call Gaia API</h1>
+  <button id="testGaiaAPIBtn">Test Gaia API</button>
   <pre id="output"></pre>
-
   <script>
-    document.getElementById("fetchBtn").addEventListener("click", async () => {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const output = document.getElementById("output");
-
-      if (!username || !password) {
-        output.textContent = "Enter both username and password.";
-        return;
-      }
-
-      // This is your endpoint to fetch agents
-      const url = "https://autonome.alt.technology/echo-sizyel/agents";
+    async function callGaiaAPI() {
+      // Hard-coded Gaia API key (include "Bearer " prefix)
+      const gaiaKey = "Bearer gaia-MTJkNmY5YzgtNmEwYi00ZGM1LWE4YTQtZWY4MTQzOTFjOGZk--xYeNwCIEozvR0Nx";
+      // API endpoint as defined by your documentation
+      const url = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
       
-      // Build the Basic Auth header dynamically
-      const authHeader = "Basic " + btoa(unescape(encodeURIComponent(username + ":" + password)));
+      // Build the payload matching your curl command
+      const payload = {
+        messages: [
+          {
+            role: "system",
+            content: "You are a helpful assistant."
+          },
+          {
+            role: "user",
+            content: "What is the capital of France?"
+          }
+        ]
+      };
 
       try {
         const response = await fetch(url, {
-          method: "GET",
+          method: 'POST',
           headers: {
-            "Authorization": authHeader,
-            "Content-Type": "application/json"
-          }
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': gaiaKey
+          },
+          body: JSON.stringify(payload)
         });
+
         if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}`);
+          const errorText = await response.text();
+          console.error("Gaia API error:", errorText);
+          return errorText;
         }
+
         const data = await response.json();
-        output.textContent = JSON.stringify(data, null, 2);
+        console.log("Gaia API response:", data);
+        return data;
       } catch (error) {
-        output.textContent = "Error: " + error.message;
+        console.error("Error calling Gaia API:", error);
+        return error.message;
       }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const testButton = document.getElementById("testGaiaAPIBtn");
+      const output = document.getElementById("output");
+
+      testButton.addEventListener("click", async () => {
+        output.textContent = "Sending Gaia API request...";
+        const result = await callGaiaAPI();
+        output.textContent = JSON.stringify(result, null, 2);
+      });
     });
   </script>
 </body>
