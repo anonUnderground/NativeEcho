@@ -5,27 +5,60 @@
   <title>Debug Gaia Endpoint</title>
 </head>
 <body>
-  <h1>Debug Gaia Endpoint</h1>
-  <button id="testGaiaAPIBtn">Test Gaia API</button>
+  <h1>Debug Gaia Endpoint: Translate to Selected Language</h1>
+
+  <!-- Language Dropdown -->
+  <label for="languageSelect">Select a Language:</label><br />
+  <select id="languageSelect">
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+    <option value="de">German</option>
+    <option value="it">Italian</option>
+    <!-- Add more languages as desired -->
+  </select>
+  <br /><br />
+
+  <!-- User Prompt Textarea -->
+  <label for="userPrompt">User Prompt:</label><br />
+  <textarea id="userPrompt" rows="4" cols="50"></textarea>
+  <br /><br />
+
+  <!-- Send Request Button & Output -->
+  <button id="sendButton">Send Request</button>
   <pre id="output"></pre>
-  
+
   <script>
-    document.getElementById("testGaiaAPIBtn").addEventListener("click", async () => {
+    document.getElementById("sendButton").addEventListener("click", async () => {
+      const language = document.getElementById("languageSelect").value.trim();
+      const userPrompt = document.getElementById("userPrompt").value.trim();
       const outputEl = document.getElementById("output");
-      outputEl.textContent = "Sending request to server...";
+
+      // Basic validation
+      if (!language || !userPrompt) {
+        outputEl.textContent = "Please choose a language and enter some text.";
+        return;
+      }
+
+      outputEl.textContent = "Sending request to /test-translate...";
 
       try {
-        const response = await fetch("/test-translate", { method: "POST" });
+        // Send language and userPrompt to our server
+        const response = await fetch("/test-translate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ language, userPrompt })
+        });
+
         if (!response.ok) {
           const errorText = await response.text();
-          outputEl.textContent = "Error from server:\n" + errorText;
+          outputEl.textContent = "Server error:\n" + errorText;
           return;
         }
 
         const data = await response.json();
         outputEl.textContent = JSON.stringify(data, null, 2);
       } catch (err) {
-        outputEl.textContent = "Network or server error:\n" + err.message;
+        outputEl.textContent = "Network error:\n" + err.message;
       }
     });
   </script>

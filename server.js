@@ -120,48 +120,54 @@ app.post('/process', async (req, res) => {
 
 /**
  * Endpoint: /test-translate
- *   - Calls Gaia with a fixed prompt for debugging.
+ *   - Builds a system message "Translate to {language}" plus the user prompt.
  */
 app.post('/test-translate', async (req, res) => {
-  console.log("Received /test-translate request for fixed payload.");
-
-  // Hard-coded example payload
-  const payload = {
-    messages: [
-      { role: "system", content: "You are a helpful assistant." },
-      { role: "user", content: "What is the capital of France?" }
-    ]
-  };
-
-  try {
-    // Example Gaia endpoint (replace with your actual domain if needed)
-    const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
-
-    const response = await fetch(gaiaUrl, {
-      method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'Authorization': gaiaAuth, // loaded from secrets.json
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    console.log("Gaia API response status (/test-translate):", response.status);
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error("Error response from Gaia API (/test-translate):", errorData);
-      return res.status(response.status).json({ error: errorData });
+    console.log("Received /test-translate request with language + user prompt.");
+  
+    const { language, userPrompt } = req.body;
+    // Validate inputs
+    if (!language || !userPrompt) {
+      return res.status(400).json({
+        error: "Please provide both 'language' and 'userPrompt'."
+      });
     }
-
-    const responseData = await response.json();
-    console.log("Gaia API response data (/test-translate):", responseData);
-    res.json(responseData);
-  } catch (error) {
-    console.error("Error in /test-translate:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
+  
+    // Build the messages array with your "Translate to {language}" system prompt
+    const messages = [
+      { role: "system", content: `Translate to ${language}` },
+      { role: "user", content: userPrompt }
+    ];
+  
+    try {
+      const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
+  
+      const response = await fetch(gaiaUrl, {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'Authorization': gaiaAuth, // from secrets.json
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ messages })
+      });
+  
+      console.log("Gaia API response status (/test-translate):", response.status);
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Error response from Gaia API (/test-translate):", errorData);
+        return res.status(response.status).json({ error: errorData });
+      }
+  
+      const responseData = await response.json();
+      console.log("Gaia API response data (/test-translate):", responseData);
+      res.json(responseData);
+  
+    } catch (error) {
+      console.error("Error in /test-translate:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });  
 
 // Start the server
 const PORT = process.env.PORT || 3000;
