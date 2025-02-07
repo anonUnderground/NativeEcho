@@ -2,64 +2,222 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Debug Gaia Endpoint</title>
+  <title>Bulk Caption Translation Debug</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #captionsContainer {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .half {
+      flex: 1;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .caption-block {
+      margin-bottom: 10px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-  <h1>Debug Gaia Endpoint: Translate to Selected Language</h1>
 
-  <!-- Language Dropdown -->
-  <label for="languageSelect">Select a Language:</label><br />
+  <h1>YouTube Caption Bulk Translator (Line by Line)</h1>
+
+  <!-- 1) Input for the YouTube Link -->
+  <label for="youtubeUrl">YouTube Link:</label>
+  <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." />
+
+  <!-- 2) Dropdown for Desired Language -->
+  <label for="languageSelect">Translate Captions To:</label>
   <select id="languageSelect">
-    <option value="es">Spanish</option>
-    <option value="fr">French</option>
-    <option value="de">German</option>
-    <option value="it">Italian</option>
-    <!-- Add more languages as desired -->
+    <option value="es">Spanish (es)</option>
+    <option value="fr">French (fr)</option>
+    <option value="de">German (de)</option>
+    <option value="it">Italian (it)</option>
+    <!-- Add more languages if you like -->
   </select>
-  <br /><br />
 
-  <!-- User Prompt Textarea -->
-  <label for="userPrompt">User Prompt:</label><br />
-  <textarea id="userPrompt" rows="4" cols="50"></textarea>
-  <br /><br />
+  <!-- 3) Buttons to fetch and translate -->
+  <button id="fetchCaptionsBtn">Fetch Captions</button>
+  <button id="bulkTranslateBtn" disabled>Bulk Translate</button>
 
-  <!-- Send Request Button & Output -->
-  <button id="sendButton">Send Request</button>
-  <pre id="output"></pre>
+  <!-- 4) Display original vs. translated captions side by side -->
+  <div id="captionsContainer" style="display: none;">
+    <div class="half">
+      <h2>Original Captions</h2>
+      <div id="originalCaptions"></div>
+    </div>
+    <div class="half">
+      <h2>Translated Captions</h2>
+      <div id="translatedCaptions"></div>
+    </div>
+  </div>
+
+  <pre id="outputLog"></pre>
 
   <script>
-    document.getElementById("sendButton").addEventListener("click", async () => {
-      const language = document.getElementById("languageSelect").value.trim();
-      const userPrompt = document.getElementById("userPrompt").value.trim();
-      const outputEl = document.getElementById("output");
+    // We'll store the retrieved captions here after fetching from /process
+    let globalCaptions = [];
 
-      // Basic validation
-      if (!language || !userPrompt) {
-        outputEl.textContent = "Please choose a language and enter some text.";
+    // 1. Fetch Captions from /process
+    document.getElementById("fetchCaptionsBtn").addEventListener("click", async () => {
+      const youtubeUrl = document.getElementById("youtubeUrl").value.trim();
+      const outputLog = document.getElementById("outputLog");
+
+      if (!youtubeUrl) {
+        outputLog.textContent = "Please enter a valid YouTube link.";
         return;
       }
 
-      outputEl.textContent = "Sending request to /test-translate...";
+      outputLog.textContent = "Fetching captions from /process...";
 
       try {
-        // Send language and userPrompt to our server
-        const response = await fetch("/test-translate", {
+        const response = await fetch("/process", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ language, userPrompt })
+          body: JSON.stringify({ youtube_url: youtubeUrl })
         });
 
         if (!response.ok) {
-          const errorText = await response.text();
-          outputEl.textContent = "Server error:\n" + errorText;
+          const errText = await response.text();
+          outputLog.textContent = "Error fetching captions:\n" + errText;
           return;
         }
 
         const data = await response.json();
-        outputEl.textContent = JSON.stringify(data, null, 2);
+        if (!data.captions || !Array.isArray(data.captions)) {
+          outputLog.textContent = "No captions found or invalid response.";
+          return;
+        }
+
+        // Store captions in global variable
+        globalCaptions = data.captions;
+        outputLog.textContent = "Successfully fetched " + globalCaptions.length + " captions.";
+        
+        // Display original captions
+        const originalDiv = document.getElementById("originalCaptions");
+        originalDiv.innerHTML = ""; // Clear any old data
+        globalCaptions.forEach((cap, index) => {
+          const div = document.createElement("div");
+          div.className = "caption-block";
+          div.textContent = `[${index+1}] (${cap.start}s): ${cap.text}`;
+          originalDiv.appendChild(div);
+        });
+
+        // Show the container
+        document.getElementById("captionsContainer").style.display = "flex";
+        
+        // Enable the "Bulk Translate" button
+        document.getElementById("bulkTranslateBtn").disabled = false;
+
       } catch (err) {
-        outputEl.textContent = "Network error:\n" + err.message;
+        outputLog.textContent = "Network or server error:\n" + err.message;
       }
+    });
+
+    // 2. Bulk Translate: Send each caption line by line to /test-translate
+    document.getElementById("bulkTranslateBtn").addEventListener("click", async () => {
+      const outputLog = document.getElementById("outputLog");
+      const translatedDiv = document.getElementById("translatedCaptions");
+      const language = document.getElementById("languageSelect").value;
+
+      if (globalCaptions.length === 0) {
+        outputLog.textContent = "No captions to translate. Please fetch captions first.";
+        return;
+      }
+
+      outputLog.textContent = `Translating ${globalCaptions.length} captions to ${language}...\n\n`;
+      translatedDiv.innerHTML = ""; // Clear old translations
+
+      // We'll store the final translations here (index-matched to globalCaptions)
+      const translatedCaptions = [];
+
+      for (let i = 0; i < globalCaptions.length; i++) {
+        const cap = globalCaptions[i];
+        // Build the LLM messages array for this single caption
+        const messages = [
+          { role: "system", content: `Translate to ${language}` },
+          { role: "user", content: cap.text }
+        ];
+
+        outputLog.textContent += `Translating caption #${i+1} (start=${cap.start}s)...\n`;
+
+        try {
+          // Call /test-translate
+          const response = await fetch("/test-translate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messages })
+          });
+
+          if (!response.ok) {
+            const errText = await response.text();
+            outputLog.textContent += `  Error from /test-translate: ${errText}\n`;
+            continue;
+          }
+
+          // In your server, the response from Gaia is something like:
+          // { id: "...", object: "chat.completion", choices: [ { message: { role: "assistant", content: "..."} } ] }
+          const data = await response.json();
+          // Attempt to grab the actual translated text from data. This depends on your LLM's response format:
+          const translatedText = data?.choices?.[0]?.message?.content?.trim() || "(no translation)";
+
+          // Store in final array
+          translatedCaptions.push({
+            start: cap.start,
+            duration: cap.duration,
+            originalText: cap.text,
+            translatedText
+          });
+
+          // Display it on the right side
+          const div = document.createElement("div");
+          div.className = "caption-block";
+          div.textContent = `[${i+1}] (${cap.start}s): ${translatedText}`;
+          translatedDiv.appendChild(div);
+
+          outputLog.textContent += `  => ${translatedText}\n`;
+
+        } catch (err) {
+          outputLog.textContent += `  Network error: ${err.message}\n`;
+        }
+
+        // Optional: small delay between calls so you can see them happen
+        // await new Promise(r => setTimeout(r, 500));
+      }
+
+      outputLog.textContent += "\nBulk translation complete!";
     });
   </script>
 </body>

@@ -123,51 +123,43 @@ app.post('/process', async (req, res) => {
  *   - Builds a system message "Translate to {language}" plus the user prompt.
  */
 app.post('/test-translate', async (req, res) => {
-    console.log("Received /test-translate request with language + user prompt.");
+    console.log("Received /test-translate request with dynamic messages.");
+    const { messages } = req.body;
   
-    const { language, userPrompt } = req.body;
-    // Validate inputs
-    if (!language || !userPrompt) {
+    if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({
-        error: "Please provide both 'language' and 'userPrompt'."
+        error: "Missing 'messages' array in request body."
       });
     }
-  
-    // Build the messages array with your "Translate to {language}" system prompt
-    const messages = [
-      { role: "system", content: `Translate to ${language}` },
-      { role: "user", content: userPrompt }
-    ];
   
     try {
       const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
   
       const response = await fetch(gaiaUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'accept': 'application/json',
-          'Authorization': gaiaAuth, // from secrets.json
-          'Content-Type': 'application/json'
+          accept: "application/json",
+          Authorization: gaiaAuth, // from secrets.json
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ messages })
       });
   
-      console.log("Gaia API response status (/test-translate):", response.status);
       if (!response.ok) {
-        const errorData = await response.text();
-        console.error("Error response from Gaia API (/test-translate):", errorData);
-        return res.status(response.status).json({ error: errorData });
+        const errorText = await response.text();
+        console.error("Error response from Gaia API (/test-translate):", errorText);
+        return res.status(response.status).json({ error: errorText });
       }
   
-      const responseData = await response.json();
-      console.log("Gaia API response data (/test-translate):", responseData);
-      res.json(responseData);
+      const data = await response.json();
+      res.json(data);
   
     } catch (error) {
       console.error("Error in /test-translate:", error);
       res.status(500).json({ error: error.message });
     }
-  });  
+  });
+   
 
 // Start the server
 const PORT = process.env.PORT || 3000;
