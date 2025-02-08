@@ -1,54 +1,82 @@
-require('dotenv').config();  // Load variables from .env
+require('dotenv').config();  // Load variables from .env when available
 
 const express = require('express');
 const path = require('path');
 const { google } = require('googleapis');
 const { getSubtitles } = require('youtube-captions-scraper');
-const nodeFetch = require('node-fetch');
-const { HttpsProxyAgent } = require('https-proxy-agent');
-const puppeteer = require('puppeteer');
 
 const app = express();
 
-// Load environment variables
+// Always use node-fetch with extra logging for consistency.
+const nodeFetch = require('node-fetch');
+global.fetch = async (...args) => {
+  // Ensure options and headers exist.
+  if (!args[1]) {
+    args[1] = {};
+  }
+  if (!args[1].headers) {
+    args[1].headers = {};
+  }
+  // Add a User-Agent header if not already set.
+  if (!args[1].headers["User-Agent"]) {
+    args[1].headers["User-Agent"] =
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
+  }
+  
+  console.log("Custom fetch called with URL:", args[0]);
+  console.log("Fetch options:", args[1]);
+  
+  try {
+    const response = await nodeFetch(...args);
+    console.log("Custom fetch response:", response.status, response.statusText);
+    const contentType = response.headers.get("content-type");
+    console.log("Content-Type header:", contentType);
+    if (contentType) {
+      if (contentType.includes("application/json")) {
+        const jsonResponse = await response.clone().json();
+        console.log("Custom fetch JSON response:", JSON.stringify(jsonResponse, null, 2));
+      } else {
+        // Read the text response with a timeout so we don't wait indefinitely.
+        const textResponsePromise = response.clone().text();
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(""), 2000));
+        const textResponse = await Promise.race([textResponsePromise, timeoutPromise]);
+        console.log("Custom fetch response text length:", textResponse.length);
+        if (textResponse.length < 2000) {
+          console.log("Custom fetch full response text:", textResponse);
+        } else {
+          console.log("Custom fetch response body snippet (first 500 chars):", textResponse.substring(0, 500));
+        }
+      }
+    }
+    return response;
+  } catch (err) {
+    console.error("Custom fetch error:", err);
+    throw err;
+  }
+};
+
 const API_KEY = process.env.YOUTUBE_API_KEY;
-const GAIA_AUTH = process.env.GAIA_AUTH;
-const RESIDENTIAL_PROXY = process.env.RESIDENTIAL_PROXY; // e.g., "http://username:password@core-residential.evomi.com:1000"
+const gaiaAuth = process.env.GAIA_AUTH;
 
 if (!API_KEY) {
   console.error("Error: YouTube API key not found in environment variables.");
   process.exit(1);
 }
-if (!GAIA_AUTH) {
+
+if (!gaiaAuth) {
   console.error("Error: Gaia auth key not found in environment variables.");
   process.exit(1);
 }
-if (!RESIDENTIAL_PROXY) {
-  console.error("Error: Residential proxy URL not found in environment variables.");
-  process.exit(1);
-}
 
-// Configure proxy agent for node-fetch
-const proxyAgent = new HttpsProxyAgent(RESIDENTIAL_PROXY);
-
-// Realistic browser headers to mimic normal traffic
-const realisticHeaders = {
-  "User-Agent":
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  "Accept-Language": "en-US,en;q=0.9",
-  "Referer": "https://www.youtube.com/",
-  "DNT": "1", // Do Not Track
-  "Connection": "keep-alive",
-  "Upgrade-Insecure-Requests": "1",
-  "Cache-Control": "max-age=0"
-};
-
+// Middleware to parse JSON and URL-encoded payloads
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
- * Extract YouTube video ID from URL.
+ * Extract YouTube video ID from URL
  */
 function getVideoId(youtubeUrl) {
   let id;
@@ -66,20 +94,23 @@ function getVideoId(youtubeUrl) {
 }
 
 /**
- * Retrieve video details from YouTube Data API.
+ * Retrieve video details from YouTube Data API
  */
 async function getVideoDetails(videoId) {
   const youtube = google.youtube({
     version: 'v3',
     auth: API_KEY
   });
+
   const response = await youtube.videos.list({
     part: 'snippet,contentDetails,player,status',
     id: videoId
   });
+
   if (!response.data.items || response.data.items.length === 0) {
     throw new Error(`No video found with ID: ${videoId}`);
   }
+
   const item = response.data.items[0];
   console.log("Retrieved video snippet:", item.snippet);
   return {
@@ -92,92 +123,21 @@ async function getVideoDetails(videoId) {
 }
 
 /**
- * Retrieve captions using youtube-captions-scraper via Proxy.
- * This forces all caption requests to go through the residential proxy.
+ * Retrieve captions using youtube-captions-scraper
  */
-async function getCaptionsWithProxy(videoId, lang = 'en') {
-  console.log(`[PROXY] Fetching captions for video: ${videoId} in language: ${lang}`);
+async function getCaptions(videoId, lang = 'en') {
+  console.log(`Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
   try {
-    // First, attempt a simple fetch to the video page using the proxy to verify it is working.
-    const response = await nodeFetch(`https://www.youtube.com/watch?v=${videoId}`, {
-      agent: proxyAgent,
-      headers: realisticHeaders,
-    });
-    if (!response.ok) {
-      throw new Error(`[PROXY] YouTube blocked the request. HTTP Status: ${response.status}`);
-    }
-    // Now, use the youtube-captions-scraper library with our proxy settings.
     const captions = await getSubtitles({
       videoID: videoId,
-      lang: lang,
-      requestOptions: {
-        agent: proxyAgent,
-        headers: realisticHeaders
-      }
+      lang: lang
     });
-    console.log(`[PROXY] Successfully fetched ${captions.length} captions.`);
+    console.log(`Fetched ${captions.length} captions for video ${videoId}`);
     return captions;
   } catch (error) {
-    console.error("[PROXY] Error fetching captions:", error);
-    return [];
-  }
-}
-
-/**
- * Alternative: Retrieve captions using Puppeteer.
- * This endpoint uses Puppeteer to load the video page and extract transcript segments.
- */
-async function getCaptionsWithPuppeteer(videoId, lang = 'en') {
-  console.log(`[PUPPETEER] Fetching transcript for video: ${videoId} in language: ${lang}`);
-  const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-  let browser;
-  try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        `--proxy-server=${RESIDENTIAL_PROXY}`,
-        '--no-sandbox',
-        '--disable-setuid-sandbox'
-      ]
-    });
-    const page = await browser.newPage();
-    await page.setUserAgent(realisticHeaders["User-Agent"]);
-    await page.goto(videoUrl, { waitUntil: 'networkidle2' });
-    
-    // Click on "More actions" button if available.
-    await page.waitForSelector('button.ytp-button[aria-label="More actions"]', { timeout: 5000 });
-    await page.click('button.ytp-button[aria-label="More actions"]');
-    
-    // Wait for menu items and click the one that says "Transcript"
-    await page.waitForSelector('ytd-menu-service-item-renderer', { timeout: 5000 });
-    await page.evaluate(() => {
-      const items = Array.from(document.querySelectorAll('ytd-menu-service-item-renderer'));
-      for (const item of items) {
-        if (item.innerText.toLowerCase().includes("transcript")) {
-          item.click();
-          break;
-        }
-      }
-    });
-    
-    // Wait for the transcript panel to appear
-    await page.waitForSelector('ytd-transcript-renderer', { timeout: 5000 });
-    
-    // Extract transcript data
-    const transcriptData = await page.evaluate(() => {
-      const segments = Array.from(document.querySelectorAll('ytd-transcript-segment-renderer'));
-      return segments.map(segment => {
-        const start = segment.querySelector('.segment-timestamp')?.innerText.trim() || "";
-        const text = segment.querySelector('.segment-text')?.innerText.trim() || "";
-        return { start, text };
-      });
-    });
-    await browser.close();
-    console.log(`[PUPPETEER] Fetched ${transcriptData.length} transcript segments.`);
-    return transcriptData;
-  } catch (error) {
-    if (browser) await browser.close();
-    console.error("[PUPPETEER] Error fetching transcript:", error);
+    console.error("Error fetching captions:", error);
+    console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
+    // Return an empty array for consistent response format
     return [];
   }
 }
@@ -185,7 +145,7 @@ async function getCaptionsWithPuppeteer(videoId, lang = 'en') {
 /**
  * Endpoint: /process
  *   - Extracts YouTube video details
- *   - Fetches captions using the proxy (via getCaptionsWithProxy)
+ *   - Fetches captions
  */
 app.post('/process', async (req, res) => {
   const youtubeUrl = req.body.youtube_url;
@@ -194,7 +154,7 @@ app.post('/process', async (req, res) => {
   try {
     const videoId = getVideoId(youtubeUrl);
     const videoDetails = await getVideoDetails(videoId);
-    const captions = await getCaptionsWithProxy(videoId, language);
+    const captions = await getCaptions(videoId, language);
     res.json({ videoDetails, captions });
   } catch (err) {
     console.error("Error processing video:", err);
@@ -209,29 +169,35 @@ app.post('/process', async (req, res) => {
 app.post('/test-translate', async (req, res) => {
   console.log("Received /test-translate request with dynamic messages.");
   const { messages } = req.body;
+
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({
       error: "Missing 'messages' array in request body."
     });
   }
+
   try {
     const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
-    const response = await nodeFetch(gaiaUrl, {
+
+    const response = await fetch(gaiaUrl, {
       method: "POST",
       headers: {
         accept: "application/json",
-        Authorization: GAIA_AUTH,
+        Authorization: gaiaAuth,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ messages })
     });
+
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Error response from Gaia API (/test-translate):", errorText);
       return res.status(response.status).json({ error: errorText });
     }
+
     const data = await response.json();
     res.json(data);
+
   } catch (error) {
     console.error("Error in /test-translate:", error);
     res.status(500).json({ error: error.message });
@@ -239,32 +205,23 @@ app.post('/test-translate', async (req, res) => {
 });
 
 /**
- * Debug Endpoint: /debug-proxy
- *  - Fetches captions using a residential proxy.
+ * Debug Endpoint: /debug-scraper
+ *  - Expects a JSON body with { video_id, lang }
+ *  - Uses youtube-captions-scraper to fetch auto-generated captions.
  */
-app.post('/debug-proxy', async (req, res) => {
+app.post('/debug-scraper', async (req, res) => {
   const videoId = req.body.video_id;
   const lang = req.body.lang || 'en';
-  console.log(`Debug-proxy: Fetching subtitles for video: ${videoId} using proxy`);
+  console.log(`Debug-scraper: Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
   try {
-    const captions = await getCaptionsWithProxy(videoId, lang);
+    const captions = await getSubtitles({
+      videoID: videoId,
+      lang: lang
+    });
+    console.log(`Debug-scraper: Fetched ${captions.length} captions for video ${videoId}`);
     res.json({ video_id: videoId, lang, captions });
   } catch (error) {
-    console.error("Debug-proxy: Error fetching captions:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Optionally, a Puppeteer-based endpoint for alternative testing:
-app.post('/debug-puppeteer', async (req, res) => {
-  const videoId = req.body.video_id;
-  const lang = req.body.lang || 'en';
-  console.log(`Debug-puppeteer: Fetching transcript for video: ${videoId} using Puppeteer`);
-  try {
-    const transcript = await getCaptionsWithPuppeteer(videoId, lang);
-    res.json({ video_id: videoId, lang, transcript });
-  } catch (error) {
-    console.error("Debug-puppeteer: Error fetching transcript:", error);
+    console.error("Debug-scraper: Error fetching captions:", error);
     res.status(500).json({ error: error.message });
   }
 });
