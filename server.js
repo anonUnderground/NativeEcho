@@ -102,8 +102,17 @@ async function getVideoDetails(videoId) {
  * Retrieve captions using youtube-captions-scraper with Proxy
  */
 async function getCaptionsWithProxy(videoId, lang = 'en') {
-  console.log(`Using proxy to fetch subtitles for video: ${videoId} in language: ${lang}`);
+  console.log(`[PROXY] Fetching captions for video: ${videoId} in language: ${lang}`);
   try {
+    const response = await nodeFetch(`https://www.youtube.com/watch?v=${videoId}`, {
+      agent: proxyAgent,
+      headers: realisticHeaders,
+    });
+
+    if (!response.ok) {
+      throw new Error(`[PROXY] YouTube blocked the request. HTTP Status: ${response.status}`);
+    }
+
     const captions = await getSubtitles({
       videoID: videoId,
       lang: lang,
@@ -112,10 +121,11 @@ async function getCaptionsWithProxy(videoId, lang = 'en') {
         headers: realisticHeaders
       }
     });
-    console.log(`Fetched ${captions.length} captions for video ${videoId}`);
+
+    console.log(`[PROXY] Successfully fetched ${captions.length} captions.`);
     return captions;
   } catch (error) {
-    console.error("Error fetching captions via proxy:", error);
+    console.error("[PROXY] Error fetching captions:", error);
     return [];
   }
 }
