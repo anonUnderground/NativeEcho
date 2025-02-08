@@ -10,21 +10,15 @@ const app = express();
 // Always use node-fetch with extra logging for consistency.
 const nodeFetch = require('node-fetch');
 global.fetch = async (...args) => {
+  // Log the fetch arguments (typically, args[0] is the URL)
   console.log("Custom fetch called with URL:", args[0]);
+  // You can also log the options (headers, method, etc.) if present:
   if (args[1]) {
     console.log("Fetch options:", args[1]);
   }
   try {
     const response = await nodeFetch(...args);
     console.log("Custom fetch response:", response.status, response.statusText);
-    // If this is the URL that the captions scraper uses, log a snippet of the response body.
-    if (args[0].includes("youtube.com/watch")) {
-      // Clone the response so we can read its body without consuming it.
-      const clonedResponse = response.clone();
-      const bodyText = await clonedResponse.text();
-      // Log the first 500 characters to avoid huge logs.
-      console.log("Custom fetch response body snippet:", bodyText.substring(0, 500));
-    }
     return response;
   } catch (err) {
     console.error("Custom fetch error:", err);
@@ -115,7 +109,7 @@ async function getCaptions(videoId, lang = 'en') {
   } catch (error) {
     console.error("Error fetching captions:", error);
     console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
-    // Return an empty array for consistency
+    // Optionally return an empty array so that the response format is consistent:
     return [];
   }
 }
