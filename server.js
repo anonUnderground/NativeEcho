@@ -36,11 +36,16 @@ global.fetch = async (...args) => {
         const jsonResponse = await response.clone().json();
         console.log("Custom fetch JSON response:", JSON.stringify(jsonResponse, null, 2));
       } else {
-        // Use a timeout so we don't wait indefinitely for a huge HTML response.
+        // Read the text response with a timeout so we don't wait indefinitely.
         const textResponsePromise = response.clone().text();
-        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(''), 2000));
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(""), 2000));
         const textResponse = await Promise.race([textResponsePromise, timeoutPromise]);
-        console.log("Custom fetch response body snippet (first 500 chars):", textResponse.substring(0, 500));
+        console.log("Custom fetch response text length:", textResponse.length);
+        if (textResponse.length < 2000) {
+          console.log("Custom fetch full response text:", textResponse);
+        } else {
+          console.log("Custom fetch response body snippet (first 500 chars):", textResponse.substring(0, 500));
+        }
       }
     }
     return response;
