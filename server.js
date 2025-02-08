@@ -7,6 +7,25 @@ const { getSubtitles } = require('youtube-captions-scraper');
 
 const app = express();
 
+// Always use node-fetch with extra logging for consistency.
+const nodeFetch = require('node-fetch');
+global.fetch = async (...args) => {
+  // Log the fetch arguments (typically, args[0] is the URL)
+  console.log("Custom fetch called with URL:", args[0]);
+  // You can also log the options (headers, method, etc.) if present:
+  if (args[1]) {
+    console.log("Fetch options:", args[1]);
+  }
+  try {
+    const response = await nodeFetch(...args);
+    console.log("Custom fetch response:", response.status, response.statusText);
+    return response;
+  } catch (err) {
+    console.error("Custom fetch error:", err);
+    throw err;
+  }
+};
+
 // Use environment variables directly.
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const gaiaAuth = process.env.GAIA_AUTH;
@@ -20,8 +39,6 @@ if (!gaiaAuth) {
   console.error("Error: Gaia auth key not found in environment variables.");
   process.exit(1);
 }
-
-global.fetch = require('node-fetch');
 
 // Middleware to parse JSON and URL-encoded payloads
 app.use(express.json());
@@ -92,7 +109,8 @@ async function getCaptions(videoId, lang = 'en') {
   } catch (error) {
     console.error("Error fetching captions:", error);
     console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
-    return { error: error.message };
+    // Optionally return an empty array so that the response format is consistent:
+    return [];
   }
 }
 
