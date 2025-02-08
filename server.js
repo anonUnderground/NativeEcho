@@ -10,15 +10,39 @@ const app = express();
 // Always use node-fetch with extra logging for consistency.
 const nodeFetch = require('node-fetch');
 global.fetch = async (...args) => {
-  // Log the fetch arguments (typically, args[0] is the URL)
-  console.log("Custom fetch called with URL:", args[0]);
-  // You can also log the options (headers, method, etc.) if present:
-  if (args[1]) {
-    console.log("Fetch options:", args[1]);
+  // Ensure options and headers exist.
+  if (!args[1]) {
+    args[1] = {};
   }
+  if (!args[1].headers) {
+    args[1].headers = {};
+  }
+  // Add a User-Agent header if not already set.
+  if (!args[1].headers["User-Agent"]) {
+    args[1].headers["User-Agent"] =
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
+  }
+  
+  console.log("Custom fetch called with URL:", args[0]);
+  console.log("Fetch options:", args[1]);
+  
   try {
     const response = await nodeFetch(...args);
     console.log("Custom fetch response:", response.status, response.statusText);
+    const contentType = response.headers.get("content-type");
+    console.log("Content-Type header:", contentType);
+    if (contentType) {
+      if (contentType.includes("application/json")) {
+        const jsonResponse = await response.clone().json();
+        console.log("Custom fetch JSON response:", JSON.stringify(jsonResponse, null, 2));
+      } else {
+        // Use a timeout so we don't wait indefinitely for a huge HTML response.
+        const textResponsePromise = response.clone().text();
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(''), 2000));
+        const textResponse = await Promise.race([textResponsePromise, timeoutPromise]);
+        console.log("Custom fetch response body snippet (first 500 chars):", textResponse.substring(0, 500));
+      }
+    }
     return response;
   } catch (err) {
     console.error("Custom fetch error:", err);
@@ -26,7 +50,6 @@ global.fetch = async (...args) => {
   }
 };
 
-// Use environment variables directly.
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const gaiaAuth = process.env.GAIA_AUTH;
 
@@ -109,7 +132,7 @@ async function getCaptions(videoId, lang = 'en') {
   } catch (error) {
     console.error("Error fetching captions:", error);
     console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
-    // Optionally return an empty array so that the response format is consistent:
+    // Return an empty array for consistent response format
     return [];
   }
 }
