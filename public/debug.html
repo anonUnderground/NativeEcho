@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Debug Captions Scraper</title>
+  <title>Debug YouTube Captions via Proxy</title>
   <style>
     body {
       font-family: sans-serif;
@@ -34,41 +34,49 @@
   </style>
 </head>
 <body>
-  <h1>Debug Captions Scraper</h1>
-  <p>
-    This page sends a POST request to your <code>/debug-scraper</code> endpoint, which uses the youtube‑captions‑scraper library to fetch auto‑generated captions.
-  </p>
+  <h1>Debug YouTube Captions via Proxy</h1>
+  <p>Enter a video ID and language (default: en) to test caption retrieval using the proxy approach.</p>
   
   <label for="videoId">Video ID:</label>
   <input type="text" id="videoId" value="fhG4uELOClo">
   
-  <label for="lang">Language (default is "en"):</label>
+  <label for="lang">Language:</label>
   <input type="text" id="lang" value="en">
   
-  <button id="fetchBtn">Fetch Captions</button>
+  <button id="fetchProxyBtn">Fetch Captions via Proxy</button>
+  <button id="fetchScraperBtn">Fetch Captions via Scraper</button>
   
   <h2>Response</h2>
   <pre id="output"></pre>
   
   <script>
-    document.getElementById('fetchBtn').addEventListener('click', async () => {
-      const videoId = document.getElementById('videoId').value.trim();
-      const lang = document.getElementById('lang').value.trim();
+    async function fetchData(endpoint, payload) {
       const outputEl = document.getElementById('output');
-      outputEl.textContent = "Fetching captions...\n";
-      
+      outputEl.textContent = "Fetching...\n";
       try {
-        const response = await fetch('/debug-scraper', {
+        const response = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ video_id: videoId, lang: lang })
+          body: JSON.stringify(payload)
         });
         const data = await response.json();
         outputEl.textContent = JSON.stringify(data, null, 2);
       } catch (error) {
         outputEl.textContent = "Error: " + error.message;
-        console.error("Error in debug-scraper:", error);
+        console.error("Error in fetchData:", error);
       }
+    }
+    
+    document.getElementById('fetchProxyBtn').addEventListener('click', () => {
+      const videoId = document.getElementById('videoId').value.trim();
+      const lang = document.getElementById('lang').value.trim();
+      fetchData('/debug-proxy', { video_id: videoId, lang: lang });
+    });
+    
+    document.getElementById('fetchScraperBtn').addEventListener('click', () => {
+      const videoId = document.getElementById('videoId').value.trim();
+      const lang = document.getElementById('lang').value.trim();
+      fetchData('/debug-scraper', { video_id: videoId, lang: lang });
     });
   </script>
 </body>
