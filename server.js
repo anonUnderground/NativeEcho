@@ -37,10 +37,15 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Extract YouTube video ID from URL
  */
 function getVideoId(youtubeUrl) {
+  let id;
   if (youtubeUrl.includes("watch?v=")) {
-    return youtubeUrl.split("watch?v=")[1].split("&")[0];
+    id = youtubeUrl.split("watch?v=")[1].split("&")[0];
+    console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
+    return id;
   } else if (youtubeUrl.includes("youtu.be/")) {
-    return youtubeUrl.split("youtu.be/")[1].split("?")[0];
+    id = youtubeUrl.split("youtu.be/")[1].split("?")[0];
+    console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
+    return id;
   } else {
     throw new Error("Invalid YouTube URL");
   }
@@ -79,6 +84,7 @@ async function getVideoDetails(videoId) {
  * Retrieve captions using youtube-captions-scraper
  */
 async function getCaptions(videoId, lang = 'en') {
+  console.log(`Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
   try {
     const captions = await getSubtitles({
       videoID: videoId,
@@ -88,6 +94,7 @@ async function getCaptions(videoId, lang = 'en') {
     return captions;
   } catch (error) {
     console.error("Error fetching captions:", error);
+    console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
     return { error: error.message };
   }
 }
@@ -100,8 +107,8 @@ async function getCaptions(videoId, lang = 'en') {
 app.post('/process', async (req, res) => {
   const youtubeUrl = req.body.youtube_url;
   const language = req.body.language || 'en';
+  console.log(`Processing YouTube URL: ${youtubeUrl} with language: ${language}`);
   try {
-    console.log("Processing YouTube URL:", youtubeUrl);
     const videoId = getVideoId(youtubeUrl);
     const videoDetails = await getVideoDetails(videoId);
     const captions = await getCaptions(videoId, language);

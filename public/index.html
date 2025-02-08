@@ -174,7 +174,7 @@
         if (index < titleText.length) {
           titleElement.textContent += titleText.charAt(index);
           index++;
-          setTimeout(typeLetter, 150);
+          setTimeout(typeLetter, 75);
         }
       }
       typeLetter();
@@ -244,6 +244,12 @@
           return;
         }
         const data = await response.json();
+        // Check if server returned an error in captions
+        if (data.captions && data.captions.error) {
+          outputLog.textContent += "\nCaption error returned: " + data.captions.error;
+          console.error("Caption error returned from server:", data.captions.error);
+          return;
+        }
         if (!data.captions || !Array.isArray(data.captions)) {
           outputLog.textContent = "No captions found or invalid response.";
           console.error("Invalid captions data:", data);
