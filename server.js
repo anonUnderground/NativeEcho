@@ -6,24 +6,17 @@ const { getSubtitles } = require('youtube-captions-scraper');
 
 const app = express();
 
-// Load secrets from secrets.json
-const secretsPath = path.join(__dirname, 'secrets.json');
-if (!fs.existsSync(secretsPath)) {
-  console.error("Error: secrets.json not found. Please add your YouTube API key there.");
-  process.exit(1);
-}
+// Use environment variables directly.
+const API_KEY = process.env.YOUTUBE_API_KEY;
+const gaiaAuth = process.env.GAIA_AUTH;
 
-const secrets = JSON.parse(fs.readFileSync(secretsPath, 'utf-8'));
-const API_KEY = secrets.YOUTUBE_API_KEY;
 if (!API_KEY) {
-  console.error("Error: YouTube API key not found in secrets.json.");
+  console.error("Error: YouTube API key not found in environment variables.");
   process.exit(1);
 }
 
-// Retrieve Gaia auth key from secrets.json
-const gaiaAuth = secrets.gaia_auth;
 if (!gaiaAuth) {
-  console.error("Error: Gaia auth key not found in secrets.json.");
+  console.error("Error: Gaia auth key not found in environment variables.");
   process.exit(1);
 }
 
@@ -123,43 +116,42 @@ app.post('/process', async (req, res) => {
  *   - Builds a system message "Translate to {language}" plus the user prompt.
  */
 app.post('/test-translate', async (req, res) => {
-    console.log("Received /test-translate request with dynamic messages.");
-    const { messages } = req.body;
-  
-    if (!messages || !Array.isArray(messages)) {
-      return res.status(400).json({
-        error: "Missing 'messages' array in request body."
-      });
+  console.log("Received /test-translate request with dynamic messages.");
+  const { messages } = req.body;
+
+  if (!messages || !Array.isArray(messages)) {
+    return res.status(400).json({
+      error: "Missing 'messages' array in request body."
+    });
+  }
+
+  try {
+    const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
+
+    const response = await fetch(gaiaUrl, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        Authorization: gaiaAuth,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ messages })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Error response from Gaia API (/test-translate):", errorText);
+      return res.status(response.status).json({ error: errorText });
     }
-  
-    try {
-      const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
-  
-      const response = await fetch(gaiaUrl, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          Authorization: gaiaAuth, // from secrets.json
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ messages })
-      });
-  
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Error response from Gaia API (/test-translate):", errorText);
-        return res.status(response.status).json({ error: errorText });
-      }
-  
-      const data = await response.json();
-      res.json(data);
-  
-    } catch (error) {
-      console.error("Error in /test-translate:", error);
-      res.status(500).json({ error: error.message });
-    }
-  });
-   
+
+    const data = await response.json();
+    res.json(data);
+
+  } catch (error) {
+    console.error("Error in /test-translate:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;
