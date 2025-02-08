@@ -44,11 +44,10 @@
   <input type="text" id="lang" value="en">
   
   <button id="fetchProxyBtn">Fetch Captions via Proxy</button>
-  <button id="fetchScraperBtn">Fetch Captions via Scraper</button>
   
   <h2>Response</h2>
   <pre id="output"></pre>
-  
+
   <script>
     async function fetchData(endpoint, payload) {
       const outputEl = document.getElementById('output');
@@ -66,17 +65,11 @@
         console.error("Error in fetchData:", error);
       }
     }
-    
+
     document.getElementById('fetchProxyBtn').addEventListener('click', () => {
       const videoId = document.getElementById('videoId').value.trim();
       const lang = document.getElementById('lang').value.trim();
       fetchData('/debug-proxy', { video_id: videoId, lang: lang });
-    });
-    
-    document.getElementById('fetchScraperBtn').addEventListener('click', () => {
-      const videoId = document.getElementById('videoId').value.trim();
-      const lang = document.getElementById('lang').value.trim();
-      fetchData('/debug-scraper', { video_id: videoId, lang: lang });
     });
   </script>
 </body>

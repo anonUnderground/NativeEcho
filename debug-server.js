@@ -1,67 +1,80 @@
-require('dotenv').config();  // Load variables from .env
+require('dotenv').config();  // Load variables from .env when available
 
 const express = require('express');
 const path = require('path');
-const fetch = require('node-fetch');  // We'll use node-fetch for our proxy endpoint
-const { google } = require('googleapis');
+const fetch = require('node-fetch');
 const { getSubtitles } = require('youtube-captions-scraper');
+const { HttpsProxyAgent } = require('https-proxy-agent');
+
 
 const app = express();
 
-// Use middleware to parse JSON and URL-encoded bodies.
+// Load environment variables
+const API_KEY = process.env.YOUTUBE_API_KEY;
+const GAIA_AUTH = process.env.GAIA_AUTH;
+const RESIDENTIAL_PROXY = process.env.RESIDENTIAL_PROXY; // Proxy URL (e.g., "http://user:pass@proxy.evomi.com:PORT")
+
+if (!API_KEY) {
+  console.error("Error: YouTube API key not found in environment variables.");
+  process.exit(1);
+}
+
+if (!GAIA_AUTH) {
+  console.error("Error: Gaia auth key not found in environment variables.");
+  process.exit(1);
+}
+
+if (!RESIDENTIAL_PROXY) {
+  console.error("Error: Residential proxy URL not found in environment variables.");
+  process.exit(1);
+}
+
+// Configure proxy agent
+const proxyAgent = new HttpsProxyAgent(RESIDENTIAL_PROXY);
+
+// Realistic browser headers to mimic normal traffic
+const realisticHeaders = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "Accept-Language": "en-US,en;q=0.9",
+  "Referer": "https://www.youtube.com/",
+  "DNT": "1", // Do Not Track
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Cache-Control": "max-age=0"
+};
+
+// Middleware to parse JSON and URL-encoded payloads
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the "public" folder (for our debug HTML page)
+// Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ----------------------
-// FUNCTIONS FROM YOUR MAIN SERVER
-// ----------------------
-
+/**
+ * Extract YouTube video ID from URL
+ */
 function getVideoId(youtubeUrl) {
   let id;
   if (youtubeUrl.includes("watch?v=")) {
     id = youtubeUrl.split("watch?v=")[1].split("&")[0];
-    console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
-    return id;
   } else if (youtubeUrl.includes("youtu.be/")) {
     id = youtubeUrl.split("youtu.be/")[1].split("?")[0];
-    console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
-    return id;
+  } else if (youtubeUrl.includes("shorts/")) {
+    id = youtubeUrl.split("shorts/")[1].split("?")[0]; // Handle YouTube Shorts
   } else {
     throw new Error("Invalid YouTube URL");
   }
+  
+  console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
+  return id;
 }
 
-async function getVideoDetails(videoId) {
-  const youtube = google.youtube({
-    version: 'v3',
-    auth: process.env.YOUTUBE_API_KEY
-  });
+/**
+ * Retrieve captions using youtube-captions-scraper via Proxy
+ */
+async function getCaptionsWithProxy(videoId, lang = 'en') {
+  console.log(`Using proxy to fetch subtitles for video: ${videoId} in language: ${lang}`);
 
-  const response = await youtube.videos.list({
-    part: 'snippet,contentDetails,player,status',
-    id: videoId
-  });
-
-  if (!response.data.items || response.data.items.length === 0) {
-    throw new Error(`No video found with ID: ${videoId}`);
-  }
-
-  const item = response.data.items[0];
-  console.log("Retrieved video snippet:", item.snippet);
-  return {
-    video_id: videoId,
-    title: item.snippet.title,
-    description: item.snippet.description,
-    caption_status: item.contentDetails.caption,
-    embed_html: item.player.embedHtml
-  };
-}
-
-async function getCaptions(videoId, lang = 'en') {
-  console.log(`Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
   try {
     const captions = await getSubtitles({
       videoID: videoId,
@@ -70,131 +83,52 @@ async function getCaptions(videoId, lang = 'en') {
     console.log(`Fetched ${captions.length} captions for video ${videoId}`);
     return captions;
   } catch (error) {
-    console.error("Error fetching captions:", error);
-    console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
-    // Return an empty array for consistent response format
-    return [];
+    console.error("Error fetching captions via scraper:", error);
+
+    // Alternative: Try fetching captions manually through the proxy
+    const captionUrl = `https://www.youtube.com/api/timedtext?v=${videoId}&lang=${lang}&fmt=json3`;
+    
+    try {
+      const response = await fetch(captionUrl, {
+        method: "GET",
+        agent: proxyAgent,
+        headers: realisticHeaders
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch captions. Status: ${response.status}`);
+      }
+
+      const captionsData = await response.json();
+      console.log("Fetched captions via direct API:", captionsData);
+      return captionsData;
+    } catch (proxyError) {
+      console.error("Error fetching captions via proxy:", proxyError);
+      return { error: proxyError.message };
+    }
   }
 }
 
-// ----------------------
-// END FUNCTIONS FROM MAIN SERVER
-// ----------------------
-
-// (Optional) You may still keep your /process endpoint for normal operation:
-app.post('/process', async (req, res) => {
-  const youtubeUrl = req.body.youtube_url;
-  const language = req.body.language || 'en';
-  console.log(`Processing YouTube URL: ${youtubeUrl} with language: ${language}`);
-  try {
-    const videoId = getVideoId(youtubeUrl);
-    const videoDetails = await getVideoDetails(videoId);
-    const captions = await getCaptions(videoId, language);
-    res.json({ videoDetails, captions });
-  } catch (err) {
-    console.error("Error processing video:", err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ----------------------
-// NEW PROXY ENDPOINT TO EMULATE LOCAL CONDITIONS
-// ----------------------
-// This endpoint accepts a query parameter "url" (which should be URL‑encoded)
-// and uses node‑fetch (with extra headers) to fetch from YouTube. It then pipes the response back.
-
-app.get('/proxy', async (req, res) => {
-  const targetUrl = req.query.url;
-  if (!targetUrl) {
-    return res.status(400).json({ error: "Missing 'url' query parameter" });
-  }
-  console.log("Proxy endpoint requested URL:", targetUrl);
-  try {
-    const response = await fetch(targetUrl, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://www.youtube.com/",
-        // If you have a cookie string in your .env, include it:
-        "Cookie": process.env.YOUTUBE_COOKIE || ""
-      }
-    });
-    // Forward the status code and headers as needed.
-    res.status(response.status);
-    response.headers.forEach((value, name) => {
-      res.setHeader(name, value);
-    });
-    // Pipe the response body back to the client.
-    response.body.pipe(res);
-  } catch (err) {
-    console.error("Proxy error:", err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ----------------------
-// END PROXY ENDPOINT
-// ----------------------
-
-// ----------------------
-// DEBUG ENDPOINT THAT USES THE PROXY
-// ----------------------
-// This endpoint constructs a YouTube timedtext URL for auto-generated captions and
-// then calls the /proxy endpoint to retrieve the data.
+/**
+ * Debug Endpoint: /debug-proxy
+ *  - Fetches captions using a residential proxy.
+ */
 app.post('/debug-proxy', async (req, res) => {
   const videoId = req.body.video_id;
   const lang = req.body.lang || 'en';
-  // Construct the basic timedtext URL (without dynamic parameters).
-  // Note: The official timedtext endpoint requires many extra parameters to work reliably.
-  // Here we try a simplified version.
-  const ytUrl = `https://www.youtube.com/api/timedtext?v=${videoId}&lang=${lang}&kind=asr`;
-  // URL-encode the target URL for the proxy.
-  const encodedUrl = encodeURIComponent(ytUrl);
-  // Construct the full proxy URL.
-  const proxyUrl = `${req.protocol}://${req.get('host')}/proxy?url=${encodedUrl}`;
-  console.log("Debug-proxy: constructed proxy URL:", proxyUrl);
-  
-  try {
-    // Use node-fetch from the server side to fetch via the proxy.
-    const proxyResponse = await fetch(proxyUrl);
-    const text = await proxyResponse.text();
-    console.log("Debug-proxy: fetched text length:", text.length);
-    res.json({ video_id: videoId, lang, proxyUrl, captions: text });
-  } catch (error) {
-    console.error("Debug-proxy: Error:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
+  console.log(`Debug-proxy: Fetching subtitles for video: ${videoId} using proxy`);
 
-// ----------------------
-// DEBUG ENDPOINT THAT USES THE SCRAPER LIBRARY (as before)
-// ----------------------
-app.post('/debug-scraper', async (req, res) => {
-  const videoId = req.body.video_id;
-  const lang = req.body.lang || 'en';
-  console.log(`Debug-scraper: Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
   try {
-    const captions = await getSubtitles({
-      videoID: videoId,
-      lang: lang
-    });
-    console.log(`Debug-scraper: Fetched ${captions.length} captions for video ${videoId}`);
+    const captions = await getCaptionsWithProxy(videoId, lang);
     res.json({ video_id: videoId, lang, captions });
   } catch (error) {
-    console.error("Debug-scraper: Error fetching captions:", error);
+    console.error("Debug-proxy: Error fetching captions:", error);
     res.status(500).json({ error: error.message });
   }
 });
 
-// ----------------------
-// ROOT ENDPOINT FOR DEBUG
-// ----------------------
-app.get('/', (req, res) => {
-  res.send("Debug server is running. Use /debug-proxy or /debug-scraper to test caption retrieval.");
-});
-
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Debug server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

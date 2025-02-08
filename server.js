@@ -4,69 +4,45 @@ const express = require('express');
 const path = require('path');
 const { google } = require('googleapis');
 const { getSubtitles } = require('youtube-captions-scraper');
+const nodeFetch = require('node-fetch');
+const { HttpsProxyAgent } = require('https-proxy-agent');
 
 const app = express();
 
-// Always use node-fetch with extra logging for consistency.
-const nodeFetch = require('node-fetch');
-global.fetch = async (...args) => {
-  // Ensure options and headers exist.
-  if (!args[1]) {
-    args[1] = {};
-  }
-  if (!args[1].headers) {
-    args[1].headers = {};
-  }
-  // Add a User-Agent header if not already set.
-  if (!args[1].headers["User-Agent"]) {
-    args[1].headers["User-Agent"] =
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
-  }
-  
-  console.log("Custom fetch called with URL:", args[0]);
-  console.log("Fetch options:", args[1]);
-  
-  try {
-    const response = await nodeFetch(...args);
-    console.log("Custom fetch response:", response.status, response.statusText);
-    const contentType = response.headers.get("content-type");
-    console.log("Content-Type header:", contentType);
-    if (contentType) {
-      if (contentType.includes("application/json")) {
-        const jsonResponse = await response.clone().json();
-        console.log("Custom fetch JSON response:", JSON.stringify(jsonResponse, null, 2));
-      } else {
-        // Read the text response with a timeout so we don't wait indefinitely.
-        const textResponsePromise = response.clone().text();
-        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(""), 2000));
-        const textResponse = await Promise.race([textResponsePromise, timeoutPromise]);
-        console.log("Custom fetch response text length:", textResponse.length);
-        if (textResponse.length < 2000) {
-          console.log("Custom fetch full response text:", textResponse);
-        } else {
-          console.log("Custom fetch response body snippet (first 500 chars):", textResponse.substring(0, 500));
-        }
-      }
-    }
-    return response;
-  } catch (err) {
-    console.error("Custom fetch error:", err);
-    throw err;
-  }
-};
-
+// Load environment variables
 const API_KEY = process.env.YOUTUBE_API_KEY;
-const gaiaAuth = process.env.GAIA_AUTH;
+const GAIA_AUTH = process.env.GAIA_AUTH;
+const RESIDENTIAL_PROXY = process.env.RESIDENTIAL_PROXY; // Proxy URL (e.g., "http://user:pass@proxy.evomi.com:PORT")
 
 if (!API_KEY) {
   console.error("Error: YouTube API key not found in environment variables.");
   process.exit(1);
 }
 
-if (!gaiaAuth) {
+if (!GAIA_AUTH) {
   console.error("Error: Gaia auth key not found in environment variables.");
   process.exit(1);
 }
+
+if (!RESIDENTIAL_PROXY) {
+  console.error("Error: Residential proxy URL not found in environment variables.");
+  process.exit(1);
+}
+
+// Configure proxy agent
+const proxyAgent = new HttpsProxyAgent(RESIDENTIAL_PROXY);
+
+// Realistic browser headers to mimic normal traffic
+const realisticHeaders = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "Accept-Language": "en-US,en;q=0.9",
+  "Referer": "https://www.youtube.com/",
+  "DNT": "1", // Do Not Track
+  "Connection": "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Cache-Control": "max-age=0"
+};
 
 // Middleware to parse JSON and URL-encoded payloads
 app.use(express.json());
@@ -123,21 +99,23 @@ async function getVideoDetails(videoId) {
 }
 
 /**
- * Retrieve captions using youtube-captions-scraper
+ * Retrieve captions using youtube-captions-scraper with Proxy
  */
-async function getCaptions(videoId, lang = 'en') {
-  console.log(`Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
+async function getCaptionsWithProxy(videoId, lang = 'en') {
+  console.log(`Using proxy to fetch subtitles for video: ${videoId} in language: ${lang}`);
   try {
     const captions = await getSubtitles({
       videoID: videoId,
-      lang: lang
+      lang: lang,
+      requestOptions: {
+        agent: proxyAgent,
+        headers: realisticHeaders
+      }
     });
     console.log(`Fetched ${captions.length} captions for video ${videoId}`);
     return captions;
   } catch (error) {
-    console.error("Error fetching captions:", error);
-    console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
-    // Return an empty array for consistent response format
+    console.error("Error fetching captions via proxy:", error);
     return [];
   }
 }
@@ -145,7 +123,7 @@ async function getCaptions(videoId, lang = 'en') {
 /**
  * Endpoint: /process
  *   - Extracts YouTube video details
- *   - Fetches captions
+ *   - Fetches captions using the proxy
  */
 app.post('/process', async (req, res) => {
   const youtubeUrl = req.body.youtube_url;
@@ -154,7 +132,7 @@ app.post('/process', async (req, res) => {
   try {
     const videoId = getVideoId(youtubeUrl);
     const videoDetails = await getVideoDetails(videoId);
-    const captions = await getCaptions(videoId, language);
+    const captions = await getCaptionsWithProxy(videoId, language);
     res.json({ videoDetails, captions });
   } catch (err) {
     console.error("Error processing video:", err);
@@ -183,7 +161,7 @@ app.post('/test-translate', async (req, res) => {
       method: "POST",
       headers: {
         accept: "application/json",
-        Authorization: gaiaAuth,
+        Authorization: GAIA_AUTH,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ messages })
@@ -205,23 +183,19 @@ app.post('/test-translate', async (req, res) => {
 });
 
 /**
- * Debug Endpoint: /debug-scraper
- *  - Expects a JSON body with { video_id, lang }
- *  - Uses youtube-captions-scraper to fetch auto-generated captions.
+ * Debug Endpoint: /debug-proxy
+ *  - Fetches captions using a residential proxy.
  */
-app.post('/debug-scraper', async (req, res) => {
+app.post('/debug-proxy', async (req, res) => {
   const videoId = req.body.video_id;
   const lang = req.body.lang || 'en';
-  console.log(`Debug-scraper: Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
+  console.log(`Debug-proxy: Fetching subtitles for video: ${videoId} using proxy`);
+
   try {
-    const captions = await getSubtitles({
-      videoID: videoId,
-      lang: lang
-    });
-    console.log(`Debug-scraper: Fetched ${captions.length} captions for video ${videoId}`);
+    const captions = await getCaptionsWithProxy(videoId, lang);
     res.json({ video_id: videoId, lang, captions });
   } catch (error) {
-    console.error("Debug-scraper: Error fetching captions:", error);
+    console.error("Debug-proxy: Error fetching captions:", error);
     res.status(500).json({ error: error.message });
   }
 });
