@@ -1,6 +1,7 @@
+require('dotenv').config();  // Load variables from .env when available
+
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 const { google } = require('googleapis');
 const { getSubtitles } = require('youtube-captions-scraper');
 

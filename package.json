@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/anonUnderground/NativeEcho#readme",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "googleapis": "^144.0.0",
     "youtube-captions-scraper": "^2.0.3"
