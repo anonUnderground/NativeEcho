@@ -204,6 +204,28 @@ app.post('/test-translate', async (req, res) => {
   }
 });
 
+/**
+ * Debug Endpoint: /debug-scraper
+ *  - Expects a JSON body with { video_id, lang }
+ *  - Uses youtube-captions-scraper to fetch auto-generated captions.
+ */
+app.post('/debug-scraper', async (req, res) => {
+  const videoId = req.body.video_id;
+  const lang = req.body.lang || 'en';
+  console.log(`Debug-scraper: Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
+  try {
+    const captions = await getSubtitles({
+      videoID: videoId,
+      lang: lang
+    });
+    console.log(`Debug-scraper: Fetched ${captions.length} captions for video ${videoId}`);
+    res.json({ video_id: videoId, lang, captions });
+  } catch (error) {
+    console.error("Debug-scraper: Error fetching captions:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

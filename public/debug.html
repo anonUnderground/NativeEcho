@@ -2,85 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Debug Gaia Translation</title>
+  <title>Debug Captions Scraper</title>
   <style>
     body {
       font-family: sans-serif;
-      background: #f4f4f4;
+      background: #f9f9f9;
       color: #333;
       margin: 20px;
     }
-    label, textarea, button {
+    label {
       display: block;
       margin-top: 10px;
-      width: 100%;
-      max-width: 600px;
+      font-weight: bold;
     }
-    textarea {
-      height: 150px;
+    input, button {
+      margin-top: 5px;
       padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-    button {
-      padding: 10px 15px;
-      background: #4285f4;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
       font-size: 1em;
+      width: 100%;
+      max-width: 400px;
     }
     pre {
-      background: #fff;
+      background: #eee;
       padding: 10px;
       border: 1px solid #ccc;
       margin-top: 20px;
-      max-height: 400px;
+      max-height: 60vh;
       overflow-y: auto;
       white-space: pre-wrap;
     }
   </style>
 </head>
 <body>
-  <h1>Debug Gaia Translation</h1>
-  <p>This page sends a POST request to your <code>/test-translate</code> endpoint. Enter a JSON array of messages (for example, a system instruction plus a user prompt) and click the button to see the response from Gaia.</p>
+  <h1>Debug Captions Scraper</h1>
+  <p>
+    This page sends a POST request to your <code>/debug-scraper</code> endpoint, which uses the youtube‑captions‑scraper library to fetch auto‑generated captions.
+  </p>
   
-  <label for="messages">Messages JSON:</label>
-  <textarea id="messages">[
-  { "role": "system", "content": "Translate to en" },
-  { "role": "user", "content": "Hello world!" }
-]</textarea>
+  <label for="videoId">Video ID:</label>
+  <input type="text" id="videoId" value="fhG4uELOClo">
   
-  <button id="sendBtn">Send to Gaia</button>
+  <label for="lang">Language (default is "en"):</label>
+  <input type="text" id="lang" value="en">
+  
+  <button id="fetchBtn">Fetch Captions</button>
   
   <h2>Response</h2>
-  <pre id="responseOutput"></pre>
+  <pre id="output"></pre>
   
   <script>
-    document.getElementById('sendBtn').addEventListener('click', async () => {
-      const messagesInput = document.getElementById('messages').value;
-      let messages;
-      try {
-        messages = JSON.parse(messagesInput);
-      } catch(e) {
-        alert("Invalid JSON in messages input.");
-        return;
-      }
-      const outputEl = document.getElementById('responseOutput');
-      outputEl.textContent = "Sending request...\n";
+    document.getElementById('fetchBtn').addEventListener('click', async () => {
+      const videoId = document.getElementById('videoId').value.trim();
+      const lang = document.getElementById('lang').value.trim();
+      const outputEl = document.getElementById('output');
+      outputEl.textContent = "Fetching captions...\n";
       
       try {
-        const response = await fetch('/test-translate', {
+        const response = await fetch('/debug-scraper', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages })
+          body: JSON.stringify({ video_id: videoId, lang: lang })
         });
         const data = await response.json();
-        outputEl.textContent += JSON.stringify(data, null, 2);
+        outputEl.textContent = JSON.stringify(data, null, 2);
       } catch (error) {
-        outputEl.textContent += "Error: " + error.message;
-        console.error("Error sending to Gaia:", error);
+        outputEl.textContent = "Error: " + error.message;
+        console.error("Error in debug-scraper:", error);
       }
     });
   </script>
