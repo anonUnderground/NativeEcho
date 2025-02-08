@@ -118,14 +118,11 @@
   <a id="githubLink" href="https://github.com/anonUnderground/NativeEcho" target="_blank">
     Check out the GitHub
   </a>
-  
   <!-- Animated Title -->
   <h1 id="animatedTitle"></h1>
-  
   <!-- Input and Controls -->
   <label for="youtubeUrl">YouTube Link:</label>
   <input type="text" id="youtubeUrl" maxlength="150" placeholder="https://www.youtube.com/watch?v=..." />
-  
   <label for="languageSelect">Translate Captions To:</label>
   <select id="languageSelect">
     <option value="es">Spanish (es)</option>
@@ -133,10 +130,8 @@
     <option value="de">German (de)</option>
     <option value="it">Italian (it)</option>
   </select>
-  
   <button id="fetchCaptionsBtn">Fetch Captions</button>
   <button id="bulkTranslateBtn" disabled>Bulk Translate</button>
-  
   <!-- 2x2 Grid Layout -->
   <div id="gridContainer">
     <!-- Top Left: Video -->
@@ -144,27 +139,32 @@
       <h2 id="videoTitle"></h2>
       <div id="videoEmbed"></div>
     </div>
-    
     <!-- Top Right: Translated Captions -->
     <div id="translatedCell">
       <h2>Translated Captions</h2>
       <div id="translatedCaptions"></div>
     </div>
-    
     <!-- Bottom Left: Collapsible English Captions -->
     <div id="englishCell">
       <h2 id="englishHeader">English Captions (click to toggle)</h2>
       <div id="englishCaptionsContainer"></div>
     </div>
-    
     <!-- Bottom Right: Logs -->
     <div id="logsCell">
       <h2>Logs</h2>
       <pre id="outputLog"></pre>
     </div>
   </div>
-  
   <script>
+    // Global error handler for the browser
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error("Global error caught:", { message, source, lineno, colno, error });
+      const outputLog = document.getElementById("outputLog");
+      if (outputLog) {
+        outputLog.textContent += `\nGlobal error: ${message} at ${source}:${lineno}:${colno}`;
+      }
+    };
+
     // Typing animation for "Native Echo"
     document.addEventListener('DOMContentLoaded', function() {
       const titleText = "Native Echo";
@@ -179,10 +179,10 @@
       }
       typeLetter();
     });
-    
+
     // Global variable: each caption is an object { start, text, translatedText }
     let globalCaptions = [];
-    
+
     // Update the Translated Captions box exactly as originally implemented.
     function updateTranslatedCaptions() {
       const container = document.getElementById("translatedCaptions");
@@ -197,7 +197,7 @@
         container.appendChild(div);
       });
     }
-    
+
     // Update the English Captions box.
     function updateEnglishCaptions() {
       const container = document.getElementById("englishCaptionsContainer");
@@ -211,7 +211,7 @@
         container.appendChild(div);
       });
     }
-    
+
     // Toggle the English Captions box visibility.
     document.getElementById("englishHeader").addEventListener("click", function() {
       const englishContainer = document.getElementById("englishCaptionsContainer");
@@ -221,124 +221,107 @@
         englishContainer.style.display = "none";
       }
     });
-    
+
     // Fetch captions and video details.
     document.getElementById("fetchCaptionsBtn").addEventListener("click", async () => {
       const youtubeUrl = document.getElementById("youtubeUrl").value.trim();
       const outputLog = document.getElementById("outputLog");
-      
       if (!youtubeUrl) {
         outputLog.textContent = "Please enter a valid YouTube link.";
         return;
       }
-      
       outputLog.textContent = "Fetching captions from /process...";
-      
       try {
         const response = await fetch("/process", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ youtube_url: youtubeUrl })
         });
-        
         if (!response.ok) {
           const errText = await response.text();
           outputLog.textContent = "Error fetching captions:\n" + errText;
+          console.error("Fetch error (process):", errText);
           return;
         }
-        
         const data = await response.json();
         if (!data.captions || !Array.isArray(data.captions)) {
           outputLog.textContent = "No captions found or invalid response.";
+          console.error("Invalid captions data:", data);
           return;
         }
-        
         // Populate the video container if available.
         if (data.videoDetails && data.videoDetails.embed_html) {
           document.getElementById("videoTitle").textContent = data.videoDetails.title;
           document.getElementById("videoEmbed").innerHTML = data.videoDetails.embed_html;
           document.getElementById("videoCell").style.display = "block";
         }
-        
         // Store captions globally.
         globalCaptions = data.captions;
         outputLog.textContent = "Successfully fetched " + globalCaptions.length + " captions.";
-        
         // Show grid cells.
         document.getElementById("translatedCell").style.display = "block";
         document.getElementById("englishCell").style.display = "block";
         document.getElementById("logsCell").style.display = "block";
-        
         // Update both captions boxes.
         updateTranslatedCaptions();
         updateEnglishCaptions();
-        
         // Enable the Bulk Translate button.
         document.getElementById("bulkTranslateBtn").disabled = false;
       } catch (err) {
         outputLog.textContent = "Network or server error:\n" + err.message;
+        console.error("Network/server error in fetchCaptionsBtn:", err);
       }
     });
-    
+
     // Bulk translate captions, updating the UI incrementally.
     document.getElementById("bulkTranslateBtn").addEventListener("click", async () => {
       const outputLog = document.getElementById("outputLog");
       const language = document.getElementById("languageSelect").value;
-      
       if (globalCaptions.length === 0) {
         outputLog.textContent = "No captions to translate. Please fetch captions first.";
         return;
       }
-      
       outputLog.textContent = `Translating ${globalCaptions.length} captions to ${language}...\n\n`;
-      
       // Clear the translated captions container.
       const translatedDiv = document.getElementById("translatedCaptions");
       translatedDiv.innerHTML = "";
-      
       for (let i = 0; i < globalCaptions.length; i++) {
         const cap = globalCaptions[i];
         const messages = [
           { role: "system", content: `Translate to ${language}` },
           { role: "user", content: cap.text }
         ];
-        
         outputLog.textContent += `Translating caption #${i+1} (start=${cap.start}s)...\n`;
-        
         try {
           const response = await fetch("/test-translate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ messages })
           });
-          
           if (!response.ok) {
             const errText = await response.text();
-            outputLog.textContent += `  Error from /test-translate: ${errText}\n`;
+            outputLog.textContent += `Error from /test-translate: ${errText}\n`;
+            console.error(`Error in caption #${i+1} translation:`, errText);
             globalCaptions[i].translatedText = "";
             await new Promise(resolve => setTimeout(resolve, 0));
             continue;
           }
-          
           const data = await response.json();
           const translatedText = data?.choices?.[0]?.message?.content?.trim() || "(no translation)";
           globalCaptions[i].translatedText = translatedText;
-          
           const div = document.createElement("div");
           div.className = "caption-block";
           div.textContent = `[${i+1}] (${cap.start}s): ${translatedText}`;
           translatedDiv.appendChild(div);
-          
-          outputLog.textContent += `  => ${translatedText}\n`;
-          
+          outputLog.textContent += ` => ${translatedText}\n`;
           await new Promise(resolve => setTimeout(resolve, 0));
         } catch (err) {
-          outputLog.textContent += `  Network error: ${err.message}\n`;
+          outputLog.textContent += `Network error during caption #${i+1} translation: ${err.message}\n`;
+          console.error(`Network error in bulkTranslate for caption #${i+1}:`, err);
           globalCaptions[i].translatedText = "";
           await new Promise(resolve => setTimeout(resolve, 0));
         }
       }
-      
       outputLog.textContent += "\nBulk translation complete!";
       updateTranslatedCaptions();
     });
