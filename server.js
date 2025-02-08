@@ -21,10 +21,7 @@ if (!gaiaAuth) {
   process.exit(1);
 }
 
-// If global.fetch is not available (Node < 18), use node-fetch
-if (!global.fetch) {
-  global.fetch = require('node-fetch');
-}
+global.fetch = require('node-fetch');
 
 // Middleware to parse JSON and URL-encoded payloads
 app.use(express.json());
