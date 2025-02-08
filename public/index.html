@@ -1,54 +1,260 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>YouTube Caption Translator</title>
-  <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8" />
+  <title>Native Echo</title>
+  <style>
+    /* Hacker/Matrix Theme Styles */
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 20px;
+    }
+    /* Animated title styling */
+    #animatedTitle {
+      font-size: 3em;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #0f0;
+    }
+    input, select, textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 5px;
+      background: #111;
+      border: 1px solid #0f0;
+      color: #0f0;
+    }
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: #0a0;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    button:hover {
+      background: #0c0;
+    }
+    /* Video container styling */
+    #videoContainer {
+      margin-top: 20px;
+      border: 1px solid #0f0;
+      padding: 10px;
+      display: none;
+    }
+    /* Captions container styling */
+    #captionsContainer {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      display: none;
+    }
+    .half {
+      flex: 1;
+      border: 1px solid #0f0;
+      padding: 10px;
+    }
+    .caption-block {
+      margin-bottom: 10px;
+    }
+    pre {
+      background: #111;
+      padding: 10px;
+      margin-top: 15px;
+      border: 1px solid #0f0;
+      white-space: pre-wrap;
+      color: #0f0;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>YouTube Caption Translator</h1>
-    <form id="youtubeForm">
-      <label for="youtube_url">Paste YouTube URL:</label>
-      <input type="text" id="youtube_url" name="youtube_url" placeholder="https://www.youtube.com/watch?v=...">
-      <br>
-      <label for="language">Language (e.g., en):</label>
-      <input type="text" id="language" name="language" value="en">
-      <br>
-      <button type="submit">Get Video &amp; Captions</button>
-    </form>
-    <!-- The results section -->
-    <div id="result" style="display:none;">
-      <h2 id="videoTitle"></h2>
-      <div id="videoEmbed" class="player-container"></div>
-      <h3>Captions:</h3>
-      <div class="captions-flex">
-        <div id="captions-original" class="caption-box">
-          <!-- Original captions will be populated here -->
-        </div>
-        <div class="translation-controls">
-          <label for="language-select">Select Language:</label>
-          <select id="language-select">
-            <option value="es">Spanish</option>
-            <option value="ar">Arabic</option>
-            <option value="zh">Mandarin</option>
-            <option value="ko">Korean</option>
-            <option value="pt">Portuguese</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-          </select>
-          <button id="translateButton">Translate with Gaia</button>
-        </div>
-        <div id="captions-translated" class="caption-box">
-          <!-- Translated captions will be populated here (initially same as original) -->
-        </div>
-      </div>
-      <button id="backBtn">Back</button>
-    </div>
-    <!-- Debug button remains as is -->
-    <button class="debug-button" onclick="window.location.href='debug.html'">Go to Debug</button>
+  <!-- Animated Title -->
+  <h1 id="animatedTitle"></h1>
+  
+  <!-- Input and Controls -->
+  <label for="youtubeUrl">YouTube Link:</label>
+  <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." />
+
+  <label for="languageSelect">Translate Captions To:</label>
+  <select id="languageSelect">
+    <option value="es">Spanish (es)</option>
+    <option value="fr">French (fr)</option>
+    <option value="de">German (de)</option>
+    <option value="it">Italian (it)</option>
+    <!-- Add more languages if you like -->
+  </select>
+
+  <button id="fetchCaptionsBtn">Fetch Captions</button>
+  <button id="bulkTranslateBtn" disabled>Bulk Translate</button>
+
+  <!-- Video Container (displayed between the input area and captions) -->
+  <div id="videoContainer">
+    <h2 id="videoTitle"></h2>
+    <div id="videoEmbed"></div>
   </div>
-  <script src="main.js"></script>
+
+  <!-- Captions Container -->
+  <div id="captionsContainer">
+    <div class="half">
+      <h2>Original Captions</h2>
+      <div id="originalCaptions"></div>
+    </div>
+    <div class="half">
+      <h2>Translated Captions</h2>
+      <div id="translatedCaptions"></div>
+    </div>
+  </div>
+
+  <pre id="outputLog"></pre>
+
+  <script>
+    // Typing animation for the title "Native Echo"
+    document.addEventListener('DOMContentLoaded', function() {
+      const titleText = "Native Echo";
+      let index = 0;
+      const titleElement = document.getElementById('animatedTitle');
+      function typeLetter() {
+        if (index < titleText.length) {
+          titleElement.textContent += titleText.charAt(index);
+          index++;
+          setTimeout(typeLetter, 150); // Adjust typing speed as desired
+        }
+      }
+      typeLetter();
+    });
+
+    // Existing functionality for fetching and translating captions
+    let globalCaptions = [];
+
+    document.getElementById("fetchCaptionsBtn").addEventListener("click", async () => {
+      const youtubeUrl = document.getElementById("youtubeUrl").value.trim();
+      const outputLog = document.getElementById("outputLog");
+
+      if (!youtubeUrl) {
+        outputLog.textContent = "Please enter a valid YouTube link.";
+        return;
+      }
+
+      outputLog.textContent = "Fetching captions from /process...";
+
+      try {
+        const response = await fetch("/process", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ youtube_url: youtubeUrl })
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          outputLog.textContent = "Error fetching captions:\n" + errText;
+          return;
+        }
+
+        const data = await response.json();
+        if (!data.captions || !Array.isArray(data.captions)) {
+          outputLog.textContent = "No captions found or invalid response.";
+          return;
+        }
+
+        // Populate the video container if video details were returned
+        if (data.videoDetails && data.videoDetails.embed_html) {
+          document.getElementById("videoTitle").textContent = data.videoDetails.title;
+          document.getElementById("videoEmbed").innerHTML = data.videoDetails.embed_html;
+          document.getElementById("videoContainer").style.display = "block";
+        }
+
+        // Store captions in a global variable
+        globalCaptions = data.captions;
+        outputLog.textContent = "Successfully fetched " + globalCaptions.length + " captions.";
+        
+        // Display original captions
+        const originalDiv = document.getElementById("originalCaptions");
+        originalDiv.innerHTML = "";
+        globalCaptions.forEach((cap, index) => {
+          const div = document.createElement("div");
+          div.className = "caption-block";
+          div.textContent = `[${index+1}] (${cap.start}s): ${cap.text}`;
+          originalDiv.appendChild(div);
+        });
+
+        // Show the captions container and enable the translation button
+        document.getElementById("captionsContainer").style.display = "flex";
+        document.getElementById("bulkTranslateBtn").disabled = false;
+
+      } catch (err) {
+        outputLog.textContent = "Network or server error:\n" + err.message;
+      }
+    });
+
+    document.getElementById("bulkTranslateBtn").addEventListener("click", async () => {
+      const outputLog = document.getElementById("outputLog");
+      const translatedDiv = document.getElementById("translatedCaptions");
+      const language = document.getElementById("languageSelect").value;
+
+      if (globalCaptions.length === 0) {
+        outputLog.textContent = "No captions to translate. Please fetch captions first.";
+        return;
+      }
+
+      outputLog.textContent = `Translating ${globalCaptions.length} captions to ${language}...\n\n`;
+      translatedDiv.innerHTML = "";
+
+      const translatedCaptions = [];
+
+      for (let i = 0; i < globalCaptions.length; i++) {
+        const cap = globalCaptions[i];
+        const messages = [
+          { role: "system", content: `Translate to ${language}` },
+          { role: "user", content: cap.text }
+        ];
+
+        outputLog.textContent += `Translating caption #${i+1} (start=${cap.start}s)...\n`;
+
+        try {
+          const response = await fetch("/test-translate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messages })
+          });
+
+          if (!response.ok) {
+            const errText = await response.text();
+            outputLog.textContent += `  Error from /test-translate: ${errText}\n`;
+            continue;
+          }
+
+          const data = await response.json();
+          const translatedText = data?.choices?.[0]?.message?.content?.trim() || "(no translation)";
+
+          translatedCaptions.push({
+            start: cap.start,
+            duration: cap.duration,
+            originalText: cap.text,
+            translatedText
+          });
+
+          const div = document.createElement("div");
+          div.className = "caption-block";
+          div.textContent = `[${i+1}] (${cap.start}s): ${translatedText}`;
+          translatedDiv.appendChild(div);
+
+          outputLog.textContent += `  => ${translatedText}\n`;
+
+        } catch (err) {
+          outputLog.textContent += `  Network error: ${err.message}\n`;
+        }
+      }
+
+      outputLog.textContent += "\nBulk translation complete!";
+    });
+  </script>
 </body>
 </html>
