@@ -8,6 +8,11 @@
   },
   "captions": [
     {
+      "text": "[Music]",
+      "start": 2.07,
+      "duration": 4.96
+    },
+    {
       "text": "hi everyone welcome to this session I'm",
       "start": 7.279,
       "duration": 6.48
@@ -2865,12 +2870,17 @@
     {
       "text": "um we're really excited to see what you",
       "start": 1507.6,
-      "duration": 5.16
+      "duration": 3.21
     },
     {
       "text": "all build",
       "start": 1509.559,
-      "duration": 3.201
+      "duration": 7.73
+    },
+    {
+      "text": "[Music]",
+      "start": 1510.81,
+      "duration": 6.479
     }
   ]
 }

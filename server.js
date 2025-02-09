@@ -1,233 +1,158 @@
-require('dotenv').config();  // Load variables from .env when available
-
-const express = require('express');
-const path = require('path');
-const { google } = require('googleapis');
-const { getSubtitles } = require('youtube-captions-scraper');
+import express from "express";
+import { SecretVaultWrapper } from "nillion-sv-wrappers";
+import { orgConfig } from "./nillionOrgConfig.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import fetch from "node-fetch";
 
 const app = express();
-
-// Always use node-fetch with extra logging for consistency.
-const nodeFetch = require('node-fetch');
-global.fetch = async (...args) => {
-  // Ensure options and headers exist.
-  if (!args[1]) {
-    args[1] = {};
-  }
-  if (!args[1].headers) {
-    args[1].headers = {};
-  }
-  // Add a User-Agent header if not already set.
-  if (!args[1].headers["User-Agent"]) {
-    args[1].headers["User-Agent"] =
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36";
-  }
-  
-  console.log("Custom fetch called with URL:", args[0]);
-  console.log("Fetch options:", args[1]);
-  
-  try {
-    const response = await nodeFetch(...args);
-    console.log("Custom fetch response:", response.status, response.statusText);
-    const contentType = response.headers.get("content-type");
-    console.log("Content-Type header:", contentType);
-    if (contentType) {
-      if (contentType.includes("application/json")) {
-        const jsonResponse = await response.clone().json();
-        console.log("Custom fetch JSON response:", JSON.stringify(jsonResponse, null, 2));
-      } else {
-        // Read the text response with a timeout so we don't wait indefinitely.
-        const textResponsePromise = response.clone().text();
-        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(""), 2000));
-        const textResponse = await Promise.race([textResponsePromise, timeoutPromise]);
-        console.log("Custom fetch response text length:", textResponse.length);
-        if (textResponse.length < 2000) {
-          console.log("Custom fetch full response text:", textResponse);
-        } else {
-          console.log("Custom fetch response body snippet (first 500 chars):", textResponse.substring(0, 500));
-        }
-      }
-    }
-    return response;
-  } catch (err) {
-    console.error("Custom fetch error:", err);
-    throw err;
-  }
-};
-
-const API_KEY = process.env.YOUTUBE_API_KEY;
-const gaiaAuth = process.env.GAIA_AUTH;
-
-if (!API_KEY) {
-  console.error("Error: YouTube API key not found in environment variables.");
-  process.exit(1);
-}
-
-if (!gaiaAuth) {
-  console.error("Error: Gaia auth key not found in environment variables.");
-  process.exit(1);
-}
-
-// Middleware to parse JSON and URL-encoded payloads
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from the "public" folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-/**
- * Extract YouTube video ID from URL
- */
-function getVideoId(youtubeUrl) {
-  let id;
-  if (youtubeUrl.includes("watch?v=")) {
-    id = youtubeUrl.split("watch?v=")[1].split("&")[0];
-    console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
-    return id;
-  } else if (youtubeUrl.includes("youtu.be/")) {
-    id = youtubeUrl.split("youtu.be/")[1].split("?")[0];
-    console.log(`Extracted video id: ${id} from URL: ${youtubeUrl}`);
-    return id;
-  } else {
-    throw new Error("Invalid YouTube URL");
-  }
-}
-
-/**
- * Retrieve video details from YouTube Data API
- */
-async function getVideoDetails(videoId) {
-  const youtube = google.youtube({
-    version: 'v3',
-    auth: API_KEY
-  });
-
-  const response = await youtube.videos.list({
-    part: 'snippet,contentDetails,player,status',
-    id: videoId
-  });
-
-  if (!response.data.items || response.data.items.length === 0) {
-    throw new Error(`No video found with ID: ${videoId}`);
-  }
-
-  const item = response.data.items[0];
-  console.log("Retrieved video snippet:", item.snippet);
-  return {
-    video_id: videoId,
-    title: item.snippet.title,
-    description: item.snippet.description,
-    caption_status: item.contentDetails.caption,
-    embed_html: item.player.embedHtml
-  };
-}
-
-/**
- * Retrieve captions using youtube-captions-scraper
- */
-async function getCaptions(videoId, lang = 'en') {
-  console.log(`Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
-  try {
-    const captions = await getSubtitles({
-      videoID: videoId,
-      lang: lang
-    });
-    console.log(`Fetched ${captions.length} captions for video ${videoId}`);
-    return captions;
-  } catch (error) {
-    console.error("Error fetching captions:", error);
-    console.error(`Error details: videoId=${videoId}, language=${lang}, errorMessage=${error.message}, stack=${error.stack}`);
-    // Return an empty array for consistent response format
-    return [];
-  }
-}
-
-/**
- * Endpoint: /process
- *   - Extracts YouTube video details
- *   - Fetches captions
- */
-app.post('/process', async (req, res) => {
-  const youtubeUrl = req.body.youtube_url;
-  const language = req.body.language || 'en';
-  console.log(`Processing YouTube URL: ${youtubeUrl} with language: ${language}`);
-  try {
-    const videoId = getVideoId(youtubeUrl);
-    const videoDetails = await getVideoDetails(videoId);
-    const captions = await getCaptions(videoId, language);
-    res.json({ videoDetails, captions });
-  } catch (err) {
-    console.error("Error processing video:", err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-/**
- * Endpoint: /test-translate
- *   - Builds a system message "Translate to {language}" plus the user prompt.
- */
-app.post('/test-translate', async (req, res) => {
-  console.log("Received /test-translate request with dynamic messages.");
-  const { messages } = req.body;
-
-  if (!messages || !Array.isArray(messages)) {
-    return res.status(400).json({
-      error: "Missing 'messages' array in request body."
-    });
-  }
-
-  try {
-    const gaiaUrl = "https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions";
-
-    const response = await fetch(gaiaUrl, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        Authorization: gaiaAuth,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ messages })
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Error response from Gaia API (/test-translate):", errorText);
-      return res.status(response.status).json({ error: errorText });
-    }
-
-    const data = await response.json();
-    res.json(data);
-
-  } catch (error) {
-    console.error("Error in /test-translate:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-/**
- * Debug Endpoint: /debug-scraper
- *  - Expects a JSON body with { video_id, lang }
- *  - Uses youtube-captions-scraper to fetch auto-generated captions.
- */
-app.post('/debug-scraper', async (req, res) => {
-  const videoId = req.body.video_id;
-  const lang = req.body.lang || 'en';
-  console.log(`Debug-scraper: Attempting to fetch subtitles for video: ${videoId} in language: ${lang}`);
-  try {
-    const captions = await getSubtitles({
-      videoID: videoId,
-      lang: lang
-    });
-    console.log(`Debug-scraper: Fetched ${captions.length} captions for video ${videoId}`);
-    res.json({ video_id: videoId, lang, captions });
-  } catch (error) {
-    console.error("Debug-scraper: Error fetching captions:", error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Start the server
 const PORT = process.env.PORT || 3000;
+const SCHEMA_ID = process.env.NILLION_SCHEMA_ID;
+const GAIA_AUTH = process.env.GAIA_AUTH;
+
+if (!SCHEMA_ID || !GAIA_AUTH) {
+  console.error("❌ Missing environment variables.");
+  process.exit(1);
+}
+
+// Fix __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+
+// Fetch video list
+app.get("/videos", async (req, res) => {
+  try {
+    console.log("📡 Fetching video list from Nillion...");
+    
+    const collection = new SecretVaultWrapper(
+      orgConfig.nodes,
+      orgConfig.orgCredentials,
+      SCHEMA_ID
+    );
+    await collection.init();
+
+    const decryptedCollectionData = await collection.readFromNodes({});
+    if (!decryptedCollectionData || !Array.isArray(decryptedCollectionData)) {
+      throw new Error("Invalid data format received from Nillion.");
+    }
+
+    const videos = decryptedCollectionData.map(item => ({
+      id: item._id,
+      title: item.video_details?.title || "Untitled Video",
+      videoId: item.video_details?.video_id || "unknown",
+      embed_html: item.video_details?.embed_html || "No embed available",
+      captions: item.captions || []
+    }));
+
+    console.log("🎥 Processed Videos:", videos.length);
+    res.json({ videos });
+
+  } catch (error) {
+    console.error("❌ Error fetching video list:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Fetch captions for a video
+app.get("/captions/:videoId", async (req, res) => {
+  try {
+    const { videoId } = req.params;
+    console.log(`📡 Fetching captions for video: ${videoId}`);
+
+    const collection = new SecretVaultWrapper(
+      orgConfig.nodes,
+      orgConfig.orgCredentials,
+      SCHEMA_ID
+    );
+    await collection.init();
+
+    const decryptedCollectionData = await collection.readFromNodes({});
+    if (!decryptedCollectionData || !Array.isArray(decryptedCollectionData)) {
+      throw new Error("Invalid data format received from Nillion.");
+    }
+
+    const videoEntry = decryptedCollectionData.find(
+      item => item.video_details?.video_id === videoId
+    );
+
+    if (!videoEntry) {
+      return res.status(404).json({ error: "Video not found" });
+    }
+
+    res.json({ captions: videoEntry.captions || [] });
+
+  } catch (error) {
+    console.error("❌ Error fetching captions:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Translate captions one by one
+app.post("/translate", async (req, res) => {
+  try {
+    const { captions, language } = req.body;
+    console.log(`🔠 Translating ${captions.length} captions to ${language}...`);
+
+    if (!captions || !Array.isArray(captions)) {
+      console.error("❌ Error: Invalid captions array.");
+      return res.status(400).json({ error: "Invalid captions array." });
+    }
+
+    const translatedCaptions = [];
+
+    for (let i = 0; i < captions.length; i++) {
+      const caption = captions[i];
+
+      // LOG: Show what we are sending to Gaia
+      console.log(`📤 Sending caption #${i + 1} to Gaia:`, caption.text);
+
+      const response = await fetch("https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: GAIA_AUTH,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [
+            { role: "system", content: `Translate to ${language}` },
+            { role: "user", content: caption.text }
+          ]
+        })
+      });
+
+      if (!response.ok) {
+        console.error(`❌ Error translating caption ${i + 1}:`, response.status);
+        translatedCaptions.push({ ...caption, translatedText: "(translation failed)" });
+        continue;
+      }
+
+      const data = await response.json();
+
+      // LOG: Print Gaia's full response
+      console.log(`📥 Gaia API Response for #${i + 1}:`, JSON.stringify(data, null, 2));
+
+      const translatedText = data?.choices?.[0]?.message?.content?.trim() || "(no translation)";
+
+      translatedCaptions.push({ ...caption, translatedText });
+
+      // Send incremental update
+      res.write(JSON.stringify({ index: i, translatedText }) + "\n");
+    }
+
+    res.end();
+
+  } catch (error) {
+    console.error("❌ Error translating captions:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

@@ -2,28 +2,22 @@
   "name": "nativeecho",
   "version": "1.0.0",
   "description": "Empowering AI agent translation on the blockchain.",
-  "main": "server.js",
+  "type": "module",
+  "main": "debug-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anonUnderground/NativeEcho.git"
+    "start": "node server.js",
+    "debug": "node debug-server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/anonUnderground/NativeEcho/issues"
-  },
-  "homepage": "https://github.com/anonUnderground/NativeEcho#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "googleapis": "^144.0.0",
-    "https-proxy-agent": "^7.0.6",
-    "puppeteer": "^24.2.0",
+    "nillion-sv-wrappers": "^1.0.9",
+    "node-fetch": "^3.3.2",
     "youtube-captions-scraper": "^2.0.3"
   }
 }

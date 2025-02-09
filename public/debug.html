@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Debug YouTube Captions via Proxy</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      margin: 20px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    input, button {
-      margin-top: 5px;
-      padding: 8px;
-      font-size: 1em;
-      width: 100%;
-      max-width: 400px;
-    }
-    pre {
-      background: #eee;
-      padding: 10px;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-      max-height: 60vh;
-      overflow-y: auto;
-      white-space: pre-wrap;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Nillion Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        pre {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-  <h1>Debug YouTube Captions via Proxy</h1>
-  <p>Enter a video ID and language (default: en) to test caption retrieval using the proxy approach.</p>
-  
-  <label for="videoId">Video ID:</label>
-  <input type="text" id="videoId" value="fhG4uELOClo">
-  
-  <label for="lang">Language:</label>
-  <input type="text" id="lang" value="en">
-  
-  <button id="fetchProxyBtn">Fetch Captions via Proxy</button>
-  
-  <h2>Response</h2>
-  <pre id="output"></pre>
 
-  <script>
-    async function fetchData(endpoint, payload) {
-      const outputEl = document.getElementById('output');
-      outputEl.textContent = "Fetching...\n";
-      try {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await response.json();
-        outputEl.textContent = JSON.stringify(data, null, 2);
-      } catch (error) {
-        outputEl.textContent = "Error: " + error.message;
-        console.error("Error in fetchData:", error);
-      }
-    }
+    <h2>Nillion Debugging Tool</h2>
+    <button onclick="fetchData()">Fetch Data</button>
+    <pre id="output">Click the button to fetch data...</pre>
 
-    document.getElementById('fetchProxyBtn').addEventListener('click', () => {
-      const videoId = document.getElementById('videoId').value.trim();
-      const lang = document.getElementById('lang').value.trim();
-      fetchData('/debug-proxy', { video_id: videoId, lang: lang });
-    });
-  </script>
+    <script>
+        async function fetchData() {
+            const outputElement = document.getElementById("output");
+            outputElement.textContent = "Fetching data... Please wait.";
+
+            try {
+                const response = await fetch('/read-data', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server returned error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                outputElement.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                outputElement.textContent = `Error fetching data: ${error.message}`;
+            }
+        }
+    </script>
+
 </body>
 </html>

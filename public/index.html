@@ -1,336 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Native Echo</title>
   <style>
-    /* Hacker/Matrix Theme Styles */
-    body {
-      background-color: #000;
-      color: #0f0;
-      font-family: 'Courier New', Courier, monospace;
+    body { 
+      background-color: #000; 
+      color: #0f0; 
+      font-family: 'Courier New', monospace; 
       margin: 20px;
     }
-    /* GitHub Link Styling */
-    #githubLink {
-      font-size: 1em;
-      margin-bottom: 10px;
-      display: block;
-      color: #0f0;
-      text-decoration: underline;
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    /* Animated title styling */
-    #animatedTitle {
-      font-size: 3em;
+    #animatedTitle { 
+      font-size: 2em; 
       margin-bottom: 20px;
-      letter-spacing: 2px;
+      text-align: left;
     }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
+    #githubLink {
       color: #0f0;
-    }
-    input, select, textarea {
-      width: 100%;
-      margin-top: 5px;
-      padding: 5px;
-      background: #111;
-      border: 1px solid #0f0;
-      color: #0f0;
-    }
-    button {
-      margin-top: 15px;
-      padding: 8px 16px;
-      background: #0a0;
-      color: #000;
-      border: none;
-      cursor: pointer;
-      font-family: 'Courier New', Courier, monospace;
-    }
-    button:hover {
-      background: #0c0;
-    }
-    /* 2x2 Grid Layout */
-    #gridContainer {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    /* Top Left: Video cell */
-    #videoCell {
-      border: 1px solid #0f0;
-      padding: 10px;
-      max-height: 500px;
-      overflow-y: auto;
-      display: none;
-    }
-    /* Top Right: Translated Captions cell */
-    #translatedCell {
-      border: 1px solid #0f0;
-      padding: 10px;
-      max-height: 500px;
-      overflow-y: auto;
-      display: none;
-    }
-    /* Bottom Left: Collapsible English Captions cell */
-    #englishCell {
-      border: 1px solid #0f0;
-      padding: 10px;
-      max-height: 500px;
-      overflow-y: auto;
-      display: none;
-    }
-    #englishHeader {
-      cursor: pointer;
-      margin: 0;
+      text-decoration: none;
       font-size: 1.2em;
     }
-    #englishCaptionsContainer {
-      margin-top: 10px;
-      max-height: 400px;
-      overflow-y: auto;
-      display: none;
+    select, button { 
+      padding: 10px; 
+      margin-top: 10px; 
+      background: #111; 
+      border: 1px solid #0f0; 
+      color: #0f0; 
     }
-    /* Bottom Right: Logs cell */
-    #logsCell {
-      border: 1px solid #0f0;
-      padding: 10px;
-      max-height: 500px;
-      overflow-y: auto;
-      display: none;
+    button { 
+      cursor: pointer; 
+      background: #0a0; 
     }
-    #outputLog {
-      white-space: pre-wrap;
-      color: #0f0;
-      max-height: 200px;
-      overflow-y: auto;
+    button:hover { 
+      background: #0c0; 
     }
-    .caption-block {
-      margin-bottom: 10px;
+    #gridContainer { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      grid-template-rows: auto auto; 
+      gap: 10px; 
+      margin-top: 20px; 
+    }
+    .gridItem { 
+      border: 1px solid #0f0; 
+      padding: 10px; 
+      max-height: 300px; 
+      overflow-y: auto; 
+      text-align: left;
+    }
+    #englishCaptionsContainer { 
+      display: none; 
+    }
+    h3 { 
+      cursor: pointer; 
     }
   </style>
 </head>
 <body>
-  <!-- GitHub link -->
-  <a id="githubLink" href="https://github.com/anonUnderground/NativeEcho" target="_blank">
-    Check out the GitHub
-  </a>
-  <!-- Animated Title -->
-  <h1 id="animatedTitle"></h1>
-  <!-- Input and Controls -->
-  <label for="youtubeUrl">YouTube Link:</label>
-  <input type="text" id="youtubeUrl" maxlength="150" placeholder="https://www.youtube.com/watch?v=..." />
-  <label for="languageSelect">Translate Captions To:</label>
+
+  <div id="header">
+    <h1 id="animatedTitle"></h1>
+    <a id="githubLink" href="https://github.com/anonUnderground" target="_blank">GitHub</a>
+  </div>
+
+  <h2>Choose a Video:</h2>
+  <select id="videoDropdown"><option value="">Loading videos...</option></select>
+  <button id="fetchCaptionsBtn">Load Captions</button>
   <select id="languageSelect">
-    <option value="es">Spanish (es)</option>
-    <option value="fr">French (fr)</option>
-    <option value="de">German (de)</option>
-    <option value="it">Italian (it)</option>
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+    <option value="de">German</option>
   </select>
-  <button id="fetchCaptionsBtn">Fetch Captions</button>
-  <button id="bulkTranslateBtn" disabled>Bulk Translate</button>
-  <!-- 2x2 Grid Layout -->
+  <button id="translateBtn" disabled>Translate</button>
+
   <div id="gridContainer">
-    <!-- Top Left: Video -->
-    <div id="videoCell">
-      <h2 id="videoTitle"></h2>
-      <div id="videoEmbed"></div>
-    </div>
-    <!-- Top Right: Translated Captions -->
-    <div id="translatedCell">
-      <h2>Translated Captions</h2>
-      <div id="translatedCaptions"></div>
-    </div>
-    <!-- Bottom Left: Collapsible English Captions -->
-    <div id="englishCell">
-      <h2 id="englishHeader">English Captions (click to toggle)</h2>
+    <div class="gridItem" id="videoCell"><h3>Video</h3><div id="videoEmbed"></div></div>
+    <div class="gridItem" id="translatedCell"><h3>Translated Captions</h3><div id="translatedCaptions"></div></div>
+    <div class="gridItem" id="englishCell">
+      <h3 id="toggleEnglish">English Captions (Click to Toggle)</h3>
       <div id="englishCaptionsContainer"></div>
     </div>
-    <!-- Bottom Right: Logs -->
-    <div id="logsCell">
-      <h2>Logs</h2>
-      <pre id="outputLog"></pre>
-    </div>
+    <div class="gridItem" id="logsCell"><h3>Logs</h3><pre id="logOutput"></pre></div>
   </div>
+
   <script>
-    // Global error handler for the browser
-    window.onerror = function(message, source, lineno, colno, error) {
-      console.error("Global error caught:", { message, source, lineno, colno, error });
-      const outputLog = document.getElementById("outputLog");
-      if (outputLog) {
-        outputLog.textContent += `\nGlobal error: ${message} at ${source}:${lineno}:${colno}`;
-      }
-    };
+    let captions = [];
 
-    // Typing animation for "Native Echo"
-    document.addEventListener('DOMContentLoaded', function() {
-      const titleText = "Native Echo";
-      let index = 0;
-      const titleElement = document.getElementById('animatedTitle');
-      function typeLetter() {
-        if (index < titleText.length) {
-          titleElement.textContent += titleText.charAt(index);
-          index++;
-          setTimeout(typeLetter, 75);
-        }
-      }
-      typeLetter();
-    });
+    function animateTitle() {
+      const titleElement = document.getElementById("animatedTitle");
+      const baseText = "NativeEcho";
+      let dotCount = 0;
+      let stopAnimation = false;
 
-    // Global variable: each caption is an object { start, text, translatedText }
-    let globalCaptions = [];
-
-    // Update the Translated Captions box exactly as originally implemented.
-    function updateTranslatedCaptions() {
-      const container = document.getElementById("translatedCaptions");
-      while (container.firstChild) {
-        container.removeChild(container.firstChild);
+      function animateDots() {
+        if (stopAnimation) return;
+        titleElement.textContent = baseText + ".".repeat(dotCount);
+        dotCount = (dotCount + 1) % 4;
+        setTimeout(animateDots, 500);
       }
-      globalCaptions.forEach((cap, index) => {
-        const div = document.createElement("div");
-        div.className = "caption-block";
-        const displayText = cap.translatedText ? cap.translatedText : "(no translation)";
-        div.textContent = `[${index+1}] (${cap.start}s): ${displayText}`;
-        container.appendChild(div);
-      });
+
+      titleElement.textContent = baseText;
+      animateDots();
+      setTimeout(() => { stopAnimation = true; titleElement.textContent = "NativeEcho..."; }, 30000);
     }
 
-    // Update the English Captions box.
-    function updateEnglishCaptions() {
-      const container = document.getElementById("englishCaptionsContainer");
-      while (container.firstChild) {
-        container.removeChild(container.firstChild);
-      }
-      globalCaptions.forEach((cap, index) => {
-        const div = document.createElement("div");
-        div.className = "caption-block";
-        div.textContent = `[${index+1}] (${cap.start}s): ${cap.text}`;
-        container.appendChild(div);
-      });
+    async function loadVideos() {
+  const dropdown = document.getElementById("videoDropdown");
+  dropdown.innerHTML = "<option>Loading videos...</option>";
+
+  try {
+    const response = await fetch("/videos");
+    const { videos } = await response.json();
+    dropdown.innerHTML = videos.map(v => `<option value="${v.videoId}" data-embed='${v.embed_html}'>${v.title}</option>`).join("");
+
+    document.getElementById("logOutput").textContent += `📡 Loaded ${videos.length} videos from Nillion.\n`;
+  } catch (error) {
+    document.getElementById("logOutput").textContent += "❌ Error loading videos from Nillion.\n";
+  }
+}
+
+async function fetchCaptions() {
+  const dropdown = document.getElementById("videoDropdown");
+  const selectedOption = dropdown.options[dropdown.selectedIndex];
+  const videoId = dropdown.value;
+  const embedHtml = selectedOption.dataset.embed;
+
+  if (!videoId) return alert("Please select a video.");
+
+  document.getElementById("videoEmbed").innerHTML = embedHtml;
+  document.getElementById("englishCaptionsContainer").innerHTML = "<p>Loading captions...</p>";
+  document.getElementById("translatedCaptions").innerHTML = "";
+  document.getElementById("logOutput").textContent += `📡 Fetching captions for video: ${videoId} from Nillion...\n`;
+
+  try {
+    const response = await fetch(`/captions/${videoId}`);
+    const data = await response.json();
+    captions = data.captions || [];
+
+    if (!captions.length) {
+      document.getElementById("englishCaptionsContainer").innerHTML = "<p>No captions available.</p>";
+      document.getElementById("logOutput").textContent += `⚠️ No captions found for video: ${videoId}.\n`;
+      return;
     }
 
-    // Toggle the English Captions box visibility.
-    document.getElementById("englishHeader").addEventListener("click", function() {
-      const englishContainer = document.getElementById("englishCaptionsContainer");
-      if (englishContainer.style.display === "none" || englishContainer.style.display === "") {
-        englishContainer.style.display = "block";
-      } else {
-        englishContainer.style.display = "none";
-      }
-    });
+    document.getElementById("englishCaptionsContainer").innerHTML = captions
+      .map(c => `<div>[${c.start.toFixed(2)}s] ${c.text}</div>`)
+      .join("");
 
-    // Fetch captions and video details.
-    document.getElementById("fetchCaptionsBtn").addEventListener("click", async () => {
-      const youtubeUrl = document.getElementById("youtubeUrl").value.trim();
-      const outputLog = document.getElementById("outputLog");
-      if (!youtubeUrl) {
-        outputLog.textContent = "Please enter a valid YouTube link.";
-        return;
+    document.getElementById("logOutput").textContent += `✅ Loaded ${captions.length} captions from Nillion for video: ${videoId}.\n`;
+    document.getElementById("translateBtn").disabled = false;
+
+  } catch (error) {
+    document.getElementById("logOutput").textContent += `❌ Error fetching captions from Nillion for video: ${videoId}.\n`;
+  }
+}
+
+async function translateCaptions() {
+  const language = document.getElementById("languageSelect").value;
+  document.getElementById("translatedCaptions").innerHTML = "";
+  document.getElementById("logOutput").textContent += `🔠 Translating ${captions.length} captions to ${language} using Gaia...\n`;
+
+  for (let i = 0; i < captions.length; i++) {
+    try {
+      const response = await fetch("/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ captions: [captions[i]], language })
+      });
+
+      const jsonResponse = await response.json();
+      if (!jsonResponse || !jsonResponse.translatedText) {
+        jsonResponse.translatedText = "(translation failed)";
       }
-      outputLog.textContent = "Fetching captions from /process...";
+
+      const translatedText = jsonResponse.translatedText.trim() || "(no translation)";
+
+      document.getElementById("translatedCaptions").innerHTML += `<div>[${captions[i].start.toFixed(2)}s] ${translatedText}</div>`;
+      document.getElementById("logOutput").textContent += `✅ Translated caption #${i + 1} [${captions[i].start.toFixed(2)}s] via Gaia: ${translatedText}\n`;
+
+    } catch (error) {
+      document.getElementById("logOutput").textContent += `❌ Gaia translation error for caption #${i + 1} [${captions[i].start.toFixed(2)}s].\n`;
+    }
+  }
+
+  document.getElementById("logOutput").textContent += "🎉 Translation complete!\n";
+}
+
+
+    async function fetchCaptions() {
+      const dropdown = document.getElementById("videoDropdown");
+      const selectedOption = dropdown.options[dropdown.selectedIndex];
+      const videoId = dropdown.value;
+      const embedHtml = selectedOption.dataset.embed;
+
+      if (!videoId) return alert("Please select a video.");
+
+      document.getElementById("videoEmbed").innerHTML = embedHtml;
+      document.getElementById("englishCaptionsContainer").innerHTML = "<p>Loading captions...</p>";
+      document.getElementById("translatedCaptions").innerHTML = "";
+      document.getElementById("logOutput").textContent = "Fetching captions...\n";
+
       try {
-        const response = await fetch("/process", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ youtube_url: youtubeUrl })
-        });
-        if (!response.ok) {
-          const errText = await response.text();
-          outputLog.textContent = "Error fetching captions:\n" + errText;
-          console.error("Fetch error (process):", errText);
-          return;
-        }
+        const response = await fetch(`/captions/${videoId}`);
         const data = await response.json();
-        // Check if server returned an error in captions
-        if (data.captions && data.captions.error) {
-          outputLog.textContent += "\nCaption error returned: " + data.captions.error;
-          console.error("Caption error returned from server:", data.captions.error);
-          return;
-        }
-        if (!data.captions || !Array.isArray(data.captions)) {
-          outputLog.textContent = "No captions found or invalid response.";
-          console.error("Invalid captions data:", data);
-          return;
-        }
-        // Populate the video container if available.
-        if (data.videoDetails && data.videoDetails.embed_html) {
-          document.getElementById("videoTitle").textContent = data.videoDetails.title;
-          document.getElementById("videoEmbed").innerHTML = data.videoDetails.embed_html;
-          document.getElementById("videoCell").style.display = "block";
-        }
-        // Store captions globally.
-        globalCaptions = data.captions;
-        outputLog.textContent = "Successfully fetched " + globalCaptions.length + " captions.";
-        // Show grid cells.
-        document.getElementById("translatedCell").style.display = "block";
-        document.getElementById("englishCell").style.display = "block";
-        document.getElementById("logsCell").style.display = "block";
-        // Update both captions boxes.
-        updateTranslatedCaptions();
-        updateEnglishCaptions();
-        // Enable the Bulk Translate button.
-        document.getElementById("bulkTranslateBtn").disabled = false;
-      } catch (err) {
-        outputLog.textContent = "Network or server error:\n" + err.message;
-        console.error("Network/server error in fetchCaptionsBtn:", err);
-      }
-    });
+        captions = data.captions || [];
 
-    // Bulk translate captions, updating the UI incrementally.
-    document.getElementById("bulkTranslateBtn").addEventListener("click", async () => {
-      const outputLog = document.getElementById("outputLog");
-      const language = document.getElementById("languageSelect").value;
-      if (globalCaptions.length === 0) {
-        outputLog.textContent = "No captions to translate. Please fetch captions first.";
-        return;
+        if (!captions.length) {
+          document.getElementById("englishCaptionsContainer").innerHTML = "<p>No captions available.</p>";
+          return;
+        }
+
+        document.getElementById("englishCaptionsContainer").innerHTML = captions
+          .map(c => `<div>[${c.start.toFixed(2)}s] ${c.text}</div>`)
+          .join("");
+
+        document.getElementById("logOutput").textContent += `✅ Loaded ${captions.length} captions.\n`;
+        document.getElementById("translateBtn").disabled = false;
+
+      } catch (error) {
+        document.getElementById("logOutput").textContent += "❌ Error loading captions.\n";
       }
-      outputLog.textContent = `Translating ${globalCaptions.length} captions to ${language}...\n\n`;
-      // Clear the translated captions container.
-      const translatedDiv = document.getElementById("translatedCaptions");
-      translatedDiv.innerHTML = "";
-      for (let i = 0; i < globalCaptions.length; i++) {
-        const cap = globalCaptions[i];
-        const messages = [
-          { role: "system", content: `Translate to ${language}` },
-          { role: "user", content: cap.text }
-        ];
-        outputLog.textContent += `Translating caption #${i+1} (start=${cap.start}s)...\n`;
+    }
+
+    async function translateCaptions() {
+      const language = document.getElementById("languageSelect").value;
+      document.getElementById("translatedCaptions").innerHTML = "";
+      document.getElementById("logOutput").textContent += `🔠 Translating to ${language}...\n`;
+
+      for (let i = 0; i < captions.length; i++) {
         try {
-          const response = await fetch("/test-translate", {
+          const response = await fetch("/translate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ messages })
+            body: JSON.stringify({ captions: [captions[i]], language })
           });
-          if (!response.ok) {
-            const errText = await response.text();
-            outputLog.textContent += `Error from /test-translate: ${errText}\n`;
-            console.error(`Error in caption #${i+1} translation:`, errText);
-            globalCaptions[i].translatedText = "";
-            await new Promise(resolve => setTimeout(resolve, 0));
-            continue;
+
+          const jsonResponse = await response.json();
+          if (!jsonResponse || !jsonResponse.translatedText) {
+            jsonResponse.translatedText = "(translation failed)";
           }
-          const data = await response.json();
-          const translatedText = data?.choices?.[0]?.message?.content?.trim() || "(no translation)";
-          globalCaptions[i].translatedText = translatedText;
-          const div = document.createElement("div");
-          div.className = "caption-block";
-          div.textContent = `[${i+1}] (${cap.start}s): ${translatedText}`;
-          translatedDiv.appendChild(div);
-          outputLog.textContent += ` => ${translatedText}\n`;
-          await new Promise(resolve => setTimeout(resolve, 0));
-        } catch (err) {
-          outputLog.textContent += `Network error during caption #${i+1} translation: ${err.message}\n`;
-          console.error(`Network error in bulkTranslate for caption #${i+1}:`, err);
-          globalCaptions[i].translatedText = "";
-          await new Promise(resolve => setTimeout(resolve, 0));
+
+          const translatedText = jsonResponse.translatedText.trim() || "(no translation)";
+
+          document.getElementById("translatedCaptions").innerHTML += `<div>[${captions[i].start.toFixed(2)}s] ${translatedText}</div>`;
+          document.getElementById("logOutput").textContent += `✅ Translated #${i + 1} [${captions[i].start.toFixed(2)}s]: ${translatedText}\n`;
+
+        } catch (error) {
+          document.getElementById("logOutput").textContent += `❌ Error translating caption #${i + 1}.\n`;
         }
       }
-      outputLog.textContent += "\nBulk translation complete!";
-      updateTranslatedCaptions();
+
+      document.getElementById("logOutput").textContent += "🎉 Translation complete!\n";
+    }
+
+    document.getElementById("fetchCaptionsBtn").addEventListener("click", fetchCaptions);
+    document.getElementById("translateBtn").addEventListener("click", translateCaptions);
+    document.getElementById("toggleEnglish").addEventListener("click", () => {
+      const container = document.getElementById("englishCaptionsContainer");
+      container.style.display = container.style.display === "none" ? "block" : "none";
     });
+
+    window.onload = () => { animateTitle(); loadVideos(); };
   </script>
+
 </body>
 </html>

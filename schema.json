@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "YouTube Video Data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["video_details", "captions"],
+    "properties": {
+      "video_details": {
+        "type": "object",
+        "required": ["video_id", "title", "description", "caption_status", "embed_html"],
+        "properties": {
+          "video_id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "caption_status": { "type": "boolean" }, 
+          "embed_html": { "type": "string" }
+        }
+      },
+      "captions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["text", "start", "duration"],
+          "properties": {
+            "text": { "type": "string" },
+            "start": { "type": "number" },
+            "duration": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
