@@ -9,9 +9,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SCHEMA_ID = process.env.NILLION_SCHEMA_ID;
 const GAIA_AUTH = process.env.GAIA_AUTH;
+const GAIA_DOMAIN = process.env.GAIA_DOMAIN;
 
 if (!SCHEMA_ID || !GAIA_AUTH) {
   console.error("❌ Missing environment variables.");
+  process.exit(1);
+}
+
+if (!GAIA_DOMAIN || !GAIA_AUTH) {
+  console.error("❌ Missing environment variables: GAIA_DOMAIN or GAIA_AUTH.");
   process.exit(1);
 }
 
@@ -95,7 +101,7 @@ app.get("/captions/:videoId", async (req, res) => {
 app.post("/translate", async (req, res) => {
   try {
     const { captions, language } = req.body;
-    console.log(`🔠 Translating ${captions.length} captions to ${language}...`);
+    console.log(`🔠 Translating ${captions.length} captions to ${language} via ${GAIA_DOMAIN}...`);
 
     if (!captions || !Array.isArray(captions)) {
       console.error("❌ Error: Invalid captions array.");
@@ -110,7 +116,7 @@ app.post("/translate", async (req, res) => {
       // LOG: Show what we are sending to Gaia
       console.log(`📤 Sending caption #${i + 1} to Gaia:`, caption.text);
 
-      const response = await fetch("https://0x8171007ceb1848087523c8875743a6dc91cddfa4.gaia.domains/v1/chat/completions", {
+      const response = await fetch(`${GAIA_DOMAIN}/v1/chat/completions`, {
         method: "POST",
         headers: {
           Accept: "application/json",

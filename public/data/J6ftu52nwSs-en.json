@@ -1,0 +1,3601 @@
+{
+  "video_details": {
+    "video_id": "J6ftu52nwSs",
+    "title": "Harish Kotra I Build & Deploy AI Agents using Gaia & Collab Land I Agentic Ethereum 2025",
+    "description": "Join Harish Kotra from Gaia for a hands-on guide to launching AI Agents that run fully under your control—locally or on your own server. In this workshop, learn how to install and configure Gaia’s decentralized computing infrastructure, integrate with Collab Land to enable seamless Telegram and Twitter bots, and fine-tune your agents to handle specialized LLM tasks using open-source models.\n\nWhether you’re looking to build a DeFi AI assistant, manage on-chain transactions, or simply create a custom knowledge base for your LLM, this session demonstrates a quick start—from installing the Gaia CLI, spinning up a node, and using the Collab Land AI agent starter kit to deploy fully operational AI agents in minutes.\n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  \n\n🤖 *Agentic Ethereum*\nAgentic Ethereum is an online, async hackathon that runs from Jan. 31 to Feb. 12, 2025.  With over $175,000 USD in prizes, Agentic Ethereum is a great way to dive into the world of autonomous AI agents and explore how they can revolutionize projects on Ethereum. Start the year with groundbreaking innovation! Watch the full playlist: https://youtube.com/playlist?list=PLXzKMXK2aHh7jxP_flgRf5nZ_WDgFpBy3&si=RZozbd9C5KrG6Bf3\n\n00:00 Introduction & Gaia Overview\n00:40 Installing the Gaia CLI\n01:15 Running a Local AI Node\n02:22 Choosing & Downloading LLM Models\n03:10 Deploying a Node with gyai init\n04:18 Understanding Node Config & Embeddings\n05:34 Decentralized vs. Centralized Inference\n06:25 Public Nodes & Tool Calling\n07:30 Collab Land Integration Overview\n08:40 AI Agent Starter Kit Setup\n10:07 Environment Variables & Model URLs\n12:14 Customizing Prompts & Knowledge Bases\n14:22 Combining Gaia & Collab Land for Bots\n16:10 Common Issues & Debugging\n18:35 Best Practices for Fine-Tuning Models\n20:25 Q&A & Final Tips\n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  \n\n✅ *Follow Harish Kotra*\nX: https://x.com/HarishKotra\n\n✅ *Follow Gaia*\nX: https://x.com/gaianet_ai\nWebsite: https://www.gaianet.ai\n\n✅ *Follow ETHGlobal*\nX: https://x.com/ETHGlobal​\nWarpcast: https://warpcast.com/ethglobal\nWebsite: https://ethglobal.com\nYouTube: https://www.youtube.com/c/ETHGlobal \n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  \n\n_Are you interested in Ethereum development and entrepreneurship?_\n👉 Sign up for the next ETHGlobal event: https://ethglobal.com/events\n🎁 Get exclusive access and perks with ETHGlobal Plus! https://ethglobal.com/plus\n📣 Want us to throw an event in your city? Tell us where! https://ethglobal.com/city\n\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",
+    "caption_status": "false",
+    "embed_html": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/J6ftu52nwSs\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  },
+  "captions": [
+    {
+      "text": "[Music]",
+      "start": 2.07,
+      "duration": 4.96
+    },
+    {
+      "text": "GM GM everybody I'm Harish I'm a",
+      "start": 7.08,
+      "duration": 4.92
+    },
+    {
+      "text": "developer advocated guia and today I'm",
+      "start": 9.16,
+      "duration": 5.439
+    },
+    {
+      "text": "going to show you how all of you",
+      "start": 12.0,
+      "duration": 6.68
+    },
+    {
+      "text": "together with me can launch AI agents in",
+      "start": 14.599,
+      "duration": 6.201
+    },
+    {
+      "text": "about let's say 20 minutes and we'll",
+      "start": 18.68,
+      "duration": 4.0
+    },
+    {
+      "text": "take questions at the end and at any",
+      "start": 20.8,
+      "duration": 3.28
+    },
+    {
+      "text": "point if you have questions like Au",
+      "start": 22.68,
+      "duration": 3.4
+    },
+    {
+      "text": "mention drop them in the chat we will",
+      "start": 24.08,
+      "duration": 4.08
+    },
+    {
+      "text": "have some time to take those during the",
+      "start": 26.08,
+      "duration": 4.16
+    },
+    {
+      "text": "session as well uh but I'm I'm going to",
+      "start": 28.16,
+      "duration": 4.04
+    },
+    {
+      "text": "walk you through what Gaia is very",
+      "start": 30.24,
+      "duration": 4.8
+    },
+    {
+      "text": "quickly we'll also see uh demo as well",
+      "start": 32.2,
+      "duration": 5.359
+    },
+    {
+      "text": "and then also let's go through the",
+      "start": 35.04,
+      "duration": 4.92
+    },
+    {
+      "text": "collab land AI agent stter which lets",
+      "start": 37.559,
+      "duration": 6.041
+    },
+    {
+      "text": "you launch AI agents on telegram Twitter",
+      "start": 39.96,
+      "duration": 5.8
+    },
+    {
+      "text": "it's a very uh lightweight framework",
+      "start": 43.6,
+      "duration": 4.52
+    },
+    {
+      "text": "that all of you can use and is also",
+      "start": 45.76,
+      "duration": 5.24
+    },
+    {
+      "text": "mandatory to use for the Gaia and collab",
+      "start": 48.12,
+      "duration": 4.88
+    },
+    {
+      "text": "land Bounty for the agentic ethereum",
+      "start": 51.0,
+      "duration": 4.52
+    },
+    {
+      "text": "hackathon with that let's get started",
+      "start": 53.0,
+      "duration": 4.879
+    },
+    {
+      "text": "what is Gaia Gaia is a decentralized",
+      "start": 55.52,
+      "duration": 3.8
+    },
+    {
+      "text": "Computing infrastructure platform that",
+      "start": 57.879,
+      "duration": 3.881
+    },
+    {
+      "text": "is open source that lets anybody like",
+      "start": 59.32,
+      "duration": 5.559
+    },
+    {
+      "text": "you and me build scale deploy and also",
+      "start": 61.76,
+      "duration": 5.92
+    },
+    {
+      "text": "monetize AI agents right with when you",
+      "start": 64.879,
+      "duration": 5.481
+    },
+    {
+      "text": "launch an AI agent with Gaia called node",
+      "start": 67.68,
+      "duration": 5.32
+    },
+    {
+      "text": "in the Gaia terminology what you get is",
+      "start": 70.36,
+      "duration": 4.96
+    },
+    {
+      "text": "a chat interface and along with that you",
+      "start": 73.0,
+      "duration": 4.52
+    },
+    {
+      "text": "also get an open a compatible API that",
+      "start": 75.32,
+      "duration": 4.24
+    },
+    {
+      "text": "you can pretty much replace uh in your",
+      "start": 77.52,
+      "duration": 3.639
+    },
+    {
+      "text": "existing applications or build",
+      "start": 79.56,
+      "duration": 4.72
+    },
+    {
+      "text": "applications using that API itself right",
+      "start": 81.159,
+      "duration": 4.681
+    },
+    {
+      "text": "for some of the examples that you can",
+      "start": 84.28,
+      "duration": 4.92
+    },
+    {
+      "text": "try are on our uh website itself you can",
+      "start": 85.84,
+      "duration": 8.12
+    },
+    {
+      "text": "go to um let's go to a agent domains and",
+      "start": 89.2,
+      "duration": 6.48
+    },
+    {
+      "text": "then you can browse a agents these are",
+      "start": 93.96,
+      "duration": 4.199
+    },
+    {
+      "text": "some examples that you can uh try out",
+      "start": 95.68,
+      "duration": 5.64
+    },
+    {
+      "text": "and see how it works let's say we go to",
+      "start": 98.159,
+      "duration": 5.521
+    },
+    {
+      "text": "the chemistry one chemistry is uh an",
+      "start": 101.32,
+      "duration": 4.56
+    },
+    {
+      "text": "agent that is trained specifically on",
+      "start": 103.68,
+      "duration": 5.28
+    },
+    {
+      "text": "chemistry data set and uh yeah what you",
+      "start": 105.88,
+      "duration": 6.12
+    },
+    {
+      "text": "see here is the model that this agent",
+      "start": 108.96,
+      "duration": 5.799
+    },
+    {
+      "text": "runs and also the system prompt and I'll",
+      "start": 112.0,
+      "duration": 4.119
+    },
+    {
+      "text": "show you how to customize all of this",
+      "start": 114.759,
+      "duration": 2.881
+    },
+    {
+      "text": "but this is the interface that you get",
+      "start": 116.119,
+      "duration": 3.801
+    },
+    {
+      "text": "when you also launch a node after the",
+      "start": 117.64,
+      "duration": 4.079
+    },
+    {
+      "text": "learning through this Workshop I'm not",
+      "start": 119.92,
+      "duration": 4.32
+    },
+    {
+      "text": "going to do a presentation PBT let's do",
+      "start": 121.719,
+      "duration": 4.68
+    },
+    {
+      "text": "everything handson yeah with the time we",
+      "start": 124.24,
+      "duration": 4.519
+    },
+    {
+      "text": "have and like I said this is the UI that",
+      "start": 126.399,
+      "duration": 3.961
+    },
+    {
+      "text": "you get you can click Start and start",
+      "start": 128.759,
+      "duration": 3.961
+    },
+    {
+      "text": "interacting with your own node and also",
+      "start": 130.36,
+      "duration": 5.0
+    },
+    {
+      "text": "you get a API endpoint which is open a",
+      "start": 132.72,
+      "duration": 4.84
+    },
+    {
+      "text": "compatible which means you can",
+      "start": 135.36,
+      "duration": 4.44
+    },
+    {
+      "text": "essentially replace your node URL and",
+      "start": 137.56,
+      "duration": 4.24
+    },
+    {
+      "text": "start calling your node URL right after",
+      "start": 139.8,
+      "duration": 4.32
+    },
+    {
+      "text": "deploying right typically depending on",
+      "start": 141.8,
+      "duration": 4.4
+    },
+    {
+      "text": "the model size it might take about 10",
+      "start": 144.12,
+      "duration": 3.72
+    },
+    {
+      "text": "minutes for any of you to launch an",
+      "start": 146.2,
+      "duration": 4.8
+    },
+    {
+      "text": "agent so let's get into it so the first",
+      "start": 147.84,
+      "duration": 6.039
+    },
+    {
+      "text": "step is let's install the Gaia CLI for",
+      "start": 151.0,
+      "duration": 4.879
+    },
+    {
+      "text": "to for us to be able to do that let's go",
+      "start": 153.879,
+      "duration": 4.801
+    },
+    {
+      "text": "to docs. gy. if you're doing this along",
+      "start": 155.879,
+      "duration": 5.041
+    },
+    {
+      "text": "with me it'll be amazing you'll also uh",
+      "start": 158.68,
+      "duration": 4.4
+    },
+    {
+      "text": "learn while we do this if not you can",
+      "start": 160.92,
+      "duration": 4.64
+    },
+    {
+      "text": "always access the recording later right",
+      "start": 163.08,
+      "duration": 5.2
+    },
+    {
+      "text": "so if you go to dogs. g. you can go to",
+      "start": 165.56,
+      "duration": 5.16
+    },
+    {
+      "text": "setting up your own node this is where",
+      "start": 168.28,
+      "duration": 4.52
+    },
+    {
+      "text": "there are some prerequisites minimum 16",
+      "start": 170.72,
+      "duration": 4.84
+    },
+    {
+      "text": "GB Ram if you want to run a 8 billion",
+      "start": 172.8,
+      "duration": 5.24
+    },
+    {
+      "text": "parameter model uh ideally and if you",
+      "start": 175.56,
+      "duration": 4.319
+    },
+    {
+      "text": "want to run a smaller or if you have a",
+      "start": 178.04,
+      "duration": 4.44
+    },
+    {
+      "text": "machine that is 88 GB Ram or if you want",
+      "start": 179.879,
+      "duration": 5.801
+    },
+    {
+      "text": "to run an a agent on a Raspberry Pi I",
+      "start": 182.48,
+      "duration": 5.319
+    },
+    {
+      "text": "would recommend you pick a smaller model",
+      "start": 185.68,
+      "duration": 4.32
+    },
+    {
+      "text": "like .5 billion parameters or 1 billion",
+      "start": 187.799,
+      "duration": 4.16
+    },
+    {
+      "text": "parameters uh if you run something like",
+      "start": 190.0,
+      "duration": 5.36
+    },
+    {
+      "text": "an 8 billion parameter model on a lower",
+      "start": 191.959,
+      "duration": 5.321
+    },
+    {
+      "text": "um capacity machine it will not run",
+      "start": 195.36,
+      "duration": 4.0
+    },
+    {
+      "text": "it'll it'll slow down the entire machine",
+      "start": 197.28,
+      "duration": 4.16
+    },
+    {
+      "text": "so keep that in mind there are only",
+      "start": 199.36,
+      "duration": 4.239
+    },
+    {
+      "text": "three steps that you will need to launch",
+      "start": 201.44,
+      "duration": 5.32
+    },
+    {
+      "text": "your own node which is an AI agent uh on",
+      "start": 203.599,
+      "duration": 5.2
+    },
+    {
+      "text": "Gaia the first step is installing the",
+      "start": 206.76,
+      "duration": 4.96
+    },
+    {
+      "text": "CLI right let's quickly install the CLI",
+      "start": 208.799,
+      "duration": 5.041
+    },
+    {
+      "text": "this is my terminal I'm going to install",
+      "start": 211.72,
+      "duration": 4.239
+    },
+    {
+      "text": "the CLI this is the first step from",
+      "start": 213.84,
+      "duration": 4.039
+    },
+    {
+      "text": "setting up your own node section on the",
+      "start": 215.959,
+      "duration": 4.84
+    },
+    {
+      "text": "Gia dos and once the CLI is installed",
+      "start": 217.879,
+      "duration": 4.481
+    },
+    {
+      "text": "you have to run this Quick Command The",
+      "start": 220.799,
+      "duration": 4.321
+    },
+    {
+      "text": "Source command for the gyet CLI to be",
+      "start": 222.36,
+      "duration": 5.84
+    },
+    {
+      "text": "able to uh access the CLI command in",
+      "start": 225.12,
+      "duration": 5.92
+    },
+    {
+      "text": "this terminal that you that I have open",
+      "start": 228.2,
+      "duration": 5.84
+    },
+    {
+      "text": "what gyet has under the H is if you go",
+      "start": 231.04,
+      "duration": 5.479
+    },
+    {
+      "text": "to our uh GitHub page I'm going to drop",
+      "start": 234.04,
+      "duration": 4.68
+    },
+    {
+      "text": "the link to our GitHub uh where you can",
+      "start": 236.519,
+      "duration": 4.36
+    },
+    {
+      "text": "see the architecture details I'm not",
+      "start": 238.72,
+      "duration": 3.84
+    },
+    {
+      "text": "going to go detail into the architecture",
+      "start": 240.879,
+      "duration": 3.92
+    },
+    {
+      "text": "but with every node what you essentially",
+      "start": 242.56,
+      "duration": 6.2
+    },
+    {
+      "text": "get is tool usage function calling uh an",
+      "start": 244.799,
+      "duration": 7.72
+    },
+    {
+      "text": "API server an llm an embedding model uh",
+      "start": 248.76,
+      "duration": 5.44
+    },
+    {
+      "text": "Vector database by default you have",
+      "start": 252.519,
+      "duration": 3.921
+    },
+    {
+      "text": "quadrant Vector database in the node and",
+      "start": 254.2,
+      "duration": 4.08
+    },
+    {
+      "text": "also a prompt manager which is",
+      "start": 256.44,
+      "duration": 3.4
+    },
+    {
+      "text": "customizing the system prompt and the",
+      "start": 258.28,
+      "duration": 3.919
+    },
+    {
+      "text": "rack prompt for you to be able to",
+      "start": 259.84,
+      "duration": 5.0
+    },
+    {
+      "text": "fine-tune your AA agents to suit the",
+      "start": 262.199,
+      "duration": 5.361
+    },
+    {
+      "text": "personality you are training it on right",
+      "start": 264.84,
+      "duration": 4.88
+    },
+    {
+      "text": "so once you install what you also should",
+      "start": 267.56,
+      "duration": 4.44
+    },
+    {
+      "text": "should notice is there is a node ID",
+      "start": 269.72,
+      "duration": 5.0
+    },
+    {
+      "text": "which is a wallet address right so every",
+      "start": 272.0,
+      "duration": 4.32
+    },
+    {
+      "text": "node comes with a metamask wallet",
+      "start": 274.72,
+      "duration": 3.479
+    },
+    {
+      "text": "address and the private key and the",
+      "start": 276.32,
+      "duration": 4.36
+    },
+    {
+      "text": "details of this wallet address is in the",
+      "start": 278.199,
+      "duration": 4.921
+    },
+    {
+      "text": "node id. Json file I'm going to show",
+      "start": 280.68,
+      "duration": 4.28
+    },
+    {
+      "text": "that very quickly after running this",
+      "start": 283.12,
+      "duration": 4.12
+    },
+    {
+      "text": "quick command so that you know how to",
+      "start": 284.96,
+      "duration": 3.72
+    },
+    {
+      "text": "access the wallet details in case you",
+      "start": 287.24,
+      "duration": 3.519
+    },
+    {
+      "text": "are building an AI agent to perform",
+      "start": 288.68,
+      "duration": 4.76
+    },
+    {
+      "text": "autonomous transactions on chain right",
+      "start": 290.759,
+      "duration": 4.321
+    },
+    {
+      "text": "so once we run the source command don't",
+      "start": 293.44,
+      "duration": 3.64
+    },
+    {
+      "text": "forget to run this command it is very",
+      "start": 295.08,
+      "duration": 3.76
+    },
+    {
+      "text": "crucial for the ganet CLA to be",
+      "start": 297.08,
+      "duration": 3.6
+    },
+    {
+      "text": "available which means if I want to run",
+      "start": 298.84,
+      "duration": 4.32
+    },
+    {
+      "text": "gyet init or gyet start you have to run",
+      "start": 300.68,
+      "duration": 4.44
+    },
+    {
+      "text": "the source command so the next step is",
+      "start": 303.16,
+      "duration": 4.68
+    },
+    {
+      "text": "gyet init which is initializing the",
+      "start": 305.12,
+      "duration": 5.359
+    },
+    {
+      "text": "default node by default when you install",
+      "start": 307.84,
+      "duration": 5.48
+    },
+    {
+      "text": "the node uh at any point if you if you",
+      "start": 310.479,
+      "duration": 4.961
+    },
+    {
+      "text": "feel this is Rush drop the drop your",
+      "start": 313.32,
+      "duration": 4.04
+    },
+    {
+      "text": "questions in the chat I'm happy to slow",
+      "start": 315.44,
+      "duration": 3.56
+    },
+    {
+      "text": "down and expand but we have a lot to",
+      "start": 317.36,
+      "duration": 3.88
+    },
+    {
+      "text": "cover I'll try to be as high level as",
+      "start": 319.0,
+      "duration": 4.08
+    },
+    {
+      "text": "possible but happy to answer any",
+      "start": 321.24,
+      "duration": 3.88
+    },
+    {
+      "text": "questions you have at any point right",
+      "start": 323.08,
+      "duration": 4.399
+    },
+    {
+      "text": "when you install the",
+      "start": 325.12,
+      "duration": 5.76
+    },
+    {
+      "text": "CLI right uh gyet in it is the second",
+      "start": 327.479,
+      "duration": 6.16
+    },
+    {
+      "text": "command by default you get a Lama 3.23",
+      "start": 330.88,
+      "duration": 4.56
+    },
+    {
+      "text": "billion parameter model along with a",
+      "start": 333.639,
+      "duration": 3.961
+    },
+    {
+      "text": "knowledge base about Paris right you can",
+      "start": 335.44,
+      "duration": 4.12
+    },
+    {
+      "text": "access multiple knowledge bases that we",
+      "start": 337.6,
+      "duration": 4.319
+    },
+    {
+      "text": "have on our hugging face account right",
+      "start": 339.56,
+      "duration": 5.88
+    },
+    {
+      "text": "you can go to hugging face. SL I'm going",
+      "start": 341.919,
+      "duration": 5.0
+    },
+    {
+      "text": "to drop the link to this as well in the",
+      "start": 345.44,
+      "duration": 3.52
+    },
+    {
+      "text": "chat for all of you to access uh you can",
+      "start": 346.919,
+      "duration": 4.0
+    },
+    {
+      "text": "go here to access the default data set",
+      "start": 348.96,
+      "duration": 3.799
+    },
+    {
+      "text": "but if you go to our page on hugging",
+      "start": 350.919,
+      "duration": 4.201
+    },
+    {
+      "text": "phase you can also see all the models",
+      "start": 352.759,
+      "duration": 4.801
+    },
+    {
+      "text": "that we support you can see uh DC car1",
+      "start": 355.12,
+      "duration": 4.519
+    },
+    {
+      "text": "is also there uh that you can run",
+      "start": 357.56,
+      "duration": 3.52
+    },
+    {
+      "text": "locally on your machine this one",
+      "start": 359.639,
+      "duration": 4.201
+    },
+    {
+      "text": "perfectly runs on a uh Raspberry Pi or",
+      "start": 361.08,
+      "duration": 6.239
+    },
+    {
+      "text": "even a Macbook uh Pro and these are some",
+      "start": 363.84,
+      "duration": 5.359
+    },
+    {
+      "text": "of the data sets that we have built",
+      "start": 367.319,
+      "duration": 4.28
+    },
+    {
+      "text": "there are Developer dogs there are uh",
+      "start": 369.199,
+      "duration": 5.521
+    },
+    {
+      "text": "static text based knowledge bases there",
+      "start": 371.599,
+      "duration": 4.921
+    },
+    {
+      "text": "are code based knowledge bases that you",
+      "start": 374.72,
+      "duration": 4.16
+    },
+    {
+      "text": "can also see that we have trained models",
+      "start": 376.52,
+      "duration": 4.6
+    },
+    {
+      "text": "on uh including the chemistry one that I",
+      "start": 378.88,
+      "duration": 4.599
+    },
+    {
+      "text": "was talking to you earlier right so this",
+      "start": 381.12,
+      "duration": 3.84
+    },
+    {
+      "text": "is where you can find all the models and",
+      "start": 383.479,
+      "duration": 3.081
+    },
+    {
+      "text": "the data sets if you want to play around",
+      "start": 384.96,
+      "duration": 4.0
+    },
+    {
+      "text": "with uh customizing right so the second",
+      "start": 386.56,
+      "duration": 5.0
+    },
+    {
+      "text": "command like was uh getting to is gyet",
+      "start": 388.96,
+      "duration": 5.519
+    },
+    {
+      "text": "in it right by default you get this but",
+      "start": 391.56,
+      "duration": 5.359
+    },
+    {
+      "text": "what if you don't want the 3.2 billion",
+      "start": 394.479,
+      "duration": 4.361
+    },
+    {
+      "text": "parameter model or the knowledge base",
+      "start": 396.919,
+      "duration": 4.0
+    },
+    {
+      "text": "you can customize the Second Step itself",
+      "start": 398.84,
+      "duration": 3.44
+    },
+    {
+      "text": "now how do you do",
+      "start": 400.919,
+      "duration": 4.881
+    },
+    {
+      "text": "that you have to go to our guyet get up",
+      "start": 402.28,
+      "duration": 5.639
+    },
+    {
+      "text": "page where there is a section called",
+      "start": 405.8,
+      "duration": 4.6
+    },
+    {
+      "text": "repositories also feel free to drop any",
+      "start": 407.919,
+      "duration": 4.56
+    },
+    {
+      "text": "PRS for any of our repos you should see",
+      "start": 410.4,
+      "duration": 4.76
+    },
+    {
+      "text": "a node config repo what we've done is",
+      "start": 412.479,
+      "duration": 5.361
+    },
+    {
+      "text": "created a repo where we have listed a",
+      "start": 415.16,
+      "duration": 6.039
+    },
+    {
+      "text": "lot of a models and LM essentially which",
+      "start": 417.84,
+      "duration": 6.199
+    },
+    {
+      "text": "you can uh just copy and initialize by",
+      "start": 421.199,
+      "duration": 5.041
+    },
+    {
+      "text": "default these have the configs ready to",
+      "start": 424.039,
+      "duration": 4.16
+    },
+    {
+      "text": "go for the sake of this demo what I'm",
+      "start": 426.24,
+      "duration": 3.399
+    },
+    {
+      "text": "going to do is I'm going to pick the",
+      "start": 428.199,
+      "duration": 5.0
+    },
+    {
+      "text": "quen 2.5 coder 3 billion parameter model",
+      "start": 429.639,
+      "duration": 4.96
+    },
+    {
+      "text": "right go into the folder you will see",
+      "start": 433.199,
+      "duration": 3.921
+    },
+    {
+      "text": "the same commands the first is the CLI",
+      "start": 434.599,
+      "duration": 4.121
+    },
+    {
+      "text": "second is the init Command right so",
+      "start": 437.12,
+      "duration": 4.44
+    },
+    {
+      "text": "instead of doing gyet init I'm going to",
+      "start": 438.72,
+      "duration": 5.96
+    },
+    {
+      "text": "do pass the config file itself so that",
+      "start": 441.56,
+      "duration": 6.759
+    },
+    {
+      "text": "by default it now downloads the quen 2.5",
+      "start": 444.68,
+      "duration": 5.519
+    },
+    {
+      "text": "model like you can see when you do in it",
+      "start": 448.319,
+      "duration": 3.6
+    },
+    {
+      "text": "it downloads the model itself depending",
+      "start": 450.199,
+      "duration": 4.68
+    },
+    {
+      "text": "on the internet speed this should take",
+      "start": 451.919,
+      "duration": 5.321
+    },
+    {
+      "text": "uh the time it needs to download the",
+      "start": 454.879,
+      "duration": 5.081
+    },
+    {
+      "text": "model then it'll also download the nomic",
+      "start": 457.24,
+      "duration": 4.88
+    },
+    {
+      "text": "embed embeddings model right what are",
+      "start": 459.96,
+      "duration": 3.56
+    },
+    {
+      "text": "embeddings if you don't know what",
+      "start": 462.12,
+      "duration": 4.72
+    },
+    {
+      "text": "embeddings are essentially in simple uh",
+      "start": 463.52,
+      "duration": 6.84
+    },
+    {
+      "text": "terminology L uh llms uh utilize",
+      "start": 466.84,
+      "duration": 5.16
+    },
+    {
+      "text": "embeddings as a way to extract",
+      "start": 470.36,
+      "duration": 4.16
+    },
+    {
+      "text": "information we a story right embeddings",
+      "start": 472.0,
+      "duration": 4.28
+    },
+    {
+      "text": "are just words or phrases converted to",
+      "start": 474.52,
+      "duration": 3.92
+    },
+    {
+      "text": "numbers for example happy or Joy are",
+      "start": 476.28,
+      "duration": 3.68
+    },
+    {
+      "text": "similar words so they have similar",
+      "start": 478.44,
+      "duration": 4.599
+    },
+    {
+      "text": "numbers together right uh I've",
+      "start": 479.96,
+      "duration": 6.919
+    },
+    {
+      "text": "I've uh taken the Liberty to make it too",
+      "start": 483.039,
+      "duration": 5.88
+    },
+    {
+      "text": "simple but they are a little more",
+      "start": 486.879,
+      "duration": 3.681
+    },
+    {
+      "text": "complicated than that but we will leave",
+      "start": 488.919,
+      "duration": 4.24
+    },
+    {
+      "text": "that uh definition for later but",
+      "start": 490.56,
+      "duration": 4.28
+    },
+    {
+      "text": "embeddings are then stored in a vector",
+      "start": 493.159,
+      "duration": 3.681
+    },
+    {
+      "text": "database imagine a Shelf with different",
+      "start": 494.84,
+      "duration": 3.88
+    },
+    {
+      "text": "boxes like I said happy and Joy are",
+      "start": 496.84,
+      "duration": 4.919
+    },
+    {
+      "text": "similar words so they sit in a uh sit in",
+      "start": 498.72,
+      "duration": 5.759
+    },
+    {
+      "text": "the same box right that's how uh Vector",
+      "start": 501.759,
+      "duration": 5.241
+    },
+    {
+      "text": "databases make it easy to extract words",
+      "start": 504.479,
+      "duration": 5.12
+    },
+    {
+      "text": "quickly right and llms are just",
+      "start": 507.0,
+      "duration": 4.56
+    },
+    {
+      "text": "beautiful storytellers if you if you",
+      "start": 509.599,
+      "duration": 4.36
+    },
+    {
+      "text": "don't realize already but yes while this",
+      "start": 511.56,
+      "duration": 4.12
+    },
+    {
+      "text": "is happening I can take any questions if",
+      "start": 513.959,
+      "duration": 3.361
+    },
+    {
+      "text": "you have if not we can still do it at",
+      "start": 515.68,
+      "duration": 4.479
+    },
+    {
+      "text": "the end but that's how you initialize",
+      "start": 517.32,
+      "duration": 5.44
+    },
+    {
+      "text": "right the last step that we have is gyet",
+      "start": 520.159,
+      "duration": 4.641
+    },
+    {
+      "text": "start right you can post the questions",
+      "start": 522.76,
+      "duration": 4.84
+    },
+    {
+      "text": "in the chat or we can do it later no",
+      "start": 524.8,
+      "duration": 5.2
+    },
+    {
+      "text": "problem how are you feeling so far all",
+      "start": 527.6,
+      "duration": 5.52
+    },
+    {
+      "text": "good you can you can react uh so that I",
+      "start": 530.0,
+      "duration": 5.32
+    },
+    {
+      "text": "know how you feeling if this is too rush",
+      "start": 533.12,
+      "duration": 4.68
+    },
+    {
+      "text": "apologies we have a lot to cover uh but",
+      "start": 535.32,
+      "duration": 4.16
+    },
+    {
+      "text": "I'll I promise I'll take questions all",
+      "start": 537.8,
+      "duration": 4.92
+    },
+    {
+      "text": "or I'm always answering questions on the",
+      "start": 539.48,
+      "duration": 6.16
+    },
+    {
+      "text": "uh Discord Channel as well it's me my",
+      "start": 542.72,
+      "duration": 6.32
+    },
+    {
+      "text": "user ID is HK space Gia so you can reach",
+      "start": 545.64,
+      "duration": 5.16
+    },
+    {
+      "text": "out to me on the Discord channel for",
+      "start": 549.04,
+      "duration": 4.64
+    },
+    {
+      "text": "Gaia colland Bounty as well in case you",
+      "start": 550.8,
+      "duration": 6.479
+    },
+    {
+      "text": "have questions or if you run into",
+      "start": 553.68,
+      "duration": 3.599
+    },
+    {
+      "text": "issues okay Alex uh right the question",
+      "start": 561.839,
+      "duration": 4.641
+    },
+    {
+      "text": "is at a higher level what is gyet",
+      "start": 564.92,
+      "duration": 3.919
+    },
+    {
+      "text": "replacing like I'm not as familiar with",
+      "start": 566.48,
+      "duration": 5.16
+    },
+    {
+      "text": "gyet I think it's a great question Gaia",
+      "start": 568.839,
+      "duration": 7.321
+    },
+    {
+      "text": "is uh your way to run AI agents locally",
+      "start": 571.64,
+      "duration": 6.16
+    },
+    {
+      "text": "today what happens is you don't know",
+      "start": 576.16,
+      "duration": 4.04
+    },
+    {
+      "text": "what how your data is being used uh with",
+      "start": 577.8,
+      "duration": 6.68
+    },
+    {
+      "text": "all the centralized uh uh llm providers",
+      "start": 580.2,
+      "duration": 7.44
+    },
+    {
+      "text": "like chat GPT but what Gaia brings to",
+      "start": 584.48,
+      "duration": 4.919
+    },
+    {
+      "text": "the table is everything runs on your",
+      "start": 587.64,
+      "duration": 3.52
+    },
+    {
+      "text": "machine you can bring your own",
+      "start": 589.399,
+      "duration": 3.88
+    },
+    {
+      "text": "specialized knowledge base and create a",
+      "start": 591.16,
+      "duration": 4.6
+    },
+    {
+      "text": "agents that are specifically fine-tuned",
+      "start": 593.279,
+      "duration": 4.841
+    },
+    {
+      "text": "to your data set and also behave in a",
+      "start": 595.76,
+      "duration": 4.319
+    },
+    {
+      "text": "certain way that you want the agent to",
+      "start": 598.12,
+      "duration": 4.12
+    },
+    {
+      "text": "behave and you have full control over it",
+      "start": 600.079,
+      "duration": 3.801
+    },
+    {
+      "text": "right if you if you want to fine tune",
+      "start": 602.24,
+      "duration": 3.24
+    },
+    {
+      "text": "your model you have full control of fine",
+      "start": 603.88,
+      "duration": 4.12
+    },
+    {
+      "text": "tuning it everything sits in the like I",
+      "start": 605.48,
+      "duration": 4.08
+    },
+    {
+      "text": "said in your machine itself wherever",
+      "start": 608.0,
+      "duration": 3.56
+    },
+    {
+      "text": "you're running it in your local machine",
+      "start": 609.56,
+      "duration": 3.76
+    },
+    {
+      "text": "or in a server if you're running it in a",
+      "start": 611.56,
+      "duration": 3.6
+    },
+    {
+      "text": "server but yeah you have full control",
+      "start": 613.32,
+      "duration": 5.079
+    },
+    {
+      "text": "over everything that you run through the",
+      "start": 615.16,
+      "duration": 4.72
+    },
+    {
+      "text": "node I think that's the biggest",
+      "start": 618.399,
+      "duration": 6.281
+    },
+    {
+      "text": "differentiator of gu uh AMA yes what AMA",
+      "start": 619.88,
+      "duration": 7.399
+    },
+    {
+      "text": "uh the main difference between ganet and",
+      "start": 624.68,
+      "duration": 6.64
+    },
+    {
+      "text": "ama if I were to put it",
+      "start": 627.279,
+      "duration": 4.041
+    },
+    {
+      "text": "is a ga is decentralized which means",
+      "start": 631.44,
+      "duration": 7.04
+    },
+    {
+      "text": "you've seen domains right if I go back",
+      "start": 636.399,
+      "duration": 5.321
+    },
+    {
+      "text": "to uh the node example that I was",
+      "start": 638.48,
+      "duration": 5.359
+    },
+    {
+      "text": "showing if you are running a node you",
+      "start": 641.72,
+      "duration": 3.84
+    },
+    {
+      "text": "can attach your node to a specific",
+      "start": 643.839,
+      "duration": 3.961
+    },
+    {
+      "text": "domain and this is where decentralized",
+      "start": 645.56,
+      "duration": 3.92
+    },
+    {
+      "text": "inference com comes into picture like I",
+      "start": 647.8,
+      "duration": 3.839
+    },
+    {
+      "text": "said every node has a wallet address as",
+      "start": 649.48,
+      "duration": 4.88
+    },
+    {
+      "text": "well and decentralized inference is if",
+      "start": 651.639,
+      "duration": 4.681
+    },
+    {
+      "text": "you are only running a node right you",
+      "start": 654.36,
+      "duration": 4.24
+    },
+    {
+      "text": "can attach it to a specific domain and",
+      "start": 656.32,
+      "duration": 4.319
+    },
+    {
+      "text": "then you can also earn rewards for",
+      "start": 658.6,
+      "duration": 4.88
+    },
+    {
+      "text": "contributing to the network and if for",
+      "start": 660.639,
+      "duration": 4.521
+    },
+    {
+      "text": "somebody like me if I'm an agent",
+      "start": 663.48,
+      "duration": 3.599
+    },
+    {
+      "text": "developer app developer or an agent",
+      "start": 665.16,
+      "duration": 4.76
+    },
+    {
+      "text": "developer for me to be able to consume",
+      "start": 667.079,
+      "duration": 7.081
+    },
+    {
+      "text": "your node or your uh domain for the",
+      "start": 669.92,
+      "duration": 7.12
+    },
+    {
+      "text": "inference I'll be able to pay you right",
+      "start": 674.16,
+      "duration": 4.32
+    },
+    {
+      "text": "that's you that's how you also make",
+      "start": 677.04,
+      "duration": 3.44
+    },
+    {
+      "text": "money and also contribute back to the",
+      "start": 678.48,
+      "duration": 3.68
+    },
+    {
+      "text": "inference itself",
+      "start": 680.48,
+      "duration": 4.159
+    },
+    {
+      "text": "so that's those are some differentiators",
+      "start": 682.16,
+      "duration": 5.799
+    },
+    {
+      "text": "AMA lets you run local models but GA is",
+      "start": 684.639,
+      "duration": 7.2
+    },
+    {
+      "text": "a step uh beyond that where you get",
+      "start": 687.959,
+      "duration": 6.56
+    },
+    {
+      "text": "control over everything that you need to",
+      "start": 691.839,
+      "duration": 4.841
+    },
+    {
+      "text": "run an AA agent with customizable",
+      "start": 694.519,
+      "duration": 4.161
+    },
+    {
+      "text": "knowledge base and also generate",
+      "start": 696.68,
+      "duration": 4.76
+    },
+    {
+      "text": "embeddings through uh your agent",
+      "start": 698.68,
+      "duration": 6.92
+    },
+    {
+      "text": "itself yeah that's how I would put",
+      "start": 701.44,
+      "duration": 4.16
+    },
+    {
+      "text": "it yes I will get to I will get to how",
+      "start": 706.36,
+      "duration": 5.12
+    },
+    {
+      "text": "you can use gyet with other platforms uh",
+      "start": 708.639,
+      "duration": 5.961
+    },
+    {
+      "text": "no actually ganet doesn't replace Eliza",
+      "start": 711.48,
+      "duration": 6.44
+    },
+    {
+      "text": "or uh coin cdp's agent kit in fact you",
+      "start": 714.6,
+      "duration": 6.6
+    },
+    {
+      "text": "can use Gaia as the llm inference",
+      "start": 717.92,
+      "duration": 6.64
+    },
+    {
+      "text": "provider for both Eliza or even F data",
+      "start": 721.2,
+      "duration": 7.28
+    },
+    {
+      "text": "or cdps agent kit and use it as the one",
+      "start": 724.56,
+      "duration": 6.2
+    },
+    {
+      "text": "that translates natural language into",
+      "start": 728.48,
+      "duration": 4.12
+    },
+    {
+      "text": "actions which is where tool calling will",
+      "start": 730.76,
+      "duration": 3.36
+    },
+    {
+      "text": "come into picture but let me quickly do",
+      "start": 732.6,
+      "duration": 3.84
+    },
+    {
+      "text": "gyet start right the last command that",
+      "start": 734.12,
+      "duration": 3.839
+    },
+    {
+      "text": "you will need to be able to run your own",
+      "start": 736.44,
+      "duration": 4.16
+    },
+    {
+      "text": "node right so once you do gyet start",
+      "start": 737.959,
+      "duration": 4.601
+    },
+    {
+      "text": "what will happen is you will get you you",
+      "start": 740.6,
+      "duration": 3.4
+    },
+    {
+      "text": "we've all seen the node address in the",
+      "start": 742.56,
+      "duration": 3.92
+    },
+    {
+      "text": "step one what you will get is the node",
+      "start": 744.0,
+      "duration": 4.16
+    },
+    {
+      "text": "address attached to a domain that you",
+      "start": 746.48,
+      "duration": 4.52
+    },
+    {
+      "text": "can quickly use in your browser or the",
+      "start": 748.16,
+      "duration": 5.799
+    },
+    {
+      "text": "open a compatible API uh and start",
+      "start": 751.0,
+      "duration": 5.16
+    },
+    {
+      "text": "building applications and one quick",
+      "start": 753.959,
+      "duration": 3.68
+    },
+    {
+      "text": "thing that I want to mention is if you",
+      "start": 756.16,
+      "duration": 5.16
+    },
+    {
+      "text": "see that your node stops after this step",
+      "start": 757.639,
+      "duration": 5.88
+    },
+    {
+      "text": "that means either your machine is not",
+      "start": 761.32,
+      "duration": 4.6
+    },
+    {
+      "text": "capable of running that model or there",
+      "start": 763.519,
+      "duration": 4.641
+    },
+    {
+      "text": "is a problem in your config.js I'll show",
+      "start": 765.92,
+      "duration": 4.4
+    },
+    {
+      "text": "you where the config.js is but if it",
+      "start": 768.16,
+      "duration": 4.08
+    },
+    {
+      "text": "stops here that's one thing that we've",
+      "start": 770.32,
+      "duration": 4.24
+    },
+    {
+      "text": "noticed in common uh some of the errors",
+      "start": 772.24,
+      "duration": 4.52
+    },
+    {
+      "text": "that most of our developers face but if",
+      "start": 774.56,
+      "duration": 3.88
+    },
+    {
+      "text": "you see all of this then your node is",
+      "start": 776.76,
+      "duration": 3.56
+    },
+    {
+      "text": "perfectly working like you can see this",
+      "start": 778.44,
+      "duration": 4.48
+    },
+    {
+      "text": "is the domain that we have you can now",
+      "start": 780.32,
+      "duration": 3.879
+    },
+    {
+      "text": "simply open this in the browser and",
+      "start": 782.92,
+      "duration": 2.52
+    },
+    {
+      "text": "start interacting with it that's how",
+      "start": 784.199,
+      "duration": 3.921
+    },
+    {
+      "text": "simple it is what we have here is like I",
+      "start": 785.44,
+      "duration": 5.28
+    },
+    {
+      "text": "said a default model then there is the",
+      "start": 788.12,
+      "duration": 5.24
+    },
+    {
+      "text": "API itself you can simply run this Cur",
+      "start": 790.72,
+      "duration": 5.4
+    },
+    {
+      "text": "command and it'll respond and this",
+      "start": 793.36,
+      "duration": 4.599
+    },
+    {
+      "text": "entirely is responding from my own",
+      "start": 796.12,
+      "duration": 3.44
+    },
+    {
+      "text": "machine there is no internet access to",
+      "start": 797.959,
+      "duration": 4.68
+    },
+    {
+      "text": "this right this is from my machine and",
+      "start": 799.56,
+      "duration": 5.519
+    },
+    {
+      "text": "now you can also do chat with this node",
+      "start": 802.639,
+      "duration": 4.601
+    },
+    {
+      "text": "and talk to the node directly from the",
+      "start": 805.079,
+      "duration": 4.2
+    },
+    {
+      "text": "browser you should be able to see the",
+      "start": 807.24,
+      "duration": 4.039
+    },
+    {
+      "text": "node address here and the model right",
+      "start": 809.279,
+      "duration": 3.721
+    },
+    {
+      "text": "when you say start you can also",
+      "start": 811.279,
+      "duration": 3.36
+    },
+    {
+      "text": "customize the system prompt here this is",
+      "start": 813.0,
+      "duration": 3.72
+    },
+    {
+      "text": "the default system prompt like you can",
+      "start": 814.639,
+      "duration": 5.121
+    },
+    {
+      "text": "see it is going to it it is an",
+      "start": 816.72,
+      "duration": 5.08
+    },
+    {
+      "text": "intelligent programmer powered by quen",
+      "start": 819.76,
+      "duration": 4.759
+    },
+    {
+      "text": "coder model and it'll help answer",
+      "start": 821.8,
+      "duration": 4.52
+    },
+    {
+      "text": "questions related to coding you can",
+      "start": 824.519,
+      "duration": 3.12
+    },
+    {
+      "text": "customize this based on the knowledge",
+      "start": 826.32,
+      "duration": 2.519
+    },
+    {
+      "text": "base let's say you are providing a",
+      "start": 827.639,
+      "duration": 4.12
+    },
+    {
+      "text": "knowledge base in Rusk or solidity uh",
+      "start": 828.839,
+      "duration": 4.881
+    },
+    {
+      "text": "you can customize this thing you expert",
+      "start": 831.759,
+      "duration": 5.32
+    },
+    {
+      "text": "in Rust please respond to users queries",
+      "start": 833.72,
+      "duration": 6.479
+    },
+    {
+      "text": "in uh the best possible planner and yeah",
+      "start": 837.079,
+      "duration": 4.32
+    },
+    {
+      "text": "you can play around with the system",
+      "start": 840.199,
+      "duration": 3.601
+    },
+    {
+      "text": "prompt and the rack prompt to get better",
+      "start": 841.399,
+      "duration": 4.521
+    },
+    {
+      "text": "responses you can also tell how the llm",
+      "start": 843.8,
+      "duration": 4.279
+    },
+    {
+      "text": "should respond uh either in bullet",
+      "start": 845.92,
+      "duration": 4.599
+    },
+    {
+      "text": "points or essentially how the format you",
+      "start": 848.079,
+      "duration": 4.56
+    },
+    {
+      "text": "want right but if you want structured",
+      "start": 850.519,
+      "duration": 5.161
+    },
+    {
+      "text": "outputs you should need a larger model",
+      "start": 852.639,
+      "duration": 5.481
+    },
+    {
+      "text": "because in the smaller models structured",
+      "start": 855.68,
+      "duration": 5.399
+    },
+    {
+      "text": "outputs and Tool calling is uh not",
+      "start": 858.12,
+      "duration": 4.399
+    },
+    {
+      "text": "possible right you will need a bigger",
+      "start": 861.079,
+      "duration": 3.521
+    },
+    {
+      "text": "model like a 32 billion parameter model",
+      "start": 862.519,
+      "duration": 4.601
+    },
+    {
+      "text": "to get tool calling out of the box right",
+      "start": 864.6,
+      "duration": 5.64
+    },
+    {
+      "text": "uh that's that's how you uh spin up a",
+      "start": 867.12,
+      "duration": 6.399
+    },
+    {
+      "text": "node and use it right this is the API",
+      "start": 870.24,
+      "duration": 5.08
+    },
+    {
+      "text": "tutorial like I said we called the API",
+      "start": 873.519,
+      "duration": 5.041
+    },
+    {
+      "text": "here that's how you spin up on Guan node",
+      "start": 875.32,
+      "duration": 6.68
+    },
+    {
+      "text": "uh all from our local machine so now if",
+      "start": 878.56,
+      "duration": 5.32
+    },
+    {
+      "text": "I go back to my command line I'm going",
+      "start": 882.0,
+      "duration": 3.36
+    },
+    {
+      "text": "to quickly show you where this sits you",
+      "start": 883.88,
+      "duration": 4.0
+    },
+    {
+      "text": "can simply go to ganet as the folder let",
+      "start": 885.36,
+      "duration": 4.44
+    },
+    {
+      "text": "me clear this for you to be able to see",
+      "start": 887.88,
+      "duration": 4.04
+    },
+    {
+      "text": "this better if you go to ganet folder",
+      "start": 889.8,
+      "duration": 3.839
+    },
+    {
+      "text": "here is where all the files are all",
+      "start": 891.92,
+      "duration": 4.0
+    },
+    {
+      "text": "right let me expand this these are all",
+      "start": 893.639,
+      "duration": 4.961
+    },
+    {
+      "text": "the files config.js is where everything",
+      "start": 895.92,
+      "duration": 5.2
+    },
+    {
+      "text": "sits right the llm URL the knowledge",
+      "start": 898.6,
+      "duration": 4.799
+    },
+    {
+      "text": "based URL I'll show you that but you",
+      "start": 901.12,
+      "duration": 4.6
+    },
+    {
+      "text": "should also remember that node ID JM is",
+      "start": 903.399,
+      "duration": 7.641
+    },
+    {
+      "text": "where your unique node ID is sitting and",
+      "start": 905.72,
+      "duration": 5.32
+    },
+    {
+      "text": "the device ID and node ID are both used",
+      "start": 912.04,
+      "duration": 6.919
+    },
+    {
+      "text": "to connect to the Gaia protocol now how",
+      "start": 915.6,
+      "duration": 5.96
+    },
+    {
+      "text": "do you do that simply go to our docs and",
+      "start": 918.959,
+      "duration": 4.161
+    },
+    {
+      "text": "you should be able to see a joining the",
+      "start": 921.56,
+      "duration": 3.56
+    },
+    {
+      "text": "guia protocol this is where you can come",
+      "start": 923.12,
+      "duration": 3.8
+    },
+    {
+      "text": "go through the tutorial and contribute",
+      "start": 925.12,
+      "duration": 3.92
+    },
+    {
+      "text": "back to the decentralized inference that",
+      "start": 926.92,
+      "duration": 4.64
+    },
+    {
+      "text": "was talking about earlier right this you",
+      "start": 929.04,
+      "duration": 4.32
+    },
+    {
+      "text": "should keep this important if you are",
+      "start": 931.56,
+      "duration": 4.199
+    },
+    {
+      "text": "installing the node or reinstalling it",
+      "start": 933.36,
+      "duration": 5.039
+    },
+    {
+      "text": "if you don't want the address to change",
+      "start": 935.759,
+      "duration": 5.52
+    },
+    {
+      "text": "right can guyan noes call external apis",
+      "start": 938.399,
+      "duration": 5.521
+    },
+    {
+      "text": "like web search that should be possible",
+      "start": 941.279,
+      "duration": 4.24
+    },
+    {
+      "text": "but you will need tool calling enabled",
+      "start": 943.92,
+      "duration": 3.839
+    },
+    {
+      "text": "like I said you will need a larger model",
+      "start": 945.519,
+      "duration": 4.481
+    },
+    {
+      "text": "for Tool calling but if you want to use",
+      "start": 947.759,
+      "duration": 3.921
+    },
+    {
+      "text": "tool calling specifically let's say with",
+      "start": 950.0,
+      "duration": 4.079
+    },
+    {
+      "text": "the agent gate uh I would recommend you",
+      "start": 951.68,
+      "duration": 4.599
+    },
+    {
+      "text": "use one of our public noes what we have",
+      "start": 954.079,
+      "duration": 4.12
+    },
+    {
+      "text": "also done is in the public notes section",
+      "start": 956.279,
+      "duration": 3.521
+    },
+    {
+      "text": "on the left we have",
+      "start": 958.199,
+      "duration": 3.76
+    },
+    {
+      "text": "uh we are running some nodes that you",
+      "start": 959.8,
+      "duration": 3.719
+    },
+    {
+      "text": "can use for Tool calling like we have a",
+      "start": 961.959,
+      "duration": 3.88
+    },
+    {
+      "text": "voice to text model whisper V2 large",
+      "start": 963.519,
+      "duration": 3.841
+    },
+    {
+      "text": "running on this domain this is also",
+      "start": 965.839,
+      "duration": 4.041
+    },
+    {
+      "text": "opena compatible you can use this and uh",
+      "start": 967.36,
+      "duration": 5.039
+    },
+    {
+      "text": "for specifically for Tool calling if you",
+      "start": 969.88,
+      "duration": 5.319
+    },
+    {
+      "text": "are using uh let's say agent kit right I",
+      "start": 972.399,
+      "duration": 5.401
+    },
+    {
+      "text": "would recommend you use lat tool. us.",
+      "start": 975.199,
+      "duration": 7.401
+    },
+    {
+      "text": "guy. Network as the uh base URL right",
+      "start": 977.8,
+      "duration": 6.279
+    },
+    {
+      "text": "I'm going to drop this in the chat for",
+      "start": 982.6,
+      "duration": 3.039
+    },
+    {
+      "text": "you all of you to be able to remember",
+      "start": 984.079,
+      "duration": 4.2
+    },
+    {
+      "text": "this but this one by default comes with",
+      "start": 985.639,
+      "duration": 4.0
+    },
+    {
+      "text": "uh tool quality",
+      "start": 988.279,
+      "duration": 2.961
+    },
+    {
+      "text": "right you should be able to use this and",
+      "start": 989.639,
+      "duration": 3.241
+    },
+    {
+      "text": "call any external",
+      "start": 991.24,
+      "duration": 5.0
+    },
+    {
+      "text": "API right be it uh let's say you you've",
+      "start": 992.88,
+      "duration": 5.24
+    },
+    {
+      "text": "created a subgraph and you want to fetch",
+      "start": 996.24,
+      "duration": 3.92
+    },
+    {
+      "text": "some specific statistics from a from",
+      "start": 998.12,
+      "duration": 3.6
+    },
+    {
+      "text": "your own smart contract you should be",
+      "start": 1000.16,
+      "duration": 4.2
+    },
+    {
+      "text": "able to do that by using this one by",
+      "start": 1001.72,
+      "duration": 4.4
+    },
+    {
+      "text": "default if you're running a model it",
+      "start": 1004.36,
+      "duration": 3.88
+    },
+    {
+      "text": "will not work right uh especially the",
+      "start": 1006.12,
+      "duration": 4.12
+    },
+    {
+      "text": "one that I showed you it will not work",
+      "start": 1008.24,
+      "duration": 3.64
+    },
+    {
+      "text": "right so this is the llm like you can",
+      "start": 1010.24,
+      "duration": 3.399
+    },
+    {
+      "text": "see everything is here there is no",
+      "start": 1011.88,
+      "duration": 4.04
+    },
+    {
+      "text": "internet call by default right so if you",
+      "start": 1013.639,
+      "duration": 4.44
+    },
+    {
+      "text": "delete this your node will stop working",
+      "start": 1015.92,
+      "duration": 5.039
+    },
+    {
+      "text": "that's how simple it is and let's also",
+      "start": 1018.079,
+      "duration": 6.161
+    },
+    {
+      "text": "quickly see how uh you can use collab a",
+      "start": 1020.959,
+      "duration": 6.6
+    },
+    {
+      "text": "and start that lets you connect first of",
+      "start": 1024.24,
+      "duration": 5.76
+    },
+    {
+      "text": "all your node that we just launched uh",
+      "start": 1027.559,
+      "duration": 5.76
+    },
+    {
+      "text": "and run llm inference uh and I'm not",
+      "start": 1030.0,
+      "duration": 5.319
+    },
+    {
+      "text": "going to deploy a telegram bot in this",
+      "start": 1033.319,
+      "duration": 3.72
+    },
+    {
+      "text": "example because we don't have that much",
+      "start": 1035.319,
+      "duration": 3.48
+    },
+    {
+      "text": "time today but I'm going to show you how",
+      "start": 1037.039,
+      "duration": 3.201
+    },
+    {
+      "text": "set how to set up the environment",
+      "start": 1038.799,
+      "duration": 2.961
+    },
+    {
+      "text": "variables and all of that in the a Ag",
+      "start": 1040.24,
+      "duration": 4.719
+    },
+    {
+      "text": "and start right so remember using Gaia",
+      "start": 1041.76,
+      "duration": 6.64
+    },
+    {
+      "text": "and also the a init is mandatory for our",
+      "start": 1044.959,
+      "duration": 6.08
+    },
+    {
+      "text": "bounty right we've also posted some",
+      "start": 1048.4,
+      "duration": 4.48
+    },
+    {
+      "text": "examples of what you should build but",
+      "start": 1051.039,
+      "duration": 4.201
+    },
+    {
+      "text": "remember these are not set in place if",
+      "start": 1052.88,
+      "duration": 4.52
+    },
+    {
+      "text": "you want to build something else uh",
+      "start": 1055.24,
+      "duration": 4.08
+    },
+    {
+      "text": "please do so right these are only some",
+      "start": 1057.4,
+      "duration": 3.44
+    },
+    {
+      "text": "examples that I wanted to share through",
+      "start": 1059.32,
+      "duration": 3.92
+    },
+    {
+      "text": "the Bounty but please go through all the",
+      "start": 1060.84,
+      "duration": 4.36
+    },
+    {
+      "text": "bounties and also the additional prices",
+      "start": 1063.24,
+      "duration": 4.52
+    },
+    {
+      "text": "that we have right the AA agent startet",
+      "start": 1065.2,
+      "duration": 4.359
+    },
+    {
+      "text": "from collab land link is available in",
+      "start": 1067.76,
+      "duration": 4.2
+    },
+    {
+      "text": "the Bounty page I'm going to drop the",
+      "start": 1069.559,
+      "duration": 5.161
+    },
+    {
+      "text": "link to this uh GitHub repo in the chat",
+      "start": 1071.96,
+      "duration": 5.88
+    },
+    {
+      "text": "as well for all of you to use it right a",
+      "start": 1074.72,
+      "duration": 5.36
+    },
+    {
+      "text": "agent start kit is based on Aliza",
+      "start": 1077.84,
+      "duration": 5.56
+    },
+    {
+      "text": "originally and this lets you uh launch a",
+      "start": 1080.08,
+      "duration": 6.92
+    },
+    {
+      "text": "agents in Twitter Discord um Telegram",
+      "start": 1083.4,
+      "duration": 6.44
+    },
+    {
+      "text": "and also use lit protocol for lit",
+      "start": 1087.0,
+      "duration": 5.679
+    },
+    {
+      "text": "actions where you can abstract away your",
+      "start": 1089.84,
+      "duration": 5.719
+    },
+    {
+      "text": "um wallet keys private keys and all of",
+      "start": 1092.679,
+      "duration": 6.161
+    },
+    {
+      "text": "that right so please go through the repo",
+      "start": 1095.559,
+      "duration": 5.881
+    },
+    {
+      "text": "this is very extensive uh in terms of",
+      "start": 1098.84,
+      "duration": 4.88
+    },
+    {
+      "text": "what all features there are you will",
+      "start": 1101.44,
+      "duration": 4.16
+    },
+    {
+      "text": "know notice that once I start installing",
+      "start": 1103.72,
+      "duration": 6.079
+    },
+    {
+      "text": "the CLI right so let me uh clone the",
+      "start": 1105.6,
+      "duration": 7.52
+    },
+    {
+      "text": "a stter kit I'm going to do get clone",
+      "start": 1109.799,
+      "duration": 5.76
+    },
+    {
+      "text": "and run this this should be very quick",
+      "start": 1113.12,
+      "duration": 4.0
+    },
+    {
+      "text": "very simple very",
+      "start": 1115.559,
+      "duration": 3.561
+    },
+    {
+      "text": "straightforward let me go into it the",
+      "start": 1117.12,
+      "duration": 3.12
+    },
+    {
+      "text": "first step that you need to do is",
+      "start": 1119.12,
+      "duration": 4.08
+    },
+    {
+      "text": "obviously install the dependencies and",
+      "start": 1120.24,
+      "duration": 4.52
+    },
+    {
+      "text": "while the dependencies are being",
+      "start": 1123.2,
+      "duration": 3.0
+    },
+    {
+      "text": "installed uh you should be able to",
+      "start": 1124.76,
+      "duration": 3.36
+    },
+    {
+      "text": "scroll down and see the project",
+      "start": 1126.2,
+      "duration": 3.8
+    },
+    {
+      "text": "structure unlike Eliza there is a back",
+      "start": 1128.12,
+      "duration": 4.96
+    },
+    {
+      "text": "end and a front end here so there is a",
+      "start": 1130.0,
+      "duration": 6.08
+    },
+    {
+      "text": "client and a server architecture and",
+      "start": 1133.08,
+      "duration": 4.56
+    },
+    {
+      "text": "these are all the environment variables",
+      "start": 1136.08,
+      "duration": 2.959
+    },
+    {
+      "text": "that you have to set up when you are",
+      "start": 1137.64,
+      "duration": 4.72
+    },
+    {
+      "text": "using the uh collab land a and start kit",
+      "start": 1139.039,
+      "duration": 5.081
+    },
+    {
+      "text": "I would recommend you get the collab",
+      "start": 1142.36,
+      "duration": 4.88
+    },
+    {
+      "text": "land API key and guy models are also",
+      "start": 1144.12,
+      "duration": 5.08
+    },
+    {
+      "text": "available through these environment",
+      "start": 1147.24,
+      "duration": 3.16
+    },
+    {
+      "text": "variables I'm going to show you how to",
+      "start": 1149.2,
+      "duration": 3.08
+    },
+    {
+      "text": "set them up in the environment variables",
+      "start": 1150.4,
+      "duration": 3.759
+    },
+    {
+      "text": "file you can also bring your Eliza",
+      "start": 1152.28,
+      "duration": 3.519
+    },
+    {
+      "text": "character if you have something already",
+      "start": 1154.159,
+      "duration": 3.201
+    },
+    {
+      "text": "set up using",
+      "start": 1155.799,
+      "duration": 4.88
+    },
+    {
+      "text": "Eliza and yes like you can see there is",
+      "start": 1157.36,
+      "duration": 5.76
+    },
+    {
+      "text": "uh Twitter integration available there",
+      "start": 1160.679,
+      "duration": 4.401
+    },
+    {
+      "text": "is Discord integration there is Joker is",
+      "start": 1163.12,
+      "duration": 3.559
+    },
+    {
+      "text": "integration there is GitHub integration",
+      "start": 1165.08,
+      "duration": 3.32
+    },
+    {
+      "text": "all out the box all you have to do is",
+      "start": 1166.679,
+      "duration": 3.201
+    },
+    {
+      "text": "set the these parameters and it will",
+      "start": 1168.4,
+      "duration": 3.32
+    },
+    {
+      "text": "start working in fact there is orbit",
+      "start": 1169.88,
+      "duration": 3.96
+    },
+    {
+      "text": "studio also uh available in the",
+      "start": 1171.72,
+      "duration": 6.319
+    },
+    {
+      "text": "integration but yes that's uh the agent",
+      "start": 1173.84,
+      "duration": 8.839
+    },
+    {
+      "text": "kit so build is done now let's see the",
+      "start": 1178.039,
+      "duration": 7.961
+    },
+    {
+      "text": "next step is to I think run this yes",
+      "start": 1182.679,
+      "duration": 6.561
+    },
+    {
+      "text": "pnpm run Dev when you do pnpm run Dev on",
+      "start": 1186.0,
+      "duration": 5.679
+    },
+    {
+      "text": "the a agent start kit it will start",
+      "start": 1189.24,
+      "duration": 6.0
+    },
+    {
+      "text": "asking for all the environment variables",
+      "start": 1191.679,
+      "duration": 5.761
+    },
+    {
+      "text": "right so you can set them right from",
+      "start": 1195.24,
+      "duration": 4.799
+    },
+    {
+      "text": "here like you can see there is the",
+      "start": 1197.44,
+      "duration": 4.92
+    },
+    {
+      "text": "public",
+      "start": 1200.039,
+      "duration": 2.321
+    },
+    {
+      "text": "URL Sean uh Sean is asking does ask",
+      "start": 1202.72,
+      "duration": 6.12
+    },
+    {
+      "text": "support voice for agents uh I haven't",
+      "start": 1205.96,
+      "duration": 5.079
+    },
+    {
+      "text": "specifically tried ask for voice I don't",
+      "start": 1208.84,
+      "duration": 4.6
+    },
+    {
+      "text": "think it supports but please correct me",
+      "start": 1211.039,
+      "duration": 4.961
+    },
+    {
+      "text": "if I'm wrong uh if you're trying it out",
+      "start": 1213.44,
+      "duration": 5.359
+    },
+    {
+      "text": "but yeah I haven't tried for voice yet",
+      "start": 1216.0,
+      "duration": 5.48
+    },
+    {
+      "text": "like you can see it'll start asking for",
+      "start": 1218.799,
+      "duration": 4.641
+    },
+    {
+      "text": "all the environment variables right it",
+      "start": 1221.48,
+      "duration": 3.4
+    },
+    {
+      "text": "will not work because I'm not setting",
+      "start": 1223.44,
+      "duration": 3.479
+    },
+    {
+      "text": "anything I'm just showing you how to run",
+      "start": 1224.88,
+      "duration": 3.919
+    },
+    {
+      "text": "this right so here is where you can set",
+      "start": 1226.919,
+      "duration": 5.601
+    },
+    {
+      "text": "the guyet uh en environment variables",
+      "start": 1228.799,
+      "duration": 5.24
+    },
+    {
+      "text": "but for the sake of this demo what I'm",
+      "start": 1232.52,
+      "duration": 3.88
+    },
+    {
+      "text": "going to do is I'm going to go back to",
+      "start": 1234.039,
+      "duration": 5.841
+    },
+    {
+      "text": "the a agent State and open this in my",
+      "start": 1236.4,
+      "duration": 6.48
+    },
+    {
+      "text": "code editor and show you the environment",
+      "start": 1239.88,
+      "duration": 6.36
+    },
+    {
+      "text": "variables path right so the EM example",
+      "start": 1242.88,
+      "duration": 7.279
+    },
+    {
+      "text": "here is where you can add the guar",
+      "start": 1246.24,
+      "duration": 6.52
+    },
+    {
+      "text": "details right this is how you do it now",
+      "start": 1250.159,
+      "duration": 3.88
+    },
+    {
+      "text": "how do you know which model you are",
+      "start": 1252.76,
+      "duration": 3.44
+    },
+    {
+      "text": "using very simple once you get the",
+      "start": 1254.039,
+      "duration": 4.561
+    },
+    {
+      "text": "domain URL right uh if you go to the",
+      "start": 1256.2,
+      "duration": 5.56
+    },
+    {
+      "text": "domain URL that you got from the Gaia",
+      "start": 1258.6,
+      "duration": 5.559
+    },
+    {
+      "text": "CLI once you install here is the model",
+      "start": 1261.76,
+      "duration": 4.24
+    },
+    {
+      "text": "name this is where you bring it from",
+      "start": 1264.159,
+      "duration": 4.0
+    },
+    {
+      "text": "just copy this and paste it in the model",
+      "start": 1266.0,
+      "duration": 5.72
+    },
+    {
+      "text": "URL sorry Gyan netore model and then",
+      "start": 1268.159,
+      "duration": 4.4
+    },
+    {
+      "text": "this is",
+      "start": 1271.72,
+      "duration": 4.4
+    },
+    {
+      "text": "your server URL followed by V1 and then",
+      "start": 1272.559,
+      "duration": 5.321
+    },
+    {
+      "text": "the embedding model is also mentioned",
+      "start": 1276.12,
+      "duration": 4.64
+    },
+    {
+      "text": "here by default it is a nomic embed",
+      "start": 1277.88,
+      "duration": 5.279
+    },
+    {
+      "text": "embedding model and if you want to",
+      "start": 1280.76,
+      "duration": 4.96
+    },
+    {
+      "text": "generate embeddings and use gyet",
+      "start": 1283.159,
+      "duration": 4.0
+    },
+    {
+      "text": "embeddings you can always set this to",
+      "start": 1285.72,
+      "duration": 4.199
+    },
+    {
+      "text": "true I would said it to true but yes",
+      "start": 1287.159,
+      "duration": 4.281
+    },
+    {
+      "text": "this is where you add all the",
+      "start": 1289.919,
+      "duration": 3.081
+    },
+    {
+      "text": "environment variables depending on where",
+      "start": 1291.44,
+      "duration": 3.359
+    },
+    {
+      "text": "you are launching the agent if you're",
+      "start": 1293.0,
+      "duration": 3.64
+    },
+    {
+      "text": "launching the agent only on let's say",
+      "start": 1294.799,
+      "duration": 4.321
+    },
+    {
+      "text": "telegram I would only add the telegram",
+      "start": 1296.64,
+      "duration": 5.159
+    },
+    {
+      "text": "bot token and then test it out right but",
+      "start": 1299.12,
+      "duration": 6.08
+    },
+    {
+      "text": "you can always add the other parameters",
+      "start": 1301.799,
+      "duration": 5.401
+    },
+    {
+      "text": "here by default this is the character",
+      "start": 1305.2,
+      "duration": 4.12
+    },
+    {
+      "text": "Json file you can always update this to",
+      "start": 1307.2,
+      "duration": 3.88
+    },
+    {
+      "text": "a specific character let's say you're",
+      "start": 1309.32,
+      "duration": 4.32
+    },
+    {
+      "text": "training the agent on uh vitalex",
+      "start": 1311.08,
+      "duration": 5.16
+    },
+    {
+      "text": "personality and his uh content that he",
+      "start": 1313.64,
+      "duration": 3.88
+    },
+    {
+      "text": "puts out on the internet you can",
+      "start": 1316.24,
+      "duration": 3.64
+    },
+    {
+      "text": "customize this to behave like V alic",
+      "start": 1317.52,
+      "duration": 5.68
+    },
+    {
+      "text": "right uh that's the character file but",
+      "start": 1319.88,
+      "duration": 7.279
+    },
+    {
+      "text": "yes that's and of course server is the",
+      "start": 1323.2,
+      "duration": 6.32
+    },
+    {
+      "text": "back end for the a Agent stter Kid this",
+      "start": 1327.159,
+      "duration": 6.4
+    },
+    {
+      "text": "is much more simpler and less",
+      "start": 1329.52,
+      "duration": 7.159
+    },
+    {
+      "text": "um less uh in terms of the number of",
+      "start": 1333.559,
+      "duration": 5.801
+    },
+    {
+      "text": "packages uh as compared to Eliza is what",
+      "start": 1336.679,
+      "duration": 5.88
+    },
+    {
+      "text": "I would say for this one but yes this is",
+      "start": 1339.36,
+      "duration": 6.08
+    },
+    {
+      "text": "an overview of how you can run uh a and",
+      "start": 1342.559,
+      "duration": 7.441
+    },
+    {
+      "text": "start kit plus gyo so once you run gye",
+      "start": 1345.44,
+      "duration": 6.96
+    },
+    {
+      "text": "just add them into the EnV file here and",
+      "start": 1350.0,
+      "duration": 5.08
+    },
+    {
+      "text": "then pnpm run Dev and you should be good",
+      "start": 1352.4,
+      "duration": 5.44
+    },
+    {
+      "text": "to go right I would highly recommend you",
+      "start": 1355.08,
+      "duration": 4.88
+    },
+    {
+      "text": "try both these out and if you run into",
+      "start": 1357.84,
+      "duration": 4.92
+    },
+    {
+      "text": "any issues I am available on Discord and",
+      "start": 1359.96,
+      "duration": 5.04
+    },
+    {
+      "text": "with the rest of the time available I'm",
+      "start": 1362.76,
+      "duration": 3.84
+    },
+    {
+      "text": "happy to take any questions if you've",
+      "start": 1365.0,
+      "duration": 4.159
+    },
+    {
+      "text": "already tried both of these platforms",
+      "start": 1366.6,
+      "duration": 4.559
+    },
+    {
+      "text": "please let me know and uh if you have",
+      "start": 1369.159,
+      "duration": 4.361
+    },
+    {
+      "text": "any issues I can I can help you answer",
+      "start": 1371.159,
+      "duration": 5.081
+    },
+    {
+      "text": "but my recommendation as an AI agent",
+      "start": 1373.52,
+      "duration": 5.56
+    },
+    {
+      "text": "Builder if you are building an a for the",
+      "start": 1376.24,
+      "duration": 6.16
+    },
+    {
+      "text": "first time is to pick a model that fits",
+      "start": 1379.08,
+      "duration": 6.599
+    },
+    {
+      "text": "your use case right Lama 3.2 can fit",
+      "start": 1382.4,
+      "duration": 5.72
+    },
+    {
+      "text": "into specific use cases similarly if you",
+      "start": 1385.679,
+      "duration": 4.441
+    },
+    {
+      "text": "are uh if you are building an agent that",
+      "start": 1388.12,
+      "duration": 4.36
+    },
+    {
+      "text": "writes code right I would highly",
+      "start": 1390.12,
+      "duration": 5.679
+    },
+    {
+      "text": "recommend you use either mral codr or",
+      "start": 1392.48,
+      "duration": 7.4
+    },
+    {
+      "text": "quen 2.5 right and if you want if you",
+      "start": 1395.799,
+      "duration": 6.041
+    },
+    {
+      "text": "want better accurate responses you will",
+      "start": 1399.88,
+      "duration": 4.48
+    },
+    {
+      "text": "need larger models but if you want your",
+      "start": 1401.84,
+      "duration": 6.319
+    },
+    {
+      "text": "model to do very specific tasks uh then",
+      "start": 1404.36,
+      "duration": 5.919
+    },
+    {
+      "text": "I would recommend using smaller language",
+      "start": 1408.159,
+      "duration": 4.801
+    },
+    {
+      "text": "models slms like the one I showed you",
+      "start": 1410.279,
+      "duration": 4.441
+    },
+    {
+      "text": "where it is just a three billion",
+      "start": 1412.96,
+      "duration": 3.36
+    },
+    {
+      "text": "parameter model you can also use smaller",
+      "start": 1414.72,
+      "duration": 3.6
+    },
+    {
+      "text": "ones if you're running it on a smaller",
+      "start": 1416.32,
+      "duration": 3.92
+    },
+    {
+      "text": "machine so you have to consider all of",
+      "start": 1418.32,
+      "duration": 4.599
+    },
+    {
+      "text": "this before you run the a agent itself",
+      "start": 1420.24,
+      "duration": 5.919
+    },
+    {
+      "text": "right but do give uh it a shot and let",
+      "start": 1422.919,
+      "duration": 5.521
+    },
+    {
+      "text": "me know if you run into any troubles but",
+      "start": 1426.159,
+      "duration": 3.921
+    },
+    {
+      "text": "if you have any questions let's take",
+      "start": 1428.44,
+      "duration": 4.04
+    },
+    {
+      "text": "them now I hope the workshop was",
+      "start": 1430.08,
+      "duration": 4.44
+    },
+    {
+      "text": "resourceful you can drop an emoji as a",
+      "start": 1432.48,
+      "duration": 4.96
+    },
+    {
+      "text": "response or in the chat also let me know",
+      "start": 1434.52,
+      "duration": 6.519
+    },
+    {
+      "text": "uh if the workshop was helpful enough to",
+      "start": 1437.44,
+      "duration": 6.04
+    },
+    {
+      "text": "get you all",
+      "start": 1441.039,
+      "duration": 2.441
+    },
+    {
+      "text": "started while while we are getting some",
+      "start": 1447.12,
+      "duration": 5.32
+    },
+    {
+      "text": "questions or if you have any questions",
+      "start": 1449.88,
+      "duration": 4.52
+    },
+    {
+      "text": "uh there there are a couple of resources",
+      "start": 1452.44,
+      "duration": 3.599
+    },
+    {
+      "text": "I want to share in addition to our",
+      "start": 1454.4,
+      "duration": 2.759
+    },
+    {
+      "text": "GitHub",
+      "start": 1456.039,
+      "duration": 3.681
+    },
+    {
+      "text": "repo uh what is your actual target",
+      "start": 1457.159,
+      "duration": 4.481
+    },
+    {
+      "text": "audience with your tool the actual",
+      "start": 1459.72,
+      "duration": 4.76
+    },
+    {
+      "text": "target audience is for everybody to be",
+      "start": 1461.64,
+      "duration": 5.039
+    },
+    {
+      "text": "able to build specialized agents we",
+      "start": 1464.48,
+      "duration": 4.6
+    },
+    {
+      "text": "don't want another uh chat gbt",
+      "start": 1466.679,
+      "duration": 4.36
+    },
+    {
+      "text": "alternative or or something like chat",
+      "start": 1469.08,
+      "duration": 4.199
+    },
+    {
+      "text": "gbt where it is a jack of all trades I",
+      "start": 1471.039,
+      "duration": 5.601
+    },
+    {
+      "text": "think the future is highly specialized",
+      "start": 1473.279,
+      "duration": 5.76
+    },
+    {
+      "text": "customized agents and agent to agent",
+      "start": 1476.64,
+      "duration": 4.72
+    },
+    {
+      "text": "interactions right even for the Bounty",
+      "start": 1479.039,
+      "duration": 4.401
+    },
+    {
+      "text": "when we say mother of all agents it",
+      "start": 1481.36,
+      "duration": 5.199
+    },
+    {
+      "text": "means imagine like a super super human",
+      "start": 1483.44,
+      "duration": 5.52
+    },
+    {
+      "text": "of Agents right that can do multiple",
+      "start": 1486.559,
+      "duration": 4.24
+    },
+    {
+      "text": "things by interacting with other agents",
+      "start": 1488.96,
+      "duration": 4.36
+    },
+    {
+      "text": "not by doing everything by itself can we",
+      "start": 1490.799,
+      "duration": 4.841
+    },
+    {
+      "text": "use a agent kit for just next days back",
+      "start": 1493.32,
+      "duration": 5.32
+    },
+    {
+      "text": "yes you can use it like you want to what",
+      "start": 1495.64,
+      "duration": 6.56
+    },
+    {
+      "text": "is the collab land key used for uh",
+      "start": 1498.64,
+      "duration": 5.759
+    },
+    {
+      "text": "collab land is the one uh that created",
+      "start": 1502.2,
+      "duration": 4.199
+    },
+    {
+      "text": "the aent stade we are partnering with",
+      "start": 1504.399,
+      "duration": 4.52
+    },
+    {
+      "text": "them to run this uh they they are the",
+      "start": 1506.399,
+      "duration": 4.0
+    },
+    {
+      "text": "ones who created all the Integrations",
+      "start": 1508.919,
+      "duration": 2.801
+    },
+    {
+      "text": "with the Discord they are the ones who",
+      "start": 1510.399,
+      "duration": 3.28
+    },
+    {
+      "text": "are actively building the a tate and",
+      "start": 1511.72,
+      "duration": 5.04
+    },
+    {
+      "text": "supporting more developers to build uh",
+      "start": 1513.679,
+      "duration": 6.081
+    },
+    {
+      "text": "AI agents in a quick manner right if",
+      "start": 1516.76,
+      "duration": 4.399
+    },
+    {
+      "text": "let's say if you want to use a public",
+      "start": 1519.76,
+      "duration": 4.039
+    },
+    {
+      "text": "node with the a a agent start you should",
+      "start": 1521.159,
+      "duration": 4.801
+    },
+    {
+      "text": "be able to do that right one of the",
+      "start": 1523.799,
+      "duration": 3.88
+    },
+    {
+      "text": "resources that I wanted to quickly share",
+      "start": 1525.96,
+      "duration": 6.24
+    },
+    {
+      "text": "is obvious honor docs. g. you can go to",
+      "start": 1527.679,
+      "duration": 6.641
+    },
+    {
+      "text": "the guides and tutorial section we have",
+      "start": 1532.2,
+      "duration": 5.079
+    },
+    {
+      "text": "some examples including the CDP and how",
+      "start": 1534.32,
+      "duration": 7.76
+    },
+    {
+      "text": "you can use uh Gia node on an on Eliza",
+      "start": 1537.279,
+      "duration": 8.321
+    },
+    {
+      "text": "and also on CDP and uh deep seek is also",
+      "start": 1542.08,
+      "duration": 5.479
+    },
+    {
+      "text": "coming up very soon here I'm just",
+      "start": 1545.6,
+      "duration": 4.6
+    },
+    {
+      "text": "waiting for the pr to be accepted uh but",
+      "start": 1547.559,
+      "duration": 6.201
+    },
+    {
+      "text": "yes docs. g. is where you can find this",
+      "start": 1550.2,
+      "duration": 5.88
+    },
+    {
+      "text": "you have a list of agent types and then",
+      "start": 1553.76,
+      "duration": 5.12
+    },
+    {
+      "text": "what type of models work well for those",
+      "start": 1556.08,
+      "duration": 5.44
+    },
+    {
+      "text": "uh I think a great example for that",
+      "start": 1558.88,
+      "duration": 5.2
+    },
+    {
+      "text": "would be uh to seeing the existing",
+      "start": 1561.52,
+      "duration": 4.759
+    },
+    {
+      "text": "agents that we have and Which models",
+      "start": 1564.08,
+      "duration": 4.28
+    },
+    {
+      "text": "they're running on if it is a generic",
+      "start": 1566.279,
+      "duration": 4.921
+    },
+    {
+      "text": "agent that that you want to respond in",
+      "start": 1568.36,
+      "duration": 5.64
+    },
+    {
+      "text": "text I would recommend using Lama 3.0 3",
+      "start": 1571.2,
+      "duration": 5.28
+    },
+    {
+      "text": "bil parameter or 8 billion parameter for",
+      "start": 1574.0,
+      "duration": 4.559
+    },
+    {
+      "text": "coding like I said quen is a great",
+      "start": 1576.48,
+      "duration": 5.48
+    },
+    {
+      "text": "example uh and uh if you want reasoning",
+      "start": 1578.559,
+      "duration": 6.24
+    },
+    {
+      "text": "I think no question you can use deeps",
+      "start": 1581.96,
+      "duration": 6.8
+    },
+    {
+      "text": "but run it locally not using deeps API",
+      "start": 1584.799,
+      "duration": 5.441
+    },
+    {
+      "text": "uh because we don't know where that data",
+      "start": 1588.76,
+      "duration": 5.56
+    },
+    {
+      "text": "is going so run your uh a deeps model",
+      "start": 1590.24,
+      "duration": 6.159
+    },
+    {
+      "text": "locally you can run that using the",
+      "start": 1594.32,
+      "duration": 5.28
+    },
+    {
+      "text": "distal Lama 8 billion parameter version",
+      "start": 1596.399,
+      "duration": 5.681
+    },
+    {
+      "text": "and uh yeah you can find more of these",
+      "start": 1599.6,
+      "duration": 4.959
+    },
+    {
+      "text": "demos and also some more examples right",
+      "start": 1602.08,
+      "duration": 5.12
+    },
+    {
+      "text": "on on my Twitter I keep dropping some of",
+      "start": 1604.559,
+      "duration": 4.681
+    },
+    {
+      "text": "these uh on my Twitter you can you can",
+      "start": 1607.2,
+      "duration": 4.76
+    },
+    {
+      "text": "go there and uh check some of those out",
+      "start": 1609.24,
+      "duration": 5.88
+    },
+    {
+      "text": "you can go to this is my Twitter handle",
+      "start": 1611.96,
+      "duration": 4.48
+    },
+    {
+      "text": "you should be able to find a lot of",
+      "start": 1615.12,
+      "duration": 4.159
+    },
+    {
+      "text": "these demos once you go to my uh uh",
+      "start": 1616.44,
+      "duration": 4.959
+    },
+    {
+      "text": "right this is the one this is an npm",
+      "start": 1619.279,
+      "duration": 3.241
+    },
+    {
+      "text": "package let's say you want to",
+      "start": 1621.399,
+      "duration": 3.081
+    },
+    {
+      "text": "programmatically launch a agents using",
+      "start": 1622.52,
+      "duration": 4.36
+    },
+    {
+      "text": "JavaScript you can do that using uh the",
+      "start": 1624.48,
+      "duration": 5.919
+    },
+    {
+      "text": "npm package called Gia deploy right that",
+      "start": 1626.88,
+      "duration": 5.679
+    },
+    {
+      "text": "that way you can spin up multiple nodes",
+      "start": 1630.399,
+      "duration": 3.88
+    },
+    {
+      "text": "automatically that's that's one way to",
+      "start": 1632.559,
+      "duration": 4.321
+    },
+    {
+      "text": "do it if you have any like PRS you could",
+      "start": 1634.279,
+      "duration": 4.601
+    },
+    {
+      "text": "also contribute there I think it would",
+      "start": 1636.88,
+      "duration": 3.519
+    },
+    {
+      "text": "be helpful to have a session where",
+      "start": 1638.88,
+      "duration": 4.399
+    },
+    {
+      "text": "people pitch their project and then yes",
+      "start": 1640.399,
+      "duration": 4.961
+    },
+    {
+      "text": "so there are two sessions coming up this",
+      "start": 1643.279,
+      "duration": 5.161
+    },
+    {
+      "text": "week uh where there is Project pck",
+      "start": 1645.36,
+      "duration": 4.559
+    },
+    {
+      "text": "feedback sessions I believe that's what",
+      "start": 1648.44,
+      "duration": 3.76
+    },
+    {
+      "text": "they are called please join them I will",
+      "start": 1649.919,
+      "duration": 4.681
+    },
+    {
+      "text": "be there I will give you feedback and",
+      "start": 1652.2,
+      "duration": 6.32
+    },
+    {
+      "text": "also one-on-one um insights on on how",
+      "start": 1654.6,
+      "duration": 5.679
+    },
+    {
+      "text": "you can tweak the idea that you're",
+      "start": 1658.52,
+      "duration": 3.56
+    },
+    {
+      "text": "building I think that's a great way to",
+      "start": 1660.279,
+      "duration": 3.601
+    },
+    {
+      "text": "get feedback thanks Alex for bringing",
+      "start": 1662.08,
+      "duration": 4.4
+    },
+    {
+      "text": "that up uh but yeah this this is where",
+      "start": 1663.88,
+      "duration": 4.76
+    },
+    {
+      "text": "you can find many more examples that are",
+      "start": 1666.48,
+      "duration": 4.799
+    },
+    {
+      "text": "still not on our dogs so do do go check",
+      "start": 1668.64,
+      "duration": 6.159
+    },
+    {
+      "text": "it out uh what else did I want to",
+      "start": 1671.279,
+      "duration": 6.201
+    },
+    {
+      "text": "share yeah this is the one that shows",
+      "start": 1674.799,
+      "duration": 6.961
+    },
+    {
+      "text": "how you can run deep seek R1 locally but",
+      "start": 1677.48,
+      "duration": 6.48
+    },
+    {
+      "text": "yeah I can I can go on I can I can share",
+      "start": 1681.76,
+      "duration": 4.2
+    },
+    {
+      "text": "many more resources but if you want more",
+      "start": 1683.96,
+      "duration": 3.8
+    },
+    {
+      "text": "resources I would recommend you ask me",
+      "start": 1685.96,
+      "duration": 4.76
+    },
+    {
+      "text": "on our Discord Channel including",
+      "start": 1687.76,
+      "duration": 4.68
+    },
+    {
+      "text": "including any questions that you have if",
+      "start": 1690.72,
+      "duration": 4.28
+    },
+    {
+      "text": "you running into any issues but what I",
+      "start": 1692.44,
+      "duration": 6.8
+    },
+    {
+      "text": "would say uh to end this off um is",
+      "start": 1695.0,
+      "duration": 7.799
+    },
+    {
+      "text": "building a agents is simple right I",
+      "start": 1699.24,
+      "duration": 5.439
+    },
+    {
+      "text": "think what is important is for you to",
+      "start": 1702.799,
+      "duration": 4.921
+    },
+    {
+      "text": "Define your use case better and use the",
+      "start": 1704.679,
+      "duration": 5.641
+    },
+    {
+      "text": "right LM and fine tune it to an extent",
+      "start": 1707.72,
+      "duration": 4.0
+    },
+    {
+      "text": "where you're satisfied with how it",
+      "start": 1710.32,
+      "duration": 3.92
+    },
+    {
+      "text": "responds right the key is always in",
+      "start": 1711.72,
+      "duration": 5.24
+    },
+    {
+      "text": "chunking the data uh segmenting it in",
+      "start": 1714.24,
+      "duration": 6.439
+    },
+    {
+      "text": "the right format uh and then giving that",
+      "start": 1716.96,
+      "duration": 5.92
+    },
+    {
+      "text": "to the llm as the knowledge base you can",
+      "start": 1720.679,
+      "duration": 3.921
+    },
+    {
+      "text": "go to our knowledge Bas section to see",
+      "start": 1722.88,
+      "duration": 4.0
+    },
+    {
+      "text": "how you can convert a text file PDF file",
+      "start": 1724.6,
+      "duration": 5.079
+    },
+    {
+      "text": "a CSV file into embeddings but remember",
+      "start": 1726.88,
+      "duration": 4.799
+    },
+    {
+      "text": "if you don't chunk your data and segment",
+      "start": 1729.679,
+      "duration": 4.88
+    },
+    {
+      "text": "your data your llm will go all out and",
+      "start": 1731.679,
+      "duration": 5.84
+    },
+    {
+      "text": "respond very randomly which uh which you",
+      "start": 1734.559,
+      "duration": 5.12
+    },
+    {
+      "text": "wouldn't want right you would want it to",
+      "start": 1737.519,
+      "duration": 4.481
+    },
+    {
+      "text": "respond properly right for Tool calling",
+      "start": 1739.679,
+      "duration": 4.681
+    },
+    {
+      "text": "like I said use the link that I shared",
+      "start": 1742.0,
+      "duration": 4.64
+    },
+    {
+      "text": "specifically for Tool calling but yes",
+      "start": 1744.36,
+      "duration": 6.05
+    },
+    {
+      "text": "that's all I have for this demo",
+      "start": 1746.64,
+      "duration": 8.569
+    },
+    {
+      "text": "[Music]",
+      "start": 1750.41,
+      "duration": 4.799
+    }
+  ]
+}
