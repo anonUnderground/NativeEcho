@@ -16,8 +16,9 @@ NativeEcho is a decentralized translation application that allows users to trans
 4. **Translate Captions**: Captions are passed to an LLM deployed on a GainaNet node.
 5. **Display Translations**: Translated captions are displayed in the UI.
 
-## Architecture Diagram
-Below is the architecture diagram illustrating how NativeEcho functions:
+## Functional Architecture Diagram
+Below is the functional architecture diagram illustrating how NativeEcho functions
+This is not a network diagram, this diagram's purpose is to help your understanding:
 
 ![NativeEcho Architecture](assets/ETHGlobalAgenticArchitecture.jpg)
 
@@ -105,7 +106,12 @@ Example GAIA_AUTH:
 GAIA_AUTH="Bearer sidjad7cGisNJhooA87922e32e3..."
 ```
 
-Ensure that your `.env` file is correctly configured, as missing or incorrect values can lead to failures in API requests.
+## Helpful Resources
+- **YouTube API Key Generation**: [Watch Here](https://www.youtube.com/watch?v=EPeDTRNKAVo)
+- **GaiaNet ETHGlobal Workshop**: [Watch Here](https://www.youtube.com/watch?v=J6ftu52nwSs)
+- **GaiaNet Documentation**: [Read Here](https://docs.gaianet.ai/intro)
+- **Nillion ETHGlobal Workshop**: [Watch Here](https://www.youtube.com/watch?v=XOhSgnTm_Zo)
+- **Nillion Documentation**: [Read Here](https://docs.nillion.com/build/secret-vault-quickstart)
 
 ## Running the Application Locally
 
@@ -171,3 +177,10 @@ npm install dotenv
 
 ## License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for more details.
+
+## Next Steps
+1. **Enhancing Caption Retrieval**: Finding a better way to retrieve auto-generated captions from YouTube, possibly by implementing our own audio-to-text extraction alongside YouTube's captions.
+2. **Upgrading LLM and Context Awareness**: Improving the LLM model and prompt engineering to better capture the full context of the workshop, preventing misinterpretations in auto-generated captions. Additionally, enabling document-based web searches as extra context.
+3. **Implementing a Token-Gated Experience**: Introducing a pricing schema where API calls are token-gated, charging per request type.
+4. **Multi-Agent Translation Validation**: Levarging multiple AI agents/ models to check translation accuracy,
+perhaps enhancing results with web search
