@@ -16,6 +16,11 @@ NativeEcho is a decentralized translation application that allows users to trans
 4. **Translate Captions**: Captions are passed to an LLM deployed on a GainaNet node.
 5. **Display Translations**: Translated captions are displayed in the UI.
 
+## Architecture Diagram
+Below is the architecture diagram illustrating how NativeEcho functions:
+
+![NativeEcho Architecture](assets/ETHGlobalAgenticArchitecture.jpg)
+
 ## Partner Technologies
 ### Nillion
 Nillion serves as the decentralized storage layer for NativeEcho. It is used to store metadata extracted from YouTube videos, ensuring that the data remains tamper-proof and secure. Here’s how it works:
@@ -29,6 +34,29 @@ GainaNet powers the AI translation by hosting the LLM on a decentralized node. T
 - Each caption segment is sent to the model via API requests.
 - The translated text is returned and displayed in the UI, enabling users to understand the content in their native language.
 - Additionally, `Nomic-embed-text-v1.5` is used for text embedding, improving the retrieval of contextual information.
+
+## Implementing Schema for YouTube API Compatibility
+To ensure consistency with YouTube’s API responses, we implemented `schema.json` to match the structure of YouTube’s metadata. This allows seamless integration and accurate data storage in Nillion.
+
+### **Schema Implementation**
+- The **`schema.json`** file defines the format in which video metadata and captions are stored.
+- It includes fields like:
+  ```json
+  {
+    "video_id": "string",
+    "title": "string",
+    "description": "string",
+    "publishedAt": "string",
+    "captions": [
+      {
+        "start_time": "float",
+        "end_time": "float",
+        "text": "string"
+      }
+    ]
+  }
+  ```
+- This ensures that the extracted data follows the expected API response format, making it easier to interact with YouTube’s API and Nillion’s decentralized storage.
 
 ## Technologies Used
 - **Backend**: Python (YouTube API, web scraping)
@@ -84,7 +112,7 @@ Ensure that your `.env` file is correctly configured, as missing or incorrect va
 ### 1. Extract YouTube Captions
 Run the following Python script to scrape closed captions from a YouTube video:
 ```sh
-python extract_captions.py --video_id <YouTube Video ID>
+python youtube_retrieval.ipynb --video_id <YouTube Video ID>
 ```
 This generates a JSON file containing the video metadata and captions.
 
