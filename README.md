@@ -16,6 +16,20 @@ NativeEcho is a decentralized translation application that allows users to trans
 4. **Translate Captions**: Captions are passed to an LLM deployed on a GainaNet node.
 5. **Display Translations**: Translated captions are displayed in the UI.
 
+## Partner Technologies
+### Nillion
+Nillion serves as the decentralized storage layer for NativeEcho. It is used to store metadata extracted from YouTube videos, ensuring that the data remains tamper-proof and secure. Here’s how it works:
+- When a YouTube video’s captions are scraped, the metadata (including video title, description, and timestamps) is structured as JSON.
+- This JSON metadata is uploaded to Nillion using `upload_data.js`.
+- The frontend fetches metadata from Nillion, ensuring the data remains decentralized and resistant to single points of failure.
+
+### GainaNet
+GainaNet powers the AI translation by hosting the LLM on a decentralized node. The key aspects of its implementation in NativeEcho include:
+- The LLM (`Qwen2.5-0.5B-Instruct-Q5_K_M`) deployed on a GainaNet node (AWS EC2 `m5.xlarge`) receives the extracted captions.
+- Each caption segment is sent to the model via API requests.
+- The translated text is returned and displayed in the UI, enabling users to understand the content in their native language.
+- Additionally, `Nomic-embed-text-v1.5` is used for text embedding, improving the retrieval of contextual information.
+
 ## Technologies Used
 - **Backend**: Python (YouTube API, web scraping)
 - **Frontend**: HTML, JavaScript, CSS
@@ -50,8 +64,17 @@ Create a `.env` file in the root directory and populate it with the required API
 
 ```
 YOUTUBE_API_KEY=<your-youtube-api-key>
-NILLION_API_KEY=<your-nillion-api-key>
-GANIANET_NODE_URL=<your-gainanet-node-url>
+GAIA_AUTH="Bearer <your-gaianet-auth-token>"  # Ensure 'Bearer ' is included before the token
+GAIA_DOMAIN=<your-gaianet-domain>
+NillionDID=<your-nillion-did>
+NillionPublicKey=<your-nillion-public-key>
+NillionPrivateKey=<your-nillion-private-key>
+NILLION_SCHEMA_ID=<your-nillion-schema-id>
+```
+
+Example GAIA_AUTH:
+```
+GAIA_AUTH="Bearer sidjad7cGisNJhooA87922e32e3..."
 ```
 
 Ensure that your `.env` file is correctly configured, as missing or incorrect values can lead to failures in API requests.
